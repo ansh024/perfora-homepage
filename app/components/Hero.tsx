@@ -157,7 +157,7 @@ export default function Hero() {
                 relative z-10 flex flex-col justify-center
                 w-full md:w-1/2
                 order-2 md:order-1
-                px-6 pb-10 pt-5
+                px-6 pb-10 pt-3
                 md:pl-14 md:pr-6 md:py-0
                 lg:pl-16 lg:pr-8
               "
@@ -177,22 +177,23 @@ export default function Hero() {
 
               {/* Headline */}
               <h1
-                className="font-display leading-[1.06] mb-3"
+                className="font-display leading-[1.08] md:leading-[1.06] mb-2 md:mb-3 text-[1.35rem] md:text-[clamp(1.75rem,4vw,2.75rem)]"
                 style={{
                   color:         headingColor,
-                  fontSize:      "clamp(1.75rem, 4vw, 2.75rem)",
                   fontWeight:    700,
                   letterSpacing: "-0.015em",
+                  whiteSpace:    "nowrap",
                 }}
               >
                 {slide.headline[0]}
-                <br />
+                <br className="hidden md:block" />
+                {" "}
                 <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
               </h1>
 
               {/* Body */}
               <p
-                className="text-[13.5px] md:text-[14.5px] leading-[1.65] mb-6 max-w-[280px] md:max-w-[300px]"
+                className="text-[12.5px] md:text-[14.5px] leading-[1.55] mb-4 md:mb-6 max-w-[95%] md:max-w-[300px]"
                 style={{ color: bodyColor, fontFamily: "var(--font-inter)", fontWeight: 400 }}
               >
                 {slide.body}
@@ -228,6 +229,23 @@ export default function Hero() {
                     <path d="M1 5.5h9M7 2l3.5 3.5L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </a>
+              </div>
+
+              {/* Mobile-only dots — grouped below CTA for visual connection */}
+              <div className="flex md:hidden items-center gap-[7px] mt-4">
+                {slides.map((s, i) => (
+                  <button
+                    key={s.id}
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => goTo(i, i > active ? 1 : -1)}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width:      i === active ? "20px" : "6px",
+                      height:     "6px",
+                      background: i === active ? dotActive : dotInactive,
+                    }}
+                  />
+                ))}
               </div>
             </div>
 
@@ -338,8 +356,8 @@ export default function Hero() {
           </svg>
         </button>
 
-        {/* ── Dot indicators ── */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-[7px]">
+        {/* ── Dot indicators — desktop only; mobile dots live in the text block ── */}
+        <div className="hidden md:flex absolute bottom-5 left-1/2 -translate-x-1/2 z-20 items-center gap-[7px]">
           {slides.map((s, i) => (
             <button
               key={s.id}

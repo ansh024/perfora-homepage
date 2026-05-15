@@ -3,8 +3,14 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MarqueeStrip from "./components/MarqueeStrip";
 import ShopByCategory from "./components/ShopByCategory";
+import TrustedBySmiles from "./components/TrustedBySmiles";
 import WhyPerfora from "./components/WhyPerfora";
 import SiteFooter from "./components/SiteFooter";
+
+const VideoTestimonials = dynamic(
+  () => import("./components/VideoTestimonials"),
+  { loading: () => <div style={{ height: 420, background: "#FAFAFA" }} /> }
+);
 
 const SmileWorthySavings = dynamic(
   () => import("./components/SmileWorthySavings"),
@@ -32,6 +38,8 @@ export default function Home() {
         <SmileWorthySavings />
         <DoctorRecommended />
         <OralCareEssentials />
+        <VideoTestimonials />
+        <TrustedBySmiles />
         <WhyPerfora />
       </main>
       <SiteFooter />

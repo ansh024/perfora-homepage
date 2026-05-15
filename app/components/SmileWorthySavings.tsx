@@ -114,6 +114,16 @@ const PRODUCTS: Product[] = [
   },
 ];
 
+// ─── Mobile concern filters ────────────────────────────────────────────────────
+const MOBILE_CONCERNS = ["All", "Teeth whitening", "Fresh breath", "Plaque removal", "Tooth sensitivity"];
+
+const CONCERN_PRODUCT_IDS: Record<string, string[]> = {
+  "Teeth whitening":   ["whitening-serum", "whitening-combo", "whitening-strips-pro"],
+  "Fresh breath":      ["charcoal-toothpaste", "electric-toothbrush", "power-flosser"],
+  "Plaque removal":    ["electric-toothbrush", "charcoal-toothpaste", "power-flosser"],
+  "Tooth sensitivity": ["electric-toothbrush", "whitening-serum", "whitening-strips-pro"],
+};
+
 // ─── Stars ─────────────────────────────────────────────────────────────────────
 function Stars({ rating, count }: { rating: number; count: string }) {
   return (
@@ -587,7 +597,13 @@ export default function SmileWorthySavings() {
   const [dragLeft,  setDragLeft]  = useState(0);
   const [activeIdx, setActiveIdx] = useState(0);
   const [progress,  setProgress]  = useState(0);
-  const [mobileIdx, setMobileIdx] = useState(0);
+  const [mobileIdx,     setMobileIdx]     = useState(0);
+  const [mobileConcern, setMobileConcern] = useState<string | null>(null);
+
+  // Filtered products for mobile concern chips
+  const mobileProducts = mobileConcern
+    ? PRODUCTS.filter(p => CONCERN_PRODUCT_IDS[mobileConcern]?.includes(p.id))
+    : PRODUCTS;
 
   // Compute drag constraint after mount + on resize
   useEffect(() => {
@@ -649,13 +665,19 @@ export default function SmileWorthySavings() {
     animate(x, -target * STEP, { type: "spring", stiffness: 300, damping: 35 });
   };
 
+  // Reset mobile carousel when concern filter changes
+  useEffect(() => {
+    if (mobileRef.current) mobileRef.current.scrollLeft = 0;
+    setMobileIdx(0);
+  }, [mobileConcern]);
+
   // Mobile scroll → dot indicator
   const handleMobileScroll = () => {
     const el = mobileRef.current;
     if (!el || !el.firstElementChild) return;
     const step = (el.firstElementChild as HTMLElement).offsetWidth + CARD_GAP;
     const idx  = Math.round(el.scrollLeft / step);
-    setMobileIdx(Math.max(0, Math.min(PRODUCTS.length - 1, idx)));
+    setMobileIdx(Math.max(0, Math.min(mobileProducts.length - 1, idx)));
   };
 
   return (
@@ -907,6 +929,49 @@ export default function SmileWorthySavings() {
             </p>
           </div>
 
+          {/* Concern filter pills */}
+          <div
+            className="no-scrollbar"
+            style={{
+              overflowX:    "auto",
+              display:      "flex",
+              gap:          8,
+              paddingLeft:  "clamp(20px, 5vw, 40px)",
+              paddingRight: "clamp(20px, 5vw, 40px)",
+              paddingBottom: 4,
+              marginBottom:  16,
+            }}
+          >
+            {MOBILE_CONCERNS.map((concern) => {
+              const isActive = concern === "All" ? mobileConcern === null : mobileConcern === concern;
+              return (
+                <button
+                  key={concern}
+                  onClick={() => setMobileConcern(concern === "All" ? null : concern)}
+                  style={{
+                    flexShrink:  0,
+                    padding:     "0 16px",
+                    height:      44,
+                    borderRadius: 100,
+                    border:      `1.5px solid ${isActive ? "#3D1F8F" : "#C4BDE8"}`,
+                    background:  isActive ? "#3D1F8F" : "white",
+                    color:       isActive ? "#FFFFFF" : "#6B4FB3",
+                    fontFamily:  "var(--font-inter)",
+                    fontSize:    13,
+                    fontWeight:  isActive ? 600 : 500,
+                    cursor:      "pointer",
+                    whiteSpace:  "nowrap",
+                    display:     "flex",
+                    alignItems:  "center",
+                    transition:  "background 0.18s, border-color 0.18s, color 0.18s",
+                  }}
+                >
+                  {concern}
+                </button>
+              );
+            })}
+          </div>
+
           {/* Swipe carousel */}
           <div
             ref={mobileRef}
@@ -923,7 +988,7 @@ export default function SmileWorthySavings() {
               paddingBottom:           8,
             }}
           >
-            {PRODUCTS.map(p => (
+            {mobileProducts.map(p => (
               <div
                 key={p.id}
                 style={{
@@ -946,7 +1011,7 @@ export default function SmileWorthySavings() {
               marginTop:      16,
             }}
           >
-            {PRODUCTS.map((_, i) => (
+            {mobileProducts.map((_, i) => (
               <motion.div
                 key={i}
                 animate={{
