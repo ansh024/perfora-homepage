@@ -62,31 +62,41 @@ export default function DoctorRecommended() {
       >
         {/* ── Left: Doctor visual panel ── */}
         <div
-          className="w-full md:flex-shrink-0 h-[240px] md:h-auto md:w-[420px]"
+          className="w-full md:flex-shrink-0 h-[320px] md:h-auto md:w-[420px]"
           style={{
             position:   "relative",
             overflow:   "hidden",
-            background: "linear-gradient(158deg, #3D1F8F 0%, #6240B0 55%, #9B7FD4 100%)",
+            background: "#EDE9FB",
           }}
         >
           <Image
-            src="/dentist-clinic.jpeg"
-            alt="Dentist examining a smiling patient"
+            src="/dentist-photo.jpg"
+            alt="Dentist with smiling patient in clinic"
             fill
             sizes="(min-width: 768px) 420px, 100vw"
             loading="lazy"
             style={{
-              objectFit: "cover",
-              objectPosition: "42% center",
+              objectFit:      "cover",
+              objectPosition: "center 38%",
             }}
           />
 
-          {/* Purple wash keeps the photo consistent with the section palette. */}
+          {/* Soft top blush — palette warmth, clears face area */}
           <div
             style={{
               position:      "absolute",
               inset:         0,
-              background:    "linear-gradient(160deg, rgba(61,31,143,0.54) 0%, rgba(98,64,176,0.34) 58%, rgba(155,127,212,0.18) 100%)",
+              background:    "linear-gradient(to bottom, rgba(155,127,212,0.18) 0%, transparent 55%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Bottom anchor — prevents hard cutoff at panel edge */}
+          <div
+            style={{
+              position:      "absolute",
+              inset:         0,
+              background:    "linear-gradient(to top, rgba(61,31,143,0.20) 0%, transparent 40%)",
               pointerEvents: "none",
             }}
           />

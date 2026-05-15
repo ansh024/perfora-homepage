@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 type BadgeVariant = "launch" | "popular" | "value" | "sale";
@@ -439,45 +439,61 @@ export default function OralCareEssentials() {
           })}
         </div>
 
-        {/* ── Desktop: 4-card single row ── */}
-        <div
-          className="hidden md:block"
-          style={{
-            display:             "grid",
-            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-            gridTemplateRows:    "auto",
-            gap:                 "clamp(12px, 1.6vw, 18px)",
-          }}
-        >
-          {filtered.slice(0, 4).map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i} />
-          ))}
+        {/* ── Desktop: exactly 4 cards, single row ── */}
+        <div className="hidden md:block">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFilter}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              style={{
+                display:             "grid",
+                gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+                gap:                 "clamp(12px, 1.6vw, 18px)",
+              }}
+            >
+              {filtered.slice(0, 4).map((p, i) => (
+                <ProductCard key={p.id} product={p} index={i} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
-        {/* ── Mobile horizontal scroll ── */}
-        <div
-          className="md:hidden no-scrollbar"
-          style={{
-            overflowX:               "auto",
-            WebkitOverflowScrolling: "touch",
-            scrollSnapType:          "x mandatory",
-            display:                 "flex",
-            gap:                     14,
-            marginLeft:              "-20px",
-            marginRight:             "-20px",
-            paddingLeft:             20,
-            paddingRight:            20,
-            paddingBottom:           8,
-          }}
-        >
-          {filtered.map((p, i) => (
-            <div
-              key={p.id}
-              style={{ flexShrink: 0, width: 264, scrollSnapAlign: "start" }}
+        {/* ── Mobile: horizontal swipe carousel ── */}
+        <div className="md:hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFilter}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="no-scrollbar"
+              style={{
+                overflowX:               "auto",
+                WebkitOverflowScrolling: "touch",
+                scrollSnapType:          "x mandatory",
+                display:                 "flex",
+                gap:                     14,
+                marginLeft:              "-20px",
+                marginRight:             "-20px",
+                paddingLeft:             20,
+                paddingRight:            20,
+                paddingBottom:           8,
+              }}
             >
-              <ProductCard product={p} index={i} />
-            </div>
-          ))}
+              {filtered.slice(0, 4).map((p, i) => (
+                <div
+                  key={p.id}
+                  style={{ flexShrink: 0, width: 264, scrollSnapAlign: "start" }}
+                >
+                  <ProductCard product={p} index={i} />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* ── Show More ── */}

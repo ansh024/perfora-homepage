@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MarqueeStrip from "./components/MarqueeStrip";
 import ShopByCategory from "./components/ShopByCategory";
+import WhyPerfora from "./components/WhyPerfora";
 import SiteFooter from "./components/SiteFooter";
 
 const SmileWorthySavings = dynamic(
@@ -29,8 +30,9 @@ export default function Home() {
         <MarqueeStrip />
         <ShopByCategory />
         <SmileWorthySavings />
-        <OralCareEssentials />
         <DoctorRecommended />
+        <OralCareEssentials />
+        <WhyPerfora />
       </main>
       <SiteFooter />
     </>
