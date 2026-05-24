@@ -153,7 +153,7 @@ function Stars({ rating, count }: { rating: number; count: string }) {
       <span style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, fontWeight: 600, color: "#1A0A3D", lineHeight: 1 }}>
         {rating}
       </span>
-      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#9B8FBB", lineHeight: 1 }}>
+      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#232323", lineHeight: 1 }}>
         ({count})
       </span>
     </div>
@@ -268,7 +268,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
             marginTop:  4,
             fontFamily: "var(--font-inter)",
             fontSize:   11.5,
-            color:      "#8B7AAA",
+            color:      "#232323",
             lineHeight: 1.4,
           }}
         >
@@ -391,7 +391,7 @@ export default function OralCareEssentials() {
           }}
         >
           Oral Care{" "}
-          <em style={{ fontStyle: "italic", fontWeight: 700, color: "#6B5A8A" }}>
+          <em style={{ fontStyle: "italic", fontWeight: 700, color: "#232323" }}>
             Essentials
           </em>
         </h2>
@@ -423,7 +423,7 @@ export default function OralCareEssentials() {
                   borderRadius:  24,
                   border:        active ? "1.5px solid transparent" : "1.5px solid #D4CBF8",
                   background:    active ? "#3D1F8F" : "transparent",
-                  color:         active ? "#FFFFFF" : "#6B5A8A",
+                  color:         active ? "#FFFFFF" : "#232323",
                   fontFamily:    "var(--font-inter)",
                   fontSize:      13,
                   fontWeight:    active ? 600 : 400,
@@ -477,9 +477,9 @@ export default function OralCareEssentials() {
                 scrollSnapType:          "x mandatory",
                 display:                 "flex",
                 gap:                     14,
-                marginLeft:              "-20px",
+                marginLeft:              "12px",
                 marginRight:             "-20px",
-                paddingLeft:             20,
+                paddingLeft:             0,
                 paddingRight:            20,
                 paddingBottom:           8,
               }}

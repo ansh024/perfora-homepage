@@ -59,14 +59,14 @@ function FooterLink({ children }: { children: React.ReactNode }) {
         display:        "block",
         fontFamily:     "var(--font-inter)",
         fontSize:       13,
-        color:          "#6B5A8A",
+        color:          "#232323",
         lineHeight:     1,
         marginBottom:   13,
         textDecoration: "none",
         transition:     "color 0.15s",
       }}
       onMouseEnter={e => (e.currentTarget.style.color = "#3D1F8F")}
-      onMouseLeave={e => (e.currentTarget.style.color = "#6B5A8A")}
+      onMouseLeave={e => (e.currentTarget.style.color = "#232323")}
     >
       {children}
     </a>
@@ -111,7 +111,7 @@ export default function SiteFooter() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize:   13,
-                color:      "#6B5A8A",
+                color:      "#232323",
                 lineHeight: 1.7,
               }}
             >
@@ -228,7 +228,7 @@ export default function SiteFooter() {
               style={{
                 fontFamily:   "var(--font-inter)",
                 fontSize:     11.5,
-                color:        "#9B8FBB",
+                color:        "#232323",
                 lineHeight:   1.5,
                 marginBottom: 20,
               }}
@@ -356,7 +356,7 @@ export default function SiteFooter() {
             style={{
               fontFamily: "var(--font-inter)",
               fontSize:   12,
-              color:      "#9B8FBB",
+              color:      "#232323",
             }}
           >
             &copy; 2023 Perfora. All rights reserved.

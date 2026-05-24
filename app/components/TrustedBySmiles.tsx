@@ -183,7 +183,7 @@ function ReviewCard({ review }: { review: Review }) {
           <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D", lineHeight: 1.3 }}>
             {review.name}
           </p>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#9B8FBB", lineHeight: 1.3 }}>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#232323", lineHeight: 1.3 }}>
             {review.city}
           </p>
         </div>
@@ -423,7 +423,7 @@ export default function TrustedBySmiles() {
                 style={{
                   fontFamily:   "var(--font-inter)",
                   fontSize:     "clamp(13px, 1.05vw, 14.5px)",
-                  color:        "#6B5A8A",
+                  color:        "#232323",
                   lineHeight:   1.65,
                   maxWidth:     "26ch",
                   marginBottom: 20,
@@ -447,10 +447,10 @@ export default function TrustedBySmiles() {
                     <span key={i} style={{ color: "#F5A623", fontSize: 16, lineHeight: 1 }}>★</span>
                   ))}
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, fontWeight: 700, color: "#1A0A3D", marginLeft: 2 }}>
-                    4.8<span style={{ fontSize: 12, color: "#9B8FBB", fontWeight: 500 }}>/5</span>
+                    4.8<span style={{ fontSize: 12, color: "#232323", fontWeight: 500 }}>/5</span>
                   </span>
                 </div>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#9B8FBB" }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#232323" }}>
                   Based on 12,000+ verified reviews
                 </p>
               </div>
@@ -543,7 +543,7 @@ export default function TrustedBySmiles() {
             style={{
               fontFamily:         "var(--font-inter)",
               fontSize:           11.5,
-              color:              "#9B8FBB",
+              color:              "#232323",
               flexShrink:         0,
               minWidth:           42,
               letterSpacing:      "0.06em",
@@ -618,7 +618,7 @@ export default function TrustedBySmiles() {
               <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D" }}>
                 4.8/5
               </span>
-              <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#9B8FBB" }}>
+              <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#232323" }}>
                 · 12,000+ reviews
               </span>
             </div>
@@ -635,7 +635,8 @@ export default function TrustedBySmiles() {
               scrollSnapType:          "x mandatory",
               display:                 "flex",
               gap:                     CARD_GAP,
-              paddingLeft:             "clamp(20px, 5vw, 40px)",
+              marginLeft:              "12px",
+              paddingLeft:             0,
               paddingRight:            "clamp(20px, 5vw, 40px)",
               paddingBottom:           8,
             }}

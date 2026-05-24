@@ -36,7 +36,7 @@ export default function BrushSpotlight() {
           maxWidth:       760,
           padding:        "16px clamp(32px, 5vw, 56px)",
           overflow:       "hidden",
-          height:         150,
+          height:         75,
           display:        "flex",
           alignItems:     "center",
           justifyContent: "center",
@@ -48,10 +48,10 @@ export default function BrushSpotlight() {
           src="/ezgif.com-speed.gif"
           alt="Perfora electric toothbrush"
           style={{
-            height:    "380px",
-            width:     "auto",
-            display:   "block",
-            flexShrink: 0,
+            width:      "100%",
+            height:     "100%",
+            objectFit:  "cover",
+            display:    "block",
           }}
         />
       </div>

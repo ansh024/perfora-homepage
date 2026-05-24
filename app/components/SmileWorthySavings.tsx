@@ -132,7 +132,7 @@ function Stars({ rating, count }: { rating: number; count: string }) {
       <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, color: "#1A0A3D", lineHeight: 1 }}>
         {rating}
       </span>
-      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#9B8FBB", lineHeight: 1 }}>
+      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#232323", lineHeight: 1 }}>
         ({count})
       </span>
     </div>
@@ -420,7 +420,7 @@ function ProductCard({
             marginTop:  3,
             fontFamily: "var(--font-inter)",
             fontSize:   11.5,
-            color:      "#8B7AAA",
+            color:      "#232323",
             lineHeight: 1.4,
           }}
         >
@@ -514,7 +514,7 @@ function ProductCard({
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize:   10.5,
-                color:      "#8B7AAA",
+                color:      "#232323",
                 marginLeft: 1,
               }}
             >
@@ -542,7 +542,7 @@ function ProductCard({
                   borderRadius: 20,
                   border:       `1.5px solid ${selectedOpt === i ? "#3D1F8F" : "#E0D9F8"}`,
                   background:   selectedOpt === i ? "#F0ECFF" : "transparent",
-                  color:        selectedOpt === i ? "#3D1F8F" : "#8B7AAA",
+                  color:        selectedOpt === i ? "#3D1F8F" : "#232323",
                   fontFamily:   "var(--font-inter)",
                   fontSize:     10.5,
                   fontWeight:   selectedOpt === i ? 600 : 400,
@@ -742,7 +742,7 @@ export default function SmileWorthySavings() {
                   marginTop:  14,
                   fontFamily: "var(--font-inter)",
                   fontSize:   "clamp(13px, 1.1vw, 15px)",
-                  color:      "#6B5A8A",
+                  color:      "#232323",
                   lineHeight: 1.65,
                   maxWidth:   "28ch",
                 }}
@@ -848,7 +848,7 @@ export default function SmileWorthySavings() {
             style={{
               fontFamily:    "var(--font-inter)",
               fontSize:      11.5,
-              color:         "#9B8FBB",
+              color:         "#232323",
               flexShrink:    0,
               minWidth:      42,
               letterSpacing: "0.06em",
@@ -921,7 +921,7 @@ export default function SmileWorthySavings() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize:   14,
-                color:      "#6B5A8A",
+                color:      "#232323",
                 lineHeight: 1.6,
               }}
             >
@@ -983,7 +983,8 @@ export default function SmileWorthySavings() {
               scrollSnapType:          "x mandatory",
               display:                 "flex",
               gap:                     CARD_GAP,
-              paddingLeft:             "clamp(20px, 5vw, 40px)",
+              marginLeft:              "12px",
+              paddingLeft:             0,
               paddingRight:            "clamp(20px, 5vw, 40px)",
               paddingBottom:           8,
             }}

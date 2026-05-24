@@ -223,7 +223,7 @@ export default function ShopByCategory() {
               aria-label="Product categories"
               style={{
                 display: "flex",
-                gap:     "clamp(8px, 3vw, 14px)",
+                gap:     "clamp(5px, 1.8vw, 8px)",
                 width:   "max-content",
               }}
             >
