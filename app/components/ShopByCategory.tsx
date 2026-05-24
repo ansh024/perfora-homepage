@@ -3,273 +3,244 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
-// ─── Category data ──────────────────────────────────────────────────────────────
-type CategoryItem = {
-  key:           string;
-  label:         string;
-  circleFill:    string;
-  isOffer:       boolean;
-  imageSrc?:     string;
-  Illustration?: () => React.ReactElement;
-};
+// ─── Category data ────────────────────────────────────────────────────────────
+const CATEGORIES = [
+  {
+    key:   "shop-all",
+    label: "Shop All\nProducts",
+    img:   "/new-icons/cat-shop-all.png",
+    href:  "/collections/all",
+  },
+  {
+    key:   "electric-toothbrush",
+    label: "Electric\nToothbrush",
+    img:   "/new-icons/cat-electric-toothbrush.png",
+    href:  "/collections/electric-toothbrush",
+  },
+  {
+    key:   "toothpaste-mouthwash",
+    label: "Toothpaste\n& Mouthwash",
+    img:   "/new-icons/cat-toothpaste-mouthwash.png",
+    href:  "/collections/toothpaste-mouthwash",
+  },
+  {
+    key:   "water-flosser",
+    label: "Water\nFlosser",
+    img:   "/new-icons/cat-water-flosser.png",
+    href:  "/collections/water-flosser",
+  },
+  {
+    key:   "teeth-whitening",
+    label: "Teeth\nWhitening",
+    img:   "/new-icons/cat-teeth-whitening.png",
+    href:  "/collections/teeth-whitening",
+  },
+  {
+    key:   "tongue-cleaner",
+    label: "Tongue Cleaner\n& Mouthwash",
+    img:   "/new-icons/cat-tongue-cleaner.png",
+    href:  "/collections/tongue-cleaner-mouthwash",
+  },
+] as const;
 
-const CATEGORIES: CategoryItem[] = [
-  {
-    key:        "special-offer",
-    label:      "Special Offer",
-    imageSrc:   "/category-icons/IMG_8399.webp",
-    circleFill: "#E2D9F8",
-    isOffer:    true,
-  },
-  {
-    key:        "electric-toothbrush",
-    label:      "Electric\nToothbrush",
-    imageSrc:   "/category-icons/electric-toothbrush-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "teeth-whitening",
-    label:      "Teeth\nWhitening",
-    imageSrc:   "/category-icons/teethwhitening-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "flosser",
-    label:      "Dental\nFlosser",
-    imageSrc:   "/category-icons/flosser-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "combos",
-    label:      "Combos",
-    imageSrc:   "/category-icons/combos-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "toothpaste",
-    label:      "Toothpaste",
-    imageSrc:   "/category-icons/toothpaste-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "tongue-cleaner",
-    label:      "Tongue\nCleaner",
-    imageSrc:   "/category-icons/tonguecleaner-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "mouth-freshener",
-    label:      "Mouth\nFreshener",
-    imageSrc:   "/category-icons/Mouth_Freshner_Banner_130126.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-  {
-    key:        "brush-heads",
-    label:      "Brush\nHeads",
-    imageSrc:   "/category-icons/brushhead-category.webp",
-    circleFill: "#EDE9FB",
-    isOffer:    false,
-  },
-];
-
-// ─── Category card ──────────────────────────────────────────────────────────────
-function CategoryCard({ label, circleFill, isOffer, imageSrc, Illustration }: CategoryItem) {
-  const SIZE = "clamp(92px, 13.5vw, 112px)";
-
+// ─── Single category card ─────────────────────────────────────────────────────
+function CategoryCard({
+  label,
+  img,
+  href,
+}: {
+  label: string;
+  img:   string;
+  href:  string;
+}) {
   return (
-    <motion.button
-      role="listitem"
-      whileHover={{ y: -4 }}
+    <motion.a
+      href={href}
+      whileHover="hovered"
       whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-      aria-label={label.replace("\n", " ")}
-      className="flex-shrink-0 flex flex-col items-center focus:outline-none"
+      initial="rest"
+      animate="rest"
       style={{
-        scrollSnapAlign: "start",
-        width:           SIZE,
-        background:      "none",
-        border:          "none",
-        cursor:          "pointer",
-        padding:         0,
+        display:                 "flex",
+        flexDirection:           "column",
+        alignItems:              "center",
+        textDecoration:          "none",
+        cursor:                  "pointer",
+        outline:                 "none",
+        WebkitTapHighlightColor: "transparent",
       }}
     >
-      {/* ── Circle ── */}
-      <div style={{ position: "relative", width: SIZE, height: SIZE, flexShrink: 0 }}>
-
-        {/* Background circle — clips the real image to the circle shape */}
-        <div
-          style={{
-            position:     "absolute",
-            inset:        0,
-            borderRadius: "50%",
-            background:   circleFill,
-            boxShadow:    "inset 0 1px 3px rgba(61,31,143,0.06)",
-            overflow:     "hidden",
+      {/*
+       * Fixed-height container — makes every product icon exactly the same
+       * rendered height regardless of the source image's aspect ratio.
+       * The white PNG backgrounds are invisible on the white section canvas,
+       * so the baked-in lavender ovals show cleanly with no rectangle "frames".
+       */}
+      <div
+        style={{
+          width:           "100%",
+          height:          "clamp(150px, 14vw, 205px)",
+          display:         "flex",
+          alignItems:      "center",
+          justifyContent:  "center",
+          position:        "relative",
+        }}
+      >
+        <motion.img
+          src={img}
+          alt={label.replace("\n", " ")}
+          loading="lazy"
+          variants={{
+            rest: {
+              y:      0,
+              scale:  1,
+              filter: "drop-shadow(0px 6px 18px rgba(107,79,179,0.16))",
+            },
+            hovered: {
+              y:      -7,
+              scale:  1.05,
+              filter: "drop-shadow(0px 12px 28px rgba(107,79,179,0.28))",
+            },
           }}
-        >
-          {imageSrc && (
-            <img
-              src={imageSrc}
-              alt=""
-              aria-hidden
-              style={{
-                width:      "100%",
-                height:     "100%",
-                objectFit:  "cover",
-                // Scale the image down slightly so the product fills the circle
-                // without the hard-cropped square edge feeling too tight
-                transform:  "scale(1.0)",
-                display:    "block",
-              }}
-            />
-          )}
-        </div>
-
-        {/* Dashed ring for Special Offer */}
-        {isOffer && (
-          <div
-            style={{
-              position:      "absolute",
-              inset:         -3,
-              borderRadius:  "50%",
-              border:        "1.5px dashed #A898D8",
-              opacity:       0.65,
-              pointerEvents: "none",
-            }}
-          />
-        )}
-
-        {/* SVG fallback for Brush Heads (no real asset) */}
-        {!imageSrc && Illustration && (
-          <div
-            style={{
-              position:   "absolute",
-              bottom:     0,
-              left:       "50%",
-              transform:  "translateX(-50%) translateY(-8px)",
-              display:    "flex",
-              alignItems: "flex-end",
-              overflow:   "visible",
-            }}
-          >
-            <Illustration />
-          </div>
-        )}
+          transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            // Let image fill the container height; width auto-scales by ratio.
+            // maxWidth caps very wide images from overflowing the column.
+            maxWidth:  "100%",
+            maxHeight: "100%",
+            width:     "auto",
+            height:    "100%",
+            objectFit: "contain",
+            display:   "block",
+          }}
+        />
       </div>
 
-      {/* ── Label ── */}
-      <p
+      {/* Category label */}
+      <motion.p
+        variants={{
+          rest:    { color: "#1A0A3D" },
+          hovered: { color: "#5B21B6" },
+        }}
+        transition={{ duration: 0.2 }}
         style={{
-          marginTop:     "clamp(9px, 1.3vw, 12px)",
+          marginTop:     "clamp(8px, 0.8vw, 12px)",
           fontFamily:    "var(--font-inter), sans-serif",
-          fontSize:      "clamp(10px, 1.4vw, 11.5px)",
-          fontWeight:    isOffer ? 600 : 400,
-          color:         isOffer ? "#4A3A99" : "#1A0A3D",
+          fontSize:      "clamp(11px, 0.9vw, 13px)",
+          fontWeight:    500,
           textAlign:     "center",
-          lineHeight:    1.4,
+          lineHeight:    1.45,
           letterSpacing: "0.01em",
           whiteSpace:    "pre-line",
         }}
       >
         {label}
-      </p>
-    </motion.button>
+      </motion.p>
+    </motion.a>
   );
 }
 
-// ─── Section ────────────────────────────────────────────────────────────────────
+// ─── Section ─────────────────────────────────────────────────────────────────
 export default function ShopByCategory() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <section
-      className="w-full bg-white"
       style={{
-        paddingTop:    "clamp(40px, 4vw, 56px)",
-        paddingBottom: "clamp(40px, 4vw, 56px)",
+        // FIX 1 — pure white so the PNG white backgrounds are invisible
+        background:    "#FFFFFF",
+        paddingTop:    "clamp(28px, 3vw, 44px)",
+        paddingBottom: "clamp(32px, 3.5vw, 52px)",
+        overflow:      "hidden",
       }}
     >
-      {/* ── Heading ── */}
       <div
         style={{
-          maxWidth:     1280,
+          maxWidth:     1440,
           marginLeft:   "auto",
           marginRight:  "auto",
-          textAlign:    "center",
-          marginBottom: "clamp(20px, 2.5vw, 30px)",
-          paddingLeft:  "clamp(20px, 4vw, 48px)",
-          paddingRight: "clamp(20px, 4vw, 48px)",
+          paddingLeft:  "clamp(20px, 3vw, 56px)",
+          paddingRight: "clamp(20px, 3vw, 56px)",
         }}
       >
-        <h2
-          className="font-display"
-          style={{
-            fontWeight:    700,
-            fontSize:      "clamp(1.5rem, 2.8vw, 2rem)",
-            letterSpacing: "-0.01em",
-            lineHeight:    1.1,
-            color:         "#1A0A3D",
-          }}
-        >
-          Shop by{" "}
-          <em style={{ fontStyle: "italic", fontWeight: 700, color: "#6B5A8A" }}>
-            Category
-          </em>
-        </h2>
-      </div>
+        {/* ── Heading block — no stars, tight spacing ──────────────────── */}
+        <div style={{ textAlign: "center", marginBottom: "clamp(16px, 2vw, 28px)" }}>
 
-      {/* ── Scrollable track ──
-          Two-div pattern: outer owns scroll; inner uses width:fit-content +
-          min-width:100% + justify-content:center so on desktop items are centered,
-          while on mobile the track expands and scrolls correctly. */}
-      <div
-        ref={scrollRef}
-        className="no-scrollbar"
-        style={{
-          overflowX:               "auto",
-          overflowY:               "visible",
-          WebkitOverflowScrolling: "touch",
-          scrollSnapType:          "x mandatory",
-        }}
-      >
+          {/* FIX 2 — dark purple heading, no sparkles above/below (FIX 3) */}
+          <h2
+            className="font-display"
+            style={{
+              fontSize:      "clamp(1.9rem, 3.3vw, 3rem)",
+              fontWeight:    700,
+              lineHeight:    1.1,
+              letterSpacing: "-0.025em",
+              margin:        0,
+            }}
+          >
+            <span style={{ color: "#1A0A3D" }}>Explore</span>{" "}
+            <em style={{ fontStyle: "italic", fontWeight: 400, color: "#6B3FA0" }}>
+              Oral Care
+            </em>
+          </h2>
+
+        </div>
+
+        {/* ── Desktop grid: all 6 in one row ──────────────────────────── */}
         <div
+          className="hidden md:grid"
           role="list"
           aria-label="Product categories"
           style={{
-            display:        "flex",
-            flexDirection:  "row",
-            justifyContent: "center",
-            alignItems:     "flex-start",
-            gap:            "clamp(10px, 1.6vw, 20px)",
-            width:          "fit-content",
-            minWidth:       "100%",
-            maxWidth:       1280,
-            marginLeft:     "auto",
-            marginRight:    "auto",
-            boxSizing:      "border-box",
-            paddingLeft:    "clamp(20px, 4vw, 48px)",
-            paddingRight:   "clamp(20px, 4vw, 48px)",
-            paddingTop:     "10px",
-            paddingBottom:  "16px",
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gap:                 "clamp(4px, 1vw, 16px)",
+            alignItems:          "start",
           }}
         >
-          {CATEGORIES.map((cat) => (
-            <CategoryCard
-              key={cat.key}
-              label={cat.label}
-              circleFill={cat.circleFill}
-              isOffer={cat.isOffer}
-              imageSrc={cat.imageSrc}
-              Illustration={cat.Illustration}
-            />
+          {CATEGORIES.map(({ key, ...rest }) => (
+            <CategoryCard key={key} {...rest} />
           ))}
+        </div>
+
+        {/* ── Mobile carousel: swipe + snap + peek ────────────────────── */}
+        <div className="block md:hidden">
+          <div
+            ref={scrollRef}
+            className="no-scrollbar"
+            style={{
+              overflowX:               "auto",
+              overflowY:               "visible",
+              WebkitOverflowScrolling: "touch",
+              scrollSnapType:          "x mandatory",
+              marginLeft:              "-20px",
+              marginRight:             "-20px",
+              paddingLeft:             "20px",
+              paddingRight:            "20px",
+              paddingBottom:           8,
+            }}
+          >
+            <div
+              role="list"
+              aria-label="Product categories"
+              style={{
+                display: "flex",
+                gap:     "clamp(8px, 3vw, 14px)",
+                width:   "max-content",
+              }}
+            >
+              {CATEGORIES.map(({ key, ...rest }) => (
+                <div
+                  key={key}
+                  style={{
+                    width:           "clamp(150px, 50vw, 195px)",
+                    scrollSnapAlign: "start",
+                    flexShrink:      0,
+                  }}
+                >
+                  <CategoryCard {...rest} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

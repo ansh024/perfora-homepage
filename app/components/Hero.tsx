@@ -4,48 +4,60 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Slide data ───────────────────────────────────────────────────────────────
-const slides = [
+type Slide = {
+  id:              number;
+  bg:              string;
+  theme:           "dark" | "light";
+  tag:             string;
+  headline:        [string, string];
+  body:            string;
+  cta:             string;
+  ctaHref:         string;
+  videoSrc?:       string;
+  imageSrc?:       string;
+  imageAlt?:       string;
+  backgroundImage?: string;
+};
+
+const slides: Slide[] = [
   {
-    id: 1,
-    bg: "#3D1F8F",
-    theme: "dark" as const,
-    tag: "New Launch",
+    id:       1,
+    bg:       "#3D1F8F",
+    theme:    "dark",
+    tag:      "New Launch",
     headline: ["Sonic Clean.", "Brighter Smile."],
-    body: "32,000 strokes/min. Dentist-recommended sonic technology for 10× cleaner teeth.",
-    cta: "Shop Electric Brush",
-    ctaHref: "#products",
-    imageSrc: "/product-images/electric-toothbrush.webp",
-    imageAlt: "Perfora Electric Toothbrush",
+    body:     "32,000 strokes/min. Dentist-recommended sonic technology for 10× cleaner teeth.",
+    cta:      "Shop Electric Brush",
+    ctaHref:  "#products",
     videoSrc: "/sonic.mp4",
   },
   {
-    id: 2,
-    bg: "#EDE9FB",
-    theme: "light" as const,
-    tag: "Bestseller",
+    id:       2,
+    bg:       "#EDE9FB",
+    theme:    "light",
+    tag:      "Bestseller",
     headline: ["Visibly Whiter", "in 7 Days."],
-    body: "Enamel-safe formula. No sensitivity. Clinical-grade whitening, at home.",
-    cta: "Shop Whitening Strips",
-    ctaHref: "#products",
+    body:     "Enamel-safe formula. No sensitivity. Clinical-grade whitening, at home.",
+    cta:      "Shop Whitening Strips",
+    ctaHref:  "#products",
     imageSrc: "/product-images/purple-whitening-strips.webp",
     imageAlt: "Perfora Whitening Strips",
   },
   {
-    id: 3,
-    bg: "#F5F3FF",
-    theme: "light" as const,
-    tag: "Bundle & Save",
-    headline: ["Your Complete", "Oral Ritual."],
-    body: "The full Perfora regimen — brush, whiten, rinse, repeat.",
-    cta: "Shop the Kit",
-    ctaHref: "#products",
-    imageSrc: "/product-images/whitening-combo.webp",
-    imageAlt: "Perfora Oral Care Kit",
+    id:              3,
+    bg:              "#2A1070",
+    theme:           "dark",
+    tag:             "Bundle & Save",
+    headline:        ["Your Complete", "Oral Ritual."],
+    body:            "The full Perfora regimen — brush, whiten, rinse, repeat.",
+    cta:             "Shop the Kit",
+    ctaHref:         "#products",
+    backgroundImage: "/hero-bundle-bg.png",
   },
-] as const;
+];
 
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? "62%" : "-62%", opacity: 0 }),
+  enter:  (dir: number) => ({ x: dir > 0 ? "62%" : "-62%", opacity: 0 }),
   center: { x: "0%", opacity: 1 },
   exit:   (dir: number) => ({ x: dir > 0 ? "-62%" : "62%", opacity: 0 }),
 };
@@ -108,19 +120,28 @@ export default function Hero() {
   const slide  = slides[active];
   const isDark = slide.theme === "dark";
 
+  // Theme-derived colours
   const headingColor = isDark ? "#FFFFFF"                : "#1A0A3D";
-  const bodyColor    = isDark ? "rgba(255,255,255,0.68)" : "#6B5A8A";
-  const tagBg        = isDark ? "rgba(255,255,255,0.13)" : "rgba(61,31,143,0.09)";
-  const tagColor     = isDark ? "rgba(255,255,255,0.9)"  : "#3D1F8F";
+  const bodyColor    = isDark ? "rgba(255,255,255,0.72)" : "#6B5A8A";
+  const tagBg        = isDark ? "rgba(255,255,255,0.14)" : "rgba(61,31,143,0.09)";
+  const tagColor     = isDark ? "rgba(255,255,255,0.92)" : "#3D1F8F";
   const ctaBg        = isDark ? "#FFFFFF"                : "#3D1F8F";
   const ctaText      = isDark ? "#1A0A3D"                : "#FFFFFF";
   const dotActive    = isDark ? "#FFFFFF"                : "#3D1F8F";
   const dotInactive  = isDark ? "rgba(255,255,255,0.3)"  : "rgba(61,31,143,0.18)";
   const arrowStroke  = isDark ? "rgba(255,255,255,0.55)" : "rgba(26,10,61,0.32)";
-  const progressFill = isDark ? "rgba(255,255,255,0.38)" : "rgba(61,31,143,0.22)";
+
+  // Desktop left-to-right gradient that bleeds the bg colour over the photo
+  const desktopGradient = isDark
+    ? `linear-gradient(to right, rgba(61,31,143,0.97) 0%, rgba(61,31,143,0.88) 30%, rgba(61,31,143,0.55) 55%, rgba(61,31,143,0.10) 78%, transparent 100%)`
+    : `linear-gradient(to right, rgba(237,233,251,1.00) 0%, rgba(237,233,251,0.92) 32%, rgba(237,233,251,0.60) 58%, rgba(237,233,251,0.10) 80%, transparent 100%)`;
+
+  // Mobile bottom gradient so text stays legible over the image
+  const mobileGradient = isDark
+    ? `linear-gradient(to top, rgba(42,16,112,1) 0%, rgba(42,16,112,0.92) 35%, rgba(42,16,112,0.60) 60%, transparent 100%)`
+    : `linear-gradient(to top, rgba(237,233,251,1) 0%, rgba(237,233,251,0.9) 35%, rgba(237,233,251,0.55) 60%, transparent 100%)`;
 
   return (
-    // Full-bleed background on the section; content capped at 1280px inside
     <section
       aria-label="Hero carousel"
       style={{
@@ -131,9 +152,9 @@ export default function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* ── 1280px content container — 400px tall on desktop ── */}
+      {/* ── 1280px content container ── */}
       <div
-        className="relative overflow-hidden mx-auto min-h-[460px] md:h-[400px] md:min-h-0"
+        className="relative overflow-hidden mx-auto min-h-[690px] md:h-[600px] md:min-h-0"
         style={{ maxWidth: 1280 }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
@@ -148,179 +169,78 @@ export default function Hero() {
             animate="center"
             exit="exit"
             transition={transition}
-            className="absolute inset-0 flex flex-col md:flex-row"
-            style={{ paddingTop: NAV_H }}
+            className="absolute inset-0"
           >
-            {/* ── LEFT: text block ── */}
-            <div
-              className="
-                relative z-10 flex flex-col justify-center
-                w-full md:w-1/2
-                order-2 md:order-1
-                px-6 pb-10 pt-3
-                md:pl-14 md:pr-6 md:py-0
-                lg:pl-16 lg:pr-8
-              "
-            >
-              {/* Tag pill */}
-              <div
-                className="inline-flex items-center self-start mb-3 px-3 py-[5px] rounded-full"
-                style={{ background: tagBg }}
-              >
-                <span
-                  className="text-[10px] font-semibold tracking-[0.13em] uppercase"
-                  style={{ color: tagColor, fontFamily: "var(--font-inter)" }}
-                >
-                  {slide.tag}
-                </span>
-              </div>
+            {/* ─────────────────────────────────────────────────────────────
+                LAYER 1 — Solid background colour (always present)
+            ───────────────────────────────────────────────────────────── */}
+            <div className="absolute inset-0" style={{ background: slide.bg }} />
 
-              {/* Headline */}
-              <h1
-                className="font-display leading-[1.08] md:leading-[1.06] mb-2 md:mb-3 text-[1.35rem] md:text-[clamp(1.75rem,4vw,2.75rem)]"
+            {/* ─────────────────────────────────────────────────────────────
+                LAYER 2 — Full-bleed media (image or video)
+            ───────────────────────────────────────────────────────────── */}
+
+            {/* Slide 3: hero-bundle-bg.png — fills entire slide */}
+            {slide.backgroundImage && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={slide.backgroundImage}
+                alt=""
+                aria-hidden
                 style={{
-                  color:         headingColor,
-                  fontWeight:    700,
-                  letterSpacing: "-0.015em",
-                  whiteSpace:    "nowrap",
+                  position:      "absolute",
+                  inset:         0,
+                  width:         "100%",
+                  height:        "100%",
+                  objectFit:     "cover",
+                  objectPosition:"center",
+                  display:       "block",
+                  pointerEvents: "none",
+                }}
+              />
+            )}
+
+            {/* Slide 1: sonic.mp4 — full-bleed video */}
+            {slide.videoSrc && (
+              <video
+                ref={videoRef}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                style={{
+                  position:  "absolute",
+                  inset:     0,
+                  width:     "100%",
+                  height:    "100%",
+                  objectFit: "cover",
+                  display:   "block",
                 }}
               >
-                {slide.headline[0]}
-                <br className="hidden md:block" />
-                {" "}
-                <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
-              </h1>
+                <source src={slide.videoSrc} type="video/mp4" />
+              </video>
+            )}
 
-              {/* Body */}
-              <p
-                className="text-[12.5px] md:text-[14.5px] leading-[1.55] mb-4 md:mb-6 max-w-[95%] md:max-w-[300px]"
-                style={{ color: bodyColor, fontFamily: "var(--font-inter)", fontWeight: 400 }}
-              >
-                {slide.body}
-              </p>
-
-              {/* CTA row */}
-              <div className="flex items-center gap-4">
-                <motion.a
-                  href={slide.ctaHref}
-                  whileHover={{ scale: 1.02, opacity: 0.92 }}
-                  whileTap={{ scale: 0.975 }}
-                  className="inline-flex items-center gap-2 px-5 py-[11px] rounded-sm text-[13px] font-medium"
-                  style={{
-                    background:    ctaBg,
-                    color:         ctaText,
-                    fontFamily:    "var(--font-inter)",
-                    letterSpacing: "0.01em",
-                  }}
-                >
-                  {slide.cta}
-                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden>
-                    <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </motion.a>
-
-                <a
-                  href="#"
-                  className="hidden md:inline-flex text-[12px] font-medium items-center gap-1.5 transition-opacity duration-200 hover:opacity-60"
-                  style={{ color: isDark ? "rgba(255,255,255,0.7)" : "#6B5A8A", fontFamily: "var(--font-inter)" }}
-                >
-                  Learn more
-                  <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
-                    <path d="M1 5.5h9M7 2l3.5 3.5L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-              </div>
-
-              {/* Mobile-only dots — grouped below CTA for visual connection */}
-              <div className="flex md:hidden items-center gap-[7px] mt-4">
-                {slides.map((s, i) => (
-                  <button
-                    key={s.id}
-                    aria-label={`Go to slide ${i + 1}`}
-                    onClick={() => goTo(i, i > active ? 1 : -1)}
-                    className="rounded-full transition-all duration-300"
-                    style={{
-                      width:      i === active ? "20px" : "6px",
-                      height:     "6px",
-                      background: i === active ? dotActive : dotInactive,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* ── RIGHT: product visual (video or image) ── */}
-            <div
-              className="
-                relative w-full md:w-1/2
-                order-1 md:order-2
-                overflow-hidden
-                min-h-[220px] sm:min-h-[260px] md:min-h-0
-              "
-            >
-              {"videoSrc" in slide && slide.videoSrc ? (
-                /* Video slide — fills panel edge-to-edge, no controls */
-                <video
-                  ref={videoRef}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  style={{
-                    position:   "absolute",
-                    inset:      0,
-                    width:      "100%",
-                    height:     "100%",
-                    objectFit:  "cover",
-                    display:    "block",
-                  }}
-                >
-                  <source src={slide.videoSrc} type="video/mp4" />
-                </video>
-              ) : isDark ? (
-                /* Dark image slide: frosted glass blends white product bg into purple */
+            {/* Slide 2: product image — large, right-anchored on desktop */}
+            {slide.imageSrc && !slide.backgroundImage && !slide.videoSrc && (
+              <>
+                {/* Desktop: right-side float */}
                 <div
-                  className="absolute inset-0 flex items-center justify-center"
+                  className="hidden md:flex absolute items-center justify-center"
+                  style={{
+                    right:  0,
+                    top:    NAV_H,
+                    bottom: 0,
+                    width:  "52%",
+                  }}
                 >
-                  <div
-                    style={{
-                      width:          "min(230px, 70%)",
-                      height:         "min(295px, 84%)",
-                      borderRadius:   24,
-                      background:     "rgba(255,255,255,0.08)",
-                      backdropFilter: "blur(8px)",
-                      display:        "flex",
-                      alignItems:     "center",
-                      justifyContent: "center",
-                      padding:        16,
-                      overflow:       "hidden",
-                    }}
-                  >
-                    <img
-                      src={slide.imageSrc}
-                      alt={slide.imageAlt}
-                      draggable={false}
-                      style={{
-                        maxWidth:      "100%",
-                        maxHeight:     "100%",
-                        objectFit:     "contain",
-                        display:       "block",
-                        userSelect:    "none",
-                        pointerEvents: "none",
-                      }}
-                    />
-                  </div>
-                </div>
-              ) : (
-                /* Light image slides: multiply blend removes white product bg */
-                <div className="absolute inset-0 flex items-center justify-center">
                   <img
                     src={slide.imageSrc}
-                    alt={slide.imageAlt}
+                    alt={slide.imageAlt ?? ""}
                     draggable={false}
                     style={{
-                      width:         "min(280px, 74%)",
-                      height:        "min(310px, 88%)",
+                      maxWidth:      "88%",
+                      maxHeight:     "92%",
                       objectFit:     "contain",
                       display:       "block",
                       mixBlendMode:  "multiply",
@@ -329,7 +249,151 @@ export default function Hero() {
                     }}
                   />
                 </div>
-              )}
+
+                {/* Mobile: top portion behind gradient */}
+                <div
+                  className="flex md:hidden absolute items-center justify-center"
+                  style={{
+                    inset:  0,
+                    bottom: "44%",  // occupies top 56% of slide
+                  }}
+                >
+                  <img
+                    src={slide.imageSrc}
+                    alt={slide.imageAlt ?? ""}
+                    draggable={false}
+                    style={{
+                      maxWidth:      "72%",
+                      maxHeight:     "100%",
+                      objectFit:     "contain",
+                      display:       "block",
+                      mixBlendMode:  "multiply",
+                      userSelect:    "none",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+              </>
+            )}
+
+            {/* ─────────────────────────────────────────────────────────────
+                LAYER 3 — Gradient overlays for text readability
+            ───────────────────────────────────────────────────────────── */}
+
+            {/* Desktop: left-to-transparent */}
+            <div
+              className="hidden md:block absolute inset-0"
+              style={{ background: desktopGradient, pointerEvents: "none" }}
+            />
+
+            {/* Mobile: bottom-to-transparent */}
+            <div
+              className="block md:hidden absolute inset-0"
+              style={{ background: mobileGradient, pointerEvents: "none" }}
+            />
+
+            {/* ─────────────────────────────────────────────────────────────
+                LAYER 4 — Text content
+            ───────────────────────────────────────────────────────────── */}
+            <div
+              className="absolute inset-0 flex flex-col justify-end md:justify-center"
+              style={{ paddingTop: NAV_H }}
+            >
+              <div
+                className="
+                  relative z-10 flex flex-col
+                  px-6 pb-10 pt-3
+                  md:pl-14 md:pr-6 md:py-0
+                  lg:pl-16 lg:pr-8
+                "
+                style={{ maxWidth: "clamp(280px, 48%, 520px)" }}
+              >
+                {/* Tag pill */}
+                <div
+                  className="inline-flex items-center self-start mb-3 px-3 py-[5px] rounded-full"
+                  style={{ background: tagBg }}
+                >
+                  <span
+                    className="text-[10px] font-semibold tracking-[0.13em] uppercase"
+                    style={{ color: tagColor, fontFamily: "var(--font-inter)" }}
+                  >
+                    {slide.tag}
+                  </span>
+                </div>
+
+                {/* Headline */}
+                <h1
+                  className="font-display leading-[1.08] md:leading-[1.06] mb-2 md:mb-3 text-[1.35rem] md:text-[clamp(1.75rem,4vw,2.75rem)]"
+                  style={{
+                    color:         headingColor,
+                    fontWeight:    700,
+                    letterSpacing: "-0.015em",
+                    whiteSpace:    "nowrap",
+                  }}
+                >
+                  {slide.headline[0]}
+                  <br className="hidden md:block" />
+                  {" "}
+                  <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
+                </h1>
+
+                {/* Body */}
+                <p
+                  className="text-[12.5px] md:text-[14.5px] leading-[1.55] mb-4 md:mb-6 max-w-[95%] md:max-w-[300px]"
+                  style={{ color: bodyColor, fontFamily: "var(--font-inter)", fontWeight: 400 }}
+                >
+                  {slide.body}
+                </p>
+
+                {/* CTA row */}
+                <div className="flex items-center gap-4">
+                  <motion.a
+                    href={slide.ctaHref}
+                    whileHover={{ scale: 1.02, opacity: 0.92 }}
+                    whileTap={{ scale: 0.975 }}
+                    className="inline-flex items-center gap-2 px-5 py-[11px] rounded-sm text-[13px] font-medium"
+                    style={{
+                      background:    ctaBg,
+                      color:         ctaText,
+                      fontFamily:    "var(--font-inter)",
+                      letterSpacing: "0.01em",
+                    }}
+                  >
+                    {slide.cta}
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden>
+                      <path d="M2 6.5h9M8 3l3.5 3.5L8 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </motion.a>
+
+                  <a
+                    href="#"
+                    className="hidden md:inline-flex text-[12px] font-medium items-center gap-1.5 transition-opacity duration-200 hover:opacity-60"
+                    style={{ color: isDark ? "rgba(255,255,255,0.7)" : "#6B5A8A", fontFamily: "var(--font-inter)" }}
+                  >
+                    Learn more
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>
+                      <path d="M1 5.5h9M7 2l3.5 3.5L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
+                </div>
+
+                {/* Mobile-only dots */}
+                <div className="flex md:hidden items-center gap-[7px] mt-4">
+                  {slides.map((s, i) => (
+                    <button
+                      key={s.id}
+                      aria-label={`Go to slide ${i + 1}`}
+                      onClick={() => goTo(i, i > active ? 1 : -1)}
+                      className="rounded-full transition-all duration-300"
+                      style={{
+                        width:      i === active ? "20px" : "6px",
+                        height:     "6px",
+                        background: i === active ? dotActive : dotInactive,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -356,7 +420,7 @@ export default function Hero() {
           </svg>
         </button>
 
-        {/* ── Dot indicators — desktop only; mobile dots live in the text block ── */}
+        {/* ── Dot indicators — desktop only ── */}
         <div className="hidden md:flex absolute bottom-5 left-1/2 -translate-x-1/2 z-20 items-center gap-[7px]">
           {slides.map((s, i) => (
             <button
@@ -373,20 +437,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
-      {/* ── Progress bar — full-bleed at section level ── */}
-      {!paused && (
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] z-20 overflow-hidden">
-          <motion.div
-            key={`${active}-pb`}
-            className="h-full"
-            style={{ background: progressFill }}
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 5.2, ease: "linear" }}
-          />
-        </div>
-      )}
     </section>
   );
 }

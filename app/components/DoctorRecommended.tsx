@@ -62,7 +62,7 @@ export default function DoctorRecommended() {
       >
         {/* ── Left: Doctor visual panel ── */}
         <div
-          className="w-full md:flex-shrink-0 h-[320px] md:h-auto md:w-[420px]"
+          className="w-full md:flex-shrink-0 h-[320px] md:h-auto md:w-[504px]"
           style={{
             position:   "relative",
             overflow:   "hidden",
@@ -73,7 +73,7 @@ export default function DoctorRecommended() {
             src="/dentist-photo.jpg"
             alt="Dentist with smiling patient in clinic"
             fill
-            sizes="(min-width: 768px) 420px, 100vw"
+            sizes="(min-width: 768px) 504px, 100vw"
             loading="lazy"
             style={{
               objectFit:      "cover",
@@ -101,25 +101,25 @@ export default function DoctorRecommended() {
             }}
           />
 
-          {/* Verified badge — top-right */}
+          {/* Verified badge — flush left edge tab */}
           <div
             style={{
-              position:       "absolute",
-              top:            18,
-              right:          18,
-              background:     "rgba(255,255,255,0.13)",
-              backdropFilter: "blur(10px)",
-              borderRadius:   10,
-              padding:        "7px 13px",
-              display:        "flex",
-              alignItems:     "center",
-              gap:            7,
+              position:     "absolute",
+              top:          22,
+              left:         0,
+              background:   "#FFFFFF",
+              borderRadius: "0 8px 8px 0",
+              padding:      "8px 14px 8px 16px",
+              display:      "flex",
+              alignItems:   "center",
+              gap:          8,
+              boxShadow:    "0 2px 12px rgba(61,31,143,0.13)",
             }}
           >
             <div
               style={{
-                width:          18,
-                height:         18,
+                width:          20,
+                height:         20,
                 borderRadius:   "50%",
                 background:     "#DCFCE7",
                 display:        "flex",
@@ -128,17 +128,17 @@ export default function DoctorRecommended() {
                 flexShrink:     0,
               }}
             >
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                <path d="M1 4L3.5 6.5L9 1" stroke="#15803D" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="11" height="9" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4L3.5 6.5L9 1" stroke="#15803D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <span
               style={{
                 fontFamily:    "var(--font-inter)",
-                fontSize:      10.5,
-                fontWeight:    600,
-                color:         "#FFFFFF",
-                letterSpacing: "0.05em",
+                fontSize:      11,
+                fontWeight:    700,
+                color:         "#3D1F8F",
+                letterSpacing: "0.07em",
                 textTransform: "uppercase",
               }}
             >

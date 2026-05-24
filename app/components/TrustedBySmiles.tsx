@@ -18,6 +18,7 @@ const STEP     = CARD_W + CARD_GAP;
 interface Review {
   id: string; initials: string; gradient: string; name: string;
   city: string; ago: string; rating: number; product: string; quote: string;
+  photo: string;
 }
 
 const REVIEWS: Review[] = [
@@ -25,6 +26,7 @@ const REVIEWS: Review[] = [
     id:       "r1",
     initials: "PA",
     gradient: "linear-gradient(135deg, #3D1F8F 0%, #9B7FD4 100%)",
+    photo:    "https://randomuser.me/api/portraits/women/44.jpg",
     name:     "Priya A.",
     city:     "Mumbai",
     ago:      "2 weeks ago",
@@ -36,6 +38,7 @@ const REVIEWS: Review[] = [
     id:       "r2",
     initials: "RK",
     gradient: "linear-gradient(135deg, #6240B0 0%, #C4B0F0 100%)",
+    photo:    "https://randomuser.me/api/portraits/men/32.jpg",
     name:     "Rohan K.",
     city:     "Bangalore",
     ago:      "1 month ago",
@@ -47,6 +50,7 @@ const REVIEWS: Review[] = [
     id:       "r3",
     initials: "SA",
     gradient: "linear-gradient(135deg, #1A0A3D 0%, #6B4FB3 100%)",
+    photo:    "https://randomuser.me/api/portraits/women/65.jpg",
     name:     "Sneha A.",
     city:     "Delhi",
     ago:      "3 weeks ago",
@@ -58,6 +62,7 @@ const REVIEWS: Review[] = [
     id:       "r4",
     initials: "AM",
     gradient: "linear-gradient(135deg, #4C2E96 0%, #B09FD8 100%)",
+    photo:    "https://randomuser.me/api/portraits/men/46.jpg",
     name:     "Arjun M.",
     city:     "Pune",
     ago:      "5 days ago",
@@ -69,6 +74,7 @@ const REVIEWS: Review[] = [
     id:       "r5",
     initials: "NK",
     gradient: "linear-gradient(135deg, #3D1F8F 0%, #7B5FBF 100%)",
+    photo:    "https://randomuser.me/api/portraits/women/47.jpg",
     name:     "Nisha K.",
     city:     "Hyderabad",
     ago:      "2 months ago",
@@ -80,6 +86,7 @@ const REVIEWS: Review[] = [
     id:       "r6",
     initials: "VR",
     gradient: "linear-gradient(135deg, #2D1570 0%, #9B7FD4 100%)",
+    photo:    "https://randomuser.me/api/portraits/men/68.jpg",
     name:     "Vivek R.",
     city:     "Chennai",
     ago:      "6 weeks ago",
@@ -145,20 +152,67 @@ function ReviewCard({ review }: { review: Review }) {
         flexShrink:    0,
         background:    "#FFFFFF",
         borderRadius:  20,
-        padding:       "22px 20px 20px",
+        padding:       "20px 20px 18px",
         boxShadow:     "0 2px 16px rgba(61,31,143,0.07)",
         display:       "flex",
         flexDirection: "column",
-        gap:           14,
+        gap:           12,
         cursor:        "default",
         userSelect:    "none",
         border:        "1px solid rgba(196,189,232,0.35)",
       }}
     >
+      {/* ── User photo + name at top ── */}
+      <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+        <img
+          src={review.photo}
+          alt={review.name}
+          width={46}
+          height={46}
+          style={{
+            width:        46,
+            height:       46,
+            borderRadius: "50%",
+            objectFit:    "cover",
+            flexShrink:   0,
+            border:       "2px solid #EDE9FB",
+            display:      "block",
+          }}
+        />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D", lineHeight: 1.3 }}>
+            {review.name}
+          </p>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#9B8FBB", lineHeight: 1.3 }}>
+            {review.city}
+          </p>
+        </div>
+        {/* Verified badge */}
+        <div
+          style={{
+            display:      "inline-flex",
+            alignItems:   "center",
+            gap:          4,
+            padding:      "3px 8px",
+            borderRadius: 20,
+            background:   "#F0ECFF",
+            flexShrink:   0,
+          }}
+        >
+          <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+            <circle cx="4.5" cy="4.5" r="4.5" fill="#6B4FB3" />
+            <path d="M2.5 4.5L4 6L6.5 3" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: 9.5, fontWeight: 600, color: "#6B4FB3", letterSpacing: "0.02em" }}>
+            Verified
+          </span>
+        </div>
+      </div>
+
       {/* Stars */}
       <div style={{ display: "flex", gap: 3 }}>
         {Array.from({ length: review.rating }).map((_, i) => (
-          <span key={i} style={{ color: "#F5A623", fontSize: 14, lineHeight: 1 }}>★</span>
+          <span key={i} style={{ color: "#F5A623", fontSize: 13, lineHeight: 1 }}>★</span>
         ))}
       </div>
 
@@ -171,7 +225,7 @@ function ReviewCard({ review }: { review: Review }) {
           lineHeight:      1.65,
           flex:            1,
           display:         "-webkit-box",
-          WebkitLineClamp: 5,
+          WebkitLineClamp: 4,
           WebkitBoxOrient: "vertical",
           overflow:        "hidden",
         }}
@@ -179,57 +233,31 @@ function ReviewCard({ review }: { review: Review }) {
         &ldquo;{review.quote}&rdquo;
       </p>
 
-      {/* Product tag */}
+      {/* Footer: product tag + date */}
       <div
         style={{
-          display:      "inline-flex",
-          alignSelf:    "flex-start",
-          padding:      "4px 10px",
-          borderRadius: 20,
-          background:   "#F0ECFF",
-          fontFamily:   "var(--font-inter)",
-          fontSize:     10.5,
-          fontWeight:   600,
-          color:        "#6B4FB3",
-          letterSpacing:"0.02em",
-        }}
-      >
-        {review.product}
-      </div>
-
-      {/* Footer */}
-      <div
-        style={{
-          display:    "flex",
-          alignItems: "center",
-          gap:        10,
-          paddingTop: 12,
-          borderTop:  "1px solid #F0ECFF",
+          display:        "flex",
+          alignItems:     "center",
+          justifyContent: "space-between",
+          paddingTop:     10,
+          borderTop:      "1px solid #F0ECFF",
+          marginTop:      "auto",
         }}
       >
         <div
           style={{
-            width:          34,
-            height:         34,
-            borderRadius:   "50%",
-            background:     review.gradient,
-            display:        "flex",
-            alignItems:     "center",
-            justifyContent: "center",
-            flexShrink:     0,
+            display:       "inline-flex",
+            padding:       "4px 10px",
+            borderRadius:  20,
+            background:    "#F0ECFF",
+            fontFamily:    "var(--font-inter)",
+            fontSize:      10.5,
+            fontWeight:    600,
+            color:         "#6B4FB3",
+            letterSpacing: "0.02em",
           }}
         >
-          <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 700, color: "#FFFFFF" }}>
-            {review.initials}
-          </span>
-        </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D", lineHeight: 1.25 }}>
-            {review.name}
-          </p>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#9B8FBB", lineHeight: 1.25 }}>
-            {review.city}
-          </p>
+          {review.product}
         </div>
         <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#C4BDE8", flexShrink: 0 }}>
           {review.ago}
