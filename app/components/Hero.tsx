@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Slide data ───────────────────────────────────────────────────────────────
@@ -9,13 +9,15 @@ type Slide = {
   bg:              string;
   theme:           "dark" | "light";
   tag:             string;
+  tags?:           string[];
   headline:        [string, string];
+  headlineStyle?:  React.CSSProperties;
+  noItalic?:       boolean;
+  noOverlay?:      boolean;
   body:            string;
   cta:             string;
   ctaHref:         string;
   videoSrc?:       string;
-  imageSrc?:       string;
-  imageAlt?:       string;
   backgroundImage?: string;
 };
 
@@ -32,25 +34,25 @@ const slides: Slide[] = [
     videoSrc: "/sonic.mp4",
   },
   {
-    id:       2,
-    bg:       "#EDE9FB",
-    theme:    "light",
-    tag:      "Bestseller",
-    headline: ["Visibly Whiter", "in 7 Days."],
-    body:     "Enamel-safe formula. No sensitivity. Clinical-grade whitening, at home.",
-    cta:      "Shop Whitening Strips",
-    ctaHref:  "#products",
-    imageSrc: "/product-images/purple-whitening-strips.webp",
-    imageAlt: "Perfora Whitening Strips",
-  },
-  {
-    id:              3,
-    bg:              "#2A1070",
+    id:              2,
+    bg:              "#7B4ABD",
     theme:           "dark",
-    tag:             "Bundle & Save",
+    tag:             "",
+    tags:            ["Paraben Free", "Clinically Tested"],
     headline:        ["Your Complete", "Oral Ritual."],
-    body:            "The full Perfora regimen — brush, whiten, rinse, repeat.",
-    cta:             "Shop the Kit",
+    headlineStyle:   {
+      fontFamily:    "var(--spectral)",
+      fontSize:      "56px",
+      fontWeight:    500,
+      lineHeight:    "120%",
+      fontStyle:     "normal",
+      whiteSpace:    "normal",
+      letterSpacing: "0",
+    },
+    noItalic:        true,
+    noOverlay:       true,
+    body:            "The full Perfora regimen - brush, whiten, rinse, repeat.",
+    cta:             "Shop Oral Healthcare",
     ctaHref:         "#products",
     backgroundImage: "/hero-bundle-bg.png",
   },
@@ -74,28 +76,8 @@ const NAV_H = 61;
 export default function Hero() {
   const [active, setActive] = useState(0);
   const [dir, setDir]       = useState(1);
-  const [paused, setPaused] = useState(false);
   const touchStartX         = useRef(0);
-  const timerRef            = useRef<ReturnType<typeof setTimeout> | null>(null);
   const videoRef            = useRef<HTMLVideoElement>(null);
-
-  // Play/pause video based on viewport visibility
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, [active]);
 
   const goTo = useCallback((next: number, direction: number) => {
     setDir(direction);
@@ -104,12 +86,6 @@ export default function Hero() {
 
   const advance = useCallback(() => goTo((active + 1) % slides.length, 1),  [active, goTo]);
   const retreat = useCallback(() => goTo((active - 1 + slides.length) % slides.length, -1), [active, goTo]);
-
-  useEffect(() => {
-    if (paused) return;
-    timerRef.current = setTimeout(advance, 5200);
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [active, paused, advance]);
 
   const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
   const onTouchEnd   = (e: React.TouchEvent) => {
@@ -122,7 +98,7 @@ export default function Hero() {
 
   // Theme-derived colours
   const headingColor = isDark ? "#FFFFFF"                : "#1A0A3D";
-  const bodyColor    = isDark ? "rgba(255,255,255,0.72)" : "#6B5A8A";
+  const bodyColor    = isDark ? "rgba(255,255,255,0.72)" : "#232323";
   const tagBg        = isDark ? "rgba(255,255,255,0.14)" : "rgba(61,31,143,0.09)";
   const tagColor     = isDark ? "rgba(255,255,255,0.92)" : "#3D1F8F";
   const ctaBg        = isDark ? "#FFFFFF"                : "#3D1F8F";
@@ -131,12 +107,10 @@ export default function Hero() {
   const dotInactive  = isDark ? "rgba(255,255,255,0.3)"  : "rgba(61,31,143,0.18)";
   const arrowStroke  = isDark ? "rgba(255,255,255,0.55)" : "rgba(26,10,61,0.32)";
 
-  // Desktop left-to-right gradient that bleeds the bg colour over the photo
   const desktopGradient = isDark
     ? `linear-gradient(to right, rgba(61,31,143,0.97) 0%, rgba(61,31,143,0.88) 30%, rgba(61,31,143,0.55) 55%, rgba(61,31,143,0.10) 78%, transparent 100%)`
     : `linear-gradient(to right, rgba(237,233,251,1.00) 0%, rgba(237,233,251,0.92) 32%, rgba(237,233,251,0.60) 58%, rgba(237,233,251,0.10) 80%, transparent 100%)`;
 
-  // Mobile bottom gradient so text stays legible over the image
   const mobileGradient = isDark
     ? `linear-gradient(to top, rgba(42,16,112,1) 0%, rgba(42,16,112,0.92) 35%, rgba(42,16,112,0.60) 60%, transparent 100%)`
     : `linear-gradient(to top, rgba(237,233,251,1) 0%, rgba(237,233,251,0.9) 35%, rgba(237,233,251,0.55) 60%, transparent 100%)`;
@@ -148,14 +122,14 @@ export default function Hero() {
         position:        "relative",
         backgroundColor: slide.bg,
         transition:      "background-color 700ms ease",
+        aspectRatio:     "292/130",
+        width:           "100%",
+        overflow:        "hidden",
       }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
-      {/* ── 1280px content container ── */}
+      {/* Full-bleed slide container — no maxWidth cap */}
       <div
-        className="relative overflow-hidden mx-auto min-h-[690px] md:h-[600px] md:min-h-0"
-        style={{ maxWidth: 1280 }}
+        className="relative h-full w-full"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -171,16 +145,10 @@ export default function Hero() {
             transition={transition}
             className="absolute inset-0"
           >
-            {/* ─────────────────────────────────────────────────────────────
-                LAYER 1 — Solid background colour (always present)
-            ───────────────────────────────────────────────────────────── */}
+            {/* LAYER 1 — Solid background colour */}
             <div className="absolute inset-0" style={{ background: slide.bg }} />
 
-            {/* ─────────────────────────────────────────────────────────────
-                LAYER 2 — Full-bleed media (image or video)
-            ───────────────────────────────────────────────────────────── */}
-
-            {/* Slide 3: hero-bundle-bg.png — fills entire slide */}
+            {/* LAYER 2 — Full-bleed background image */}
             {slide.backgroundImage && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
@@ -188,25 +156,26 @@ export default function Hero() {
                 alt=""
                 aria-hidden
                 style={{
-                  position:      "absolute",
-                  inset:         0,
-                  width:         "100%",
-                  height:        "100%",
-                  objectFit:     "cover",
-                  objectPosition:"center",
-                  display:       "block",
-                  pointerEvents: "none",
+                  position:       "absolute",
+                  inset:          0,
+                  width:          "100%",
+                  height:         "100%",
+                  objectFit:      "cover",
+                  objectPosition: "center",
+                  display:        "block",
+                  pointerEvents:  "none",
                 }}
               />
             )}
 
-            {/* Slide 1: sonic.mp4 — full-bleed video */}
+            {/* LAYER 2 — Full-bleed video */}
             {slide.videoSrc && (
               <video
                 ref={videoRef}
                 muted
                 loop
                 playsInline
+                autoPlay
                 preload="metadata"
                 style={{
                   position:  "absolute",
@@ -221,80 +190,21 @@ export default function Hero() {
               </video>
             )}
 
-            {/* Slide 2: product image — large, right-anchored on desktop */}
-            {slide.imageSrc && !slide.backgroundImage && !slide.videoSrc && (
+            {/* LAYER 3 — Gradient overlays (skipped for noOverlay slides) */}
+            {!slide.noOverlay && (
               <>
-                {/* Desktop: right-side float */}
                 <div
-                  className="hidden md:flex absolute items-center justify-center"
-                  style={{
-                    right:  0,
-                    top:    NAV_H,
-                    bottom: 0,
-                    width:  "52%",
-                  }}
-                >
-                  <img
-                    src={slide.imageSrc}
-                    alt={slide.imageAlt ?? ""}
-                    draggable={false}
-                    style={{
-                      maxWidth:      "88%",
-                      maxHeight:     "92%",
-                      objectFit:     "contain",
-                      display:       "block",
-                      mixBlendMode:  "multiply",
-                      userSelect:    "none",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-
-                {/* Mobile: top portion behind gradient */}
+                  className="hidden md:block absolute inset-0"
+                  style={{ background: desktopGradient, pointerEvents: "none" }}
+                />
                 <div
-                  className="flex md:hidden absolute items-center justify-center"
-                  style={{
-                    inset:  0,
-                    bottom: "44%",  // occupies top 56% of slide
-                  }}
-                >
-                  <img
-                    src={slide.imageSrc}
-                    alt={slide.imageAlt ?? ""}
-                    draggable={false}
-                    style={{
-                      maxWidth:      "72%",
-                      maxHeight:     "100%",
-                      objectFit:     "contain",
-                      display:       "block",
-                      mixBlendMode:  "multiply",
-                      userSelect:    "none",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
+                  className="block md:hidden absolute inset-0"
+                  style={{ background: mobileGradient, pointerEvents: "none" }}
+                />
               </>
             )}
 
-            {/* ─────────────────────────────────────────────────────────────
-                LAYER 3 — Gradient overlays for text readability
-            ───────────────────────────────────────────────────────────── */}
-
-            {/* Desktop: left-to-transparent */}
-            <div
-              className="hidden md:block absolute inset-0"
-              style={{ background: desktopGradient, pointerEvents: "none" }}
-            />
-
-            {/* Mobile: bottom-to-transparent */}
-            <div
-              className="block md:hidden absolute inset-0"
-              style={{ background: mobileGradient, pointerEvents: "none" }}
-            />
-
-            {/* ─────────────────────────────────────────────────────────────
-                LAYER 4 — Text content
-            ───────────────────────────────────────────────────────────── */}
+            {/* LAYER 4 — Text content */}
             <div
               className="absolute inset-0 flex flex-col justify-end md:justify-center"
               style={{ paddingTop: NAV_H }}
@@ -306,19 +216,27 @@ export default function Hero() {
                   md:pl-14 md:pr-6 md:py-0
                   lg:pl-16 lg:pr-8
                 "
-                style={{ maxWidth: "clamp(280px, 48%, 520px)" }}
+                style={{ maxWidth: "clamp(280px, 48%, 560px)" }}
               >
-                {/* Tag pill */}
-                <div
-                  className="inline-flex items-center self-start mb-3 px-3 py-[5px] rounded-full"
-                  style={{ background: tagBg }}
-                >
-                  <span
-                    className="text-[10px] font-semibold tracking-[0.13em] uppercase"
-                    style={{ color: tagColor, fontFamily: "var(--font-inter)" }}
-                  >
-                    {slide.tag}
-                  </span>
+                {/* Tag pill(s) */}
+                <div className="flex items-center gap-2 self-start mb-3">
+                  {(slide.tags ?? (slide.tag ? [slide.tag] : [])).map((t, i) => (
+                    <div
+                      key={i}
+                      className="inline-flex items-center px-3 py-[5px] rounded-full"
+                      style={{
+                        background: tagBg,
+                        border: slide.noOverlay ? "1px solid rgba(255,255,255,0.55)" : "none",
+                      }}
+                    >
+                      <span
+                        className="text-[10px] font-semibold tracking-[0.13em] uppercase"
+                        style={{ color: tagColor, fontFamily: "var(--font-inter)" }}
+                      >
+                        {t}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Headline */}
@@ -329,12 +247,15 @@ export default function Hero() {
                     fontWeight:    700,
                     letterSpacing: "-0.015em",
                     whiteSpace:    "nowrap",
+                    ...slide.headlineStyle,
                   }}
                 >
                   {slide.headline[0]}
-                  <br className="hidden md:block" />
-                  {" "}
-                  <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
+                  <br />
+                  {slide.noItalic
+                    ? slide.headline[1]
+                    : <em style={{ fontStyle: "italic" }}>{slide.headline[1]}</em>
+                  }
                 </h1>
 
                 {/* Body */}
@@ -368,7 +289,7 @@ export default function Hero() {
                   <a
                     href="#"
                     className="hidden md:inline-flex text-[12px] font-medium items-center gap-1.5 transition-opacity duration-200 hover:opacity-60"
-                    style={{ color: isDark ? "rgba(255,255,255,0.7)" : "#6B5A8A", fontFamily: "var(--font-inter)" }}
+                    style={{ color: isDark ? "rgba(255,255,255,0.7)" : "#232323", fontFamily: "var(--font-inter)" }}
                   >
                     Learn more
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden>

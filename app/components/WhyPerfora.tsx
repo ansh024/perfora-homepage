@@ -20,7 +20,7 @@ export default function WhyPerfora() {
         style={{ maxWidth: 1280, margin: "0 auto" }}
       >
         <Image
-          src="/why-perfora-new.png"
+          src="/why-perfora-new2.png"
           alt="What sets Perfora apart — Vegan, Cruelty-Free, Paraben Free, Fluoride Free, SLS Free, and more"
           width={1584}
           height={672}

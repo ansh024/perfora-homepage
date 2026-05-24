@@ -6,6 +6,7 @@ import ShopByCategory from "./components/ShopByCategory";
 import TrustedBySmiles from "./components/TrustedBySmiles";
 import WhyPerfora from "./components/WhyPerfora";
 import SiteFooter from "./components/SiteFooter";
+import BrushSpotlight from "./components/BrushSpotlight";
 
 const VideoTestimonials = dynamic(
   () => import("./components/VideoTestimonials"),
@@ -38,6 +39,7 @@ export default function Home() {
         <SmileWorthySavings />
         <DoctorRecommended />
         <OralCareEssentials />
+        <BrushSpotlight />
         <VideoTestimonials />
         <TrustedBySmiles />
         <WhyPerfora />

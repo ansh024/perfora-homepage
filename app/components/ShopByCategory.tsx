@@ -126,8 +126,8 @@ function CategoryCard({
         style={{
           marginTop:     "clamp(8px, 0.8vw, 12px)",
           fontFamily:    "var(--font-inter), sans-serif",
-          fontSize:      "clamp(11px, 0.9vw, 13px)",
-          fontWeight:    500,
+          fontSize:      "clamp(13px, 0.9vw, 15px)",
+          fontWeight:    600,
           textAlign:     "center",
           lineHeight:    1.45,
           letterSpacing: "0.01em",

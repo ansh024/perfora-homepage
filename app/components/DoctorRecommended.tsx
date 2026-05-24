@@ -8,6 +8,7 @@ const STATS = [
   { value: "10+",     label: "Dentists trust Perfora", animate: true },
   { value: "4.8 ★",   label: "Average clinical rating"      },
   { value: "98%",     label: "Would recommend to patients"  },
+  { value: "95%",     label: "Of patients see results in 2 weeks" },
 ];
 
 // ─── Section ───────────────────────────────────────────────────────────────────
@@ -45,24 +46,31 @@ export default function DoctorRecommended() {
   return (
     <section
       style={{
-        background:   "#FFFFFF",
-        borderTop:    "1px solid #F0EDFC",
-        borderBottom: "1px solid #F0EDFC",
-        overflow:     "hidden",
+        background: "#FFFFFF",
+        padding:    "48px clamp(16px, 4vw, 48px)",
       }}
     >
       <div
+        style={{
+          maxWidth:     1280,
+          margin:       "0 auto",
+          border:       "1px solid #E4DDF5",
+          borderRadius: 16,
+          overflow:     "hidden",
+          background:   "#FFFFFF",
+          boxShadow:    "0 1px 6px rgba(61,31,143,0.06)",
+        }}
+      >
+      <div
         className="flex flex-col md:flex-row"
         style={{
-          maxWidth:   1280,
-          margin:     "0 auto",
           alignItems: "stretch",
           minHeight:  350,
         }}
       >
         {/* ── Left: Doctor visual panel ── */}
         <div
-          className="w-full md:flex-shrink-0 h-[320px] md:h-auto md:w-[504px]"
+          className="w-full md:flex-shrink-0 h-[320px] md:h-auto md:w-[605px]"
           style={{
             position:   "relative",
             overflow:   "hidden",
@@ -70,10 +78,10 @@ export default function DoctorRecommended() {
           }}
         >
           <Image
-            src="/dentist-photo.jpg"
-            alt="Dentist with smiling patient in clinic"
+            src="/dentist-photo.png"
+            alt="Dentist holding Perfora product in clinic"
             fill
-            sizes="(min-width: 768px) 504px, 100vw"
+            sizes="(min-width: 768px) 605px, 100vw"
             loading="lazy"
             style={{
               objectFit:      "cover",
@@ -201,7 +209,7 @@ export default function DoctorRecommended() {
               borderLeft:  "3px solid #C4BDE8",
               fontFamily:  "var(--font-inter)",
               fontSize:    "clamp(13px, 1.05vw, 14px)",
-              color:       "#6B5A8A",
+              color:       "#232323",
               lineHeight:  1.68,
               fontStyle:   "italic",
               maxWidth:    "54ch",
@@ -246,13 +254,13 @@ export default function DoctorRecommended() {
                   lineHeight: 1.3,
                 }}
               >
-                Dr. Priya Sharma, BDS
+                Dr. Preetam Sharma, BDS
               </p>
               <p
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontSize:   11,
-                  color:      "#8B7AAA",
+                  color:      "#232323",
                   lineHeight: 1.35,
                 }}
               >
@@ -288,7 +296,7 @@ export default function DoctorRecommended() {
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize:   10.5,
-                    color:      "#9B8FBB",
+                    color:      "#232323",
                     lineHeight: 1.45,
                     marginTop:  4,
                     maxWidth:   "15ch",
@@ -300,6 +308,7 @@ export default function DoctorRecommended() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
