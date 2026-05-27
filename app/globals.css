@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --font-inter: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* --font-inter is injected by next/font/google (Inter) via the html class */
+  /* --spectral  is injected by next/font/google (Spectral) via the html class */
 
   /* Perfora purple system */
   --p-purple:        #3D1F8F;
@@ -44,7 +45,7 @@
   --color-sage:        var(--sage);
   --color-charcoal:    var(--charcoal);
 
-  --font-display: var(--spectral), Georgia, "Times New Roman", serif;
+  --font-display: var(--spectral);
   --font-sans:    var(--font-inter);
 }
 
@@ -59,7 +60,7 @@ html {
 body {
   background-color: var(--p-surface);
   color: var(--p-ink);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-inter);
   overflow-x: hidden;
 }
 
@@ -69,7 +70,7 @@ body {
 }
 
 .font-display {
-  font-family: var(--spectral), Georgia, "Times New Roman", serif;
+  font-family: var(--spectral);
 }
 
 /* Marquee animations — defined here for performance (CSS, not JS) */

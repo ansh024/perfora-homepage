@@ -373,7 +373,7 @@ export default function SiteFooter() {
           left:           "50%",
           transform:      "translateX(-50%)",
           whiteSpace:     "nowrap",
-          fontFamily:     "var(--font-display)",
+          fontFamily:     "var(--spectral)",
           fontSize:       "clamp(100px, 18vw, 230px)",
           fontWeight:     700,
           fontStyle:      "italic",

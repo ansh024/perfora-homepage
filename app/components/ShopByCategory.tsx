@@ -125,7 +125,7 @@ function CategoryCard({
         transition={{ duration: 0.2 }}
         style={{
           marginTop:     "clamp(8px, 0.8vw, 12px)",
-          fontFamily:    "var(--font-inter), sans-serif",
+          fontFamily:    "var(--font-inter)",
           fontSize:      "clamp(13px, 0.9vw, 15px)",
           fontWeight:    600,
           textAlign:     "center",

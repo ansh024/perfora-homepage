@@ -15,7 +15,7 @@ export default function BrushSpotlight() {
       {/* Headline */}
       <h2
         style={{
-          fontFamily:  "var(--spectral), Georgia, serif",
+          fontFamily:  "var(--spectral)",
           fontSize:    "clamp(1.75rem, 3.5vw, 2.75rem)",
           fontWeight:  400,
           color:       "#FFFFFF",

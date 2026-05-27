@@ -128,11 +128,11 @@ const CONCERN_PRODUCT_IDS: Record<string, string[]> = {
 function Stars({ rating, count }: { rating: number; count: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-      <span style={{ color: "#F5A623", fontSize: 14, lineHeight: 1 }}>★</span>
-      <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, color: "#1A0A3D", lineHeight: 1 }}>
+      <span style={{ color: "#F5A623", fontSize: 15, lineHeight: 1 }}>★</span>
+      <span style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, fontWeight: 600, color: "#1A0A3D", lineHeight: 1 }}>
         {rating}
       </span>
-      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#232323", lineHeight: 1 }}>
+      <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#232323", lineHeight: 1 }}>
         ({count})
       </span>
     </div>
@@ -302,7 +302,7 @@ function NavArrow({
   );
 }
 
-// ─── Product card ──────────────────────────────────────────────────────────────
+// ─── Product card — standardized to OralCareEssentials master ────────────────
 function ProductCard({
   product,
   isActive,
@@ -320,30 +320,30 @@ function ProductCard({
         scale: isActive ? 1.025 : 1,
         y:     isActive ? -5 : 0,
       }}
-      whileHover={{ y: isActive ? -9 : -6, boxShadow: "0 20px 48px rgba(61,31,143,0.14)" }}
+      whileHover={{ y: isActive ? -9 : -6, boxShadow: "0 20px 48px rgba(61,31,143,0.13)" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       style={{
         width:         CARD_W,
         flexShrink:    0,
-        background:    "#FFFFFF",
+        background:    "#EDE9FB",           // master card bg
         borderRadius:  20,
         overflow:      "hidden",
         boxShadow:     isActive
           ? "0 8px 32px rgba(61,31,143,0.10)"
-          : "0 2px 14px rgba(61,31,143,0.06)",
+          : "0 2px 16px rgba(61,31,143,0.07)",  // master shadow
         display:       "flex",
         flexDirection: "column",
         userSelect:    "none",
         cursor:        "pointer",
       }}
     >
-      {/* Image area */}
+      {/* Image area — white bg so product shots pop */}
       <div
         onMouseEnter={() => setImgHover(true)}
         onMouseLeave={() => setImgHover(false)}
         style={{
           position:   "relative",
-          height:     220,
+          height:     218,               // master image height
           background: "#FFFFFF",
           flexShrink: 0,
           overflow:   "hidden",
@@ -390,7 +390,7 @@ function ProductCard({
       {/* Card content */}
       <div
         style={{
-          padding:       "14px 15px 16px",
+          padding:       "13px 14px 16px",  // master padding
           display:       "flex",
           flexDirection: "column",
           flex:          1,
@@ -400,16 +400,16 @@ function ProductCard({
 
         <h3
           style={{
-            marginTop:         8,
-            fontFamily:        "var(--font-inter)",
-            fontSize:          13.5,
-            fontWeight:        600,
-            color:             "#1A0A3D",
-            lineHeight:        1.38,
-            display:           "-webkit-box",
-            WebkitLineClamp:   2,
-            WebkitBoxOrient:   "vertical",
-            overflow:          "hidden",
+            marginTop:       8,
+            fontFamily:      "var(--font-inter)",
+            fontSize:        14,           // master title size
+            fontWeight:      600,
+            color:           "#1A0A3D",
+            lineHeight:      1.38,
+            display:         "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            overflow:        "hidden",
           }}
         >
           {product.name}
@@ -417,7 +417,7 @@ function ProductCard({
 
         <p
           style={{
-            marginTop:  3,
+            marginTop:  4,             // master subtitle gap
             fontFamily: "var(--font-inter)",
             fontSize:   11.5,
             color:      "#232323",
@@ -440,7 +440,7 @@ function ProductCard({
           <span
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize:   17,
+              fontSize:   18,            // master price size
               fontWeight: 700,
               color:      "#1A0A3D",
               lineHeight: 1,
@@ -450,11 +450,11 @@ function ProductCard({
           </span>
           <span
             style={{
-              fontFamily:      "var(--font-inter)",
-              fontSize:        12,
-              color:           "#A899CC",
-              textDecoration:  "line-through",
-              lineHeight:      1,
+              fontFamily:     "var(--font-inter)",
+              fontSize:       12.5,      // master original-price size
+              color:          "#A899CC",
+              textDecoration: "line-through",
+              lineHeight:     1,
             }}
           >
             ₹{product.originalPrice.toLocaleString("en-IN")}
@@ -463,11 +463,11 @@ function ProductCard({
             <span
               style={{
                 fontFamily:   "var(--font-inter)",
-                fontSize:     10,
+                fontSize:     10.5,      // master badge size
                 fontWeight:   700,
                 color:        "#15803D",
                 background:   "#DCFCE7",
-                padding:      "3px 7px",
+                padding:      "3px 8px", // master badge padding
                 borderRadius: 20,
                 whiteSpace:   "nowrap",
                 flexShrink:   0,
@@ -478,7 +478,7 @@ function ProductCard({
           )}
         </div>
 
-        {/* Color dots */}
+        {/* Color dots — functional variant selector */}
         {product.colors && (
           <div
             style={{
@@ -498,15 +498,14 @@ function ProductCard({
                   height:       18,
                   borderRadius: "50%",
                   background:   c.hex,
-                  // ring: double shadow for selection
                   boxShadow:    selectedOpt === i
-                    ? `0 0 0 2px white, 0 0 0 3.5px #3D1F8F`
-                    : `inset 0 0 0 1px rgba(61,31,143,0.18)`,
-                  border:      "none",
-                  cursor:      "pointer",
-                  padding:     0,
-                  flexShrink:  0,
-                  outline:     "none",
+                    ? "0 0 0 2px white, 0 0 0 3.5px #3D1F8F"
+                    : "inset 0 0 0 1px rgba(61,31,143,0.18)",
+                  border:     "none",
+                  cursor:     "pointer",
+                  padding:    0,
+                  flexShrink: 0,
+                  outline:    "none",
                 }}
               />
             ))}
@@ -523,7 +522,7 @@ function ProductCard({
           </div>
         )}
 
-        {/* Option pills */}
+        {/* Option pills — master border tokens */}
         {product.options && (
           <div
             style={{
@@ -540,7 +539,7 @@ function ProductCard({
                 style={{
                   padding:      "4px 10px",
                   borderRadius: 20,
-                  border:       `1.5px solid ${selectedOpt === i ? "#3D1F8F" : "#E0D9F8"}`,
+                  border:       `1.5px solid ${selectedOpt === i ? "#3D1F8F" : "#CBC2F0"}`,
                   background:   selectedOpt === i ? "#F0ECFF" : "transparent",
                   color:        selectedOpt === i ? "#3D1F8F" : "#232323",
                   fontFamily:   "var(--font-inter)",
@@ -560,24 +559,24 @@ function ProductCard({
         {/* Push CTA to bottom */}
         <div style={{ flex: 1, minHeight: 8 }} />
 
-        {/* Add to Cart */}
+        {/* Add to Cart — master CTA spec */}
         <motion.button
           whileHover={{ backgroundColor: "#3D1F8F" }}
           whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.18 }}
+          transition={{ duration: 0.2 }}
           style={{
             marginTop:       12,
             width:           "100%",
-            height:          42,
+            height:          46,           // master CTA height
             borderRadius:    "100vw",
             backgroundColor: "#1A0A3D",
             color:           "white",
             fontFamily:      "var(--font-inter)",
-            fontSize:        12.5,
+            fontSize:        13.5,         // master CTA font size
             fontWeight:      600,
             border:          "none",
             cursor:          "pointer",
-            letterSpacing:   "0.03em",
+            letterSpacing:   "0.025em",    // master letter-spacing
           }}
         >
           Add to Cart

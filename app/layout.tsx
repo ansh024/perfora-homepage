@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Spectral } from "next/font/google";
+import { Spectral, Inter } from "next/font/google";
 import "./globals.css";
 
 const spectral = Spectral({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  style:   ["normal", "italic"],
   variable: "--spectral",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight:  ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spectral.variable}>
+    <html lang="en" className={`${spectral.variable} ${inter.variable}`}>
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   );

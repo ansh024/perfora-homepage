@@ -1038,10 +1038,10 @@ export default function Navbar() {
             transition={{ duration: 0.15 }}
             className="flex items-baseline leading-none select-none"
           >
-            <span className="text-[#0D0B10]" style={{ fontFamily: "var(--font-playfair)", fontWeight: 900, fontSize: "clamp(22px,2.1vw,27px)", letterSpacing: "-0.02em" }}>
+            <span className="text-[#0D0B10]" style={{ fontFamily: "var(--spectral)", fontWeight: 700, fontSize: "clamp(22px,2.1vw,27px)", letterSpacing: "-0.02em" }}>
               perfora
             </span>
-            <span className="text-[#0D0B10]" style={{ fontFamily: "var(--font-playfair)", fontWeight: 900, fontSize: "clamp(9px,0.9vw,11px)", verticalAlign: "super", lineHeight: 1, marginLeft: "1px" }}>
+            <span className="text-[#0D0B10]" style={{ fontFamily: "var(--spectral)", fontWeight: 700, fontSize: "clamp(9px,0.9vw,11px)", verticalAlign: "super", lineHeight: 1, marginLeft: "1px" }}>
               ®
             </span>
           </motion.a>

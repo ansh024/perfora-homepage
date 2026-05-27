@@ -372,7 +372,7 @@ export default function TrustedBySmiles() {
                 position:      "absolute",
                 top:           -8,
                 left:          "clamp(14px, 3.5vw, 38px)",
-                fontFamily:    "var(--font-display)",
+                fontFamily:    "var(--spectral)",
                 fontSize:      "clamp(100px, 14vw, 160px)",
                 lineHeight:    1,
                 color:         "rgba(155,127,212,0.10)",

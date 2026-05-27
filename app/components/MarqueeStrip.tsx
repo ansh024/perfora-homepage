@@ -4,7 +4,7 @@ import React from "react";
 
 // ─── Shared font stack ─────────────────────────────────────────────────────────
 const F: React.CSSProperties = {
-  fontFamily: "var(--font-inter), 'Helvetica Neue', Arial, sans-serif",
+  fontFamily: "var(--font-inter)",
   lineHeight: 1,
   display: "block",
   whiteSpace: "nowrap",
@@ -156,7 +156,7 @@ export default function MarqueeStrip() {
       <p
         style={{
           textAlign:     "center",
-          fontFamily:    "var(--font-inter), sans-serif",
+          fontFamily:    "var(--font-inter)",
           fontSize:      "10px",
           fontWeight:    400,
           letterSpacing: "0.24em",
