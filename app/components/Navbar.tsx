@@ -20,40 +20,65 @@ const SHOP_ITEMS = [
 interface ConcernItem { label: string; sub: string; href: string; icon: React.ReactNode }
 const CONCERN_ITEMS: ConcernItem[] = [
   {
-    label: "Anti Sensitivity", sub: "Gentle on enamel, tough on pain", href: "#",
+    label: "Sensitive Teeth", sub: "Gentle on enamel, tough on pain", href: "#",
     icon: (
+      // Tooth outline + lightning bolt — sensitive/electric pain
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 3C9.58 3 6 6.58 6 11c0 2.8 1.38 5.27 3.5 6.8V22a1.5 1.5 0 003 0v-1h3v1a1.5 1.5 0 003 0v-4.2C20.62 16.27 22 13.8 22 11c0-4.42-3.58-8-8-8z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
-        <path d="M11 13l2-3 2 3 2-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Tooth body */}
+        <path d="M14 3.5c-2.2 0-4.1.8-5.5 2.1C7 7 6 9 6 11.3c0 2.5 1.1 4.7 2.9 6.1l-.4 4.6c-.1 1.1.7 2 1.8 2 .9 0 1.6-.6 1.8-1.4l.6-2.1h2.6l.6 2.1c.2.8 1 1.4 1.8 1.4 1.1 0 1.9-.9 1.8-2l-.4-4.6C20.9 16 22 13.8 22 11.3c0-2.3-1-4.3-2.5-5.7C18.1 4.3 16.2 3.5 14 3.5z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round"/>
+        {/* Lightning bolt */}
+        <path d="M15.5 7.5l-3.5 4.5h2.5L13 17l5-6h-2.5l2-3.5z" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
-    label: "Fresh Breath", sub: "All-day confidence, zero compromise", href: "#",
+    label: "Bad Breath", sub: "All-day confidence, zero compromise", href: "#",
     icon: (
+      // Side-profile face + exhale breath waves
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 4c5.52 0 10 3.92 10 8.75C24 18.5 14 24 14 24S4 18.5 4 12.75C4 7.92 8.48 4 14 4z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
-        <path d="M10 13c1 1 2 1.5 4 1.5s3-0.5 4-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <circle cx="11" cy="11" r="1" fill="currentColor"/>
-        <circle cx="17" cy="11" r="1" fill="currentColor"/>
+        {/* Head/face profile */}
+        <path d="M12 4.5c-3.3 0-6 2.7-6 6 0 2.3 1.3 4.3 3.2 5.3l-.2 1c-.2.8.4 1.6 1.2 1.7h.3c.7 0 1.3-.5 1.5-1.2l.2-1c.5.1 1 .1 1.5 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Nose bump */}
+        <path d="M6.5 9.5c-.5.3-.5 1 0 1.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+        {/* Mouth open */}
+        <path d="M8.5 13c.8.6 2 .8 3 .3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+        {/* Breath waves — 3 arcs going right */}
+        <path d="M15 11c1.2 0 2.2.8 2.2 2s-1 2-1 3 1 2 2 2" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round"/>
+        <path d="M18 12.5c.9 0 1.5.6 1.5 1.5s-.8 1.4-.8 2.2.8 1.3 1.8 1.3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="M20.5 13.5c.6 0 1 .4 1 1s-.5 1-.5 1.6.5.9 1 .9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    label: "Teeth Whitening", sub: "Visible results in 7 days", href: "#",
+    label: "Yellow Teeth", sub: "Visible results in 7 days", href: "#",
     icon: (
+      // Tooth + 4-point sparkle star + shine dots
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 3C9.58 3 6 6.58 6 11c0 2.8 1.38 5.27 3.5 6.8V22a1.5 1.5 0 003 0v-1h3v1a1.5 1.5 0 003 0v-4.2C20.62 16.27 22 13.8 22 11c0-4.42-3.58-8-8-8z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
-        <path d="M12 7l1.5 2.5L16 8l-1 3h2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Tooth body */}
+        <path d="M14 3.5c-2.2 0-4.1.8-5.5 2.1C7 7 6 9 6 11.3c0 2.5 1.1 4.7 2.9 6.1l-.4 4.6c-.1 1.1.7 2 1.8 2 .9 0 1.6-.6 1.8-1.4l.6-2.1h2.6l.6 2.1c.2.8 1 1.4 1.8 1.4 1.1 0 1.9-.9 1.8-2l-.4-4.6C20.9 16 22 13.8 22 11.3c0-2.3-1-4.3-2.5-5.7C18.1 4.3 16.2 3.5 14 3.5z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round"/>
+        {/* 4-pointed sparkle star */}
+        <path d="M14 6l.7 2.3L17 9l-2.3.7L14 12l-.7-2.3L11 9l2.3-.7z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+        {/* Shine dots */}
+        <circle cx="19" cy="6" r=".9" fill="currentColor"/>
+        <circle cx="21" cy="9" r=".65" fill="currentColor"/>
+        <circle cx="17.5" cy="4" r=".65" fill="currentColor"/>
       </svg>
     ),
   },
   {
-    label: "Plaque Removal", sub: "Deep clean formula, dentist approved", href: "#",
+    label: "Plaque Build Up", sub: "Deep clean formula, dentist approved", href: "#",
     icon: (
+      // Tooth with plaque/buildup texture at the gumline
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 3C9.58 3 6 6.58 6 11c0 2.8 1.38 5.27 3.5 6.8V22a1.5 1.5 0 003 0v-1h3v1a1.5 1.5 0 003 0v-4.2C20.62 16.27 22 13.8 22 11c0-4.42-3.58-8-8-8z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
-        <path d="M10.5 11.5h7M12 14h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        {/* Tooth body */}
+        <path d="M14 3.5c-2.2 0-4.1.8-5.5 2.1C7 7 6 9 6 11.3c0 2.5 1.1 4.7 2.9 6.1l-.4 4.6c-.1 1.1.7 2 1.8 2 .9 0 1.6-.6 1.8-1.4l.6-2.1h2.6l.6 2.1c.2.8 1 1.4 1.8 1.4 1.1 0 1.9-.9 1.8-2l-.4-4.6C20.9 16 22 13.8 22 11.3c0-2.3-1-4.3-2.5-5.7C18.1 4.3 16.2 3.5 14 3.5z" stroke="currentColor" strokeWidth="1.55" strokeLinejoin="round"/>
+        {/* Plaque buildup — layered lines inside the tooth */}
+        <path d="M9.5 15.5h9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeDasharray="1.8 1.4"/>
+        <path d="M10 17.5h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1.6 1.4"/>
+        {/* Bacteria dots */}
+        <circle cx="12" cy="10" r=".85" fill="currentColor" opacity=".7"/>
+        <circle cx="14.5" cy="9" r=".85" fill="currentColor" opacity=".7"/>
+        <circle cx="16.8" cy="10.5" r=".75" fill="currentColor" opacity=".6"/>
       </svg>
     ),
   },
@@ -78,7 +103,7 @@ const LEARN_ITEMS: LearnItem[] = [
     ),
   },
   {
-    label: "Press Testimonials", sub: "Perfora in the news & media", href: "#",
+    label: "Press Testimonials", sub: "Perfora in the news & media", href: "/press",
     icon: (
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
         <rect x="4" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/>
@@ -306,8 +331,11 @@ function ConcernPanel() {
             }}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M12 3C7.58 3 4 6.58 4 11c0 2.8 1.38 5.27 3.5 6.8V20a1.5 1.5 0 003 0v-1h3v1a1.5 1.5 0 003 0v-2.2C18.62 16.27 20 13.8 20 11c0-4.42-3.58-8-8-8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-              <path d="M9.5 13.5c.7.9 1.6 1.4 2.5 1.4s1.8-.5 2.5-1.4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              {/* Tooth with check badge — clinically tested */}
+              <path d="M12 2.5c-2 0-3.7.7-5 1.9C5.6 5.7 5 7.4 5 9.3c0 2.3 1 4.3 2.6 5.6l-.3 3.7c-.1.9.6 1.7 1.5 1.7.8 0 1.5-.5 1.7-1.3l.5-1.7h2l.5 1.7c.2.8.9 1.3 1.7 1.3.9 0 1.6-.8 1.5-1.7l-.3-3.7C17 13.6 18 11.6 18 9.3c0-1.9-.6-3.6-1.9-4.9C14.7 3.2 13 2.5 12 2.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+              {/* Check badge circle */}
+              <circle cx="17.5" cy="6.5" r="3.5" fill="#3D1F8F"/>
+              <path d="M15.8 6.5l1.1 1.2 2-2" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div>
@@ -1032,7 +1060,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <motion.a
-            href="#"
+            href="/"
             aria-label="Perfora home"
             whileHover={{ opacity: 0.82 }}
             transition={{ duration: 0.15 }}

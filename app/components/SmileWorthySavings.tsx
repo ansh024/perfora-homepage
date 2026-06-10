@@ -115,13 +115,13 @@ const PRODUCTS: Product[] = [
 ];
 
 // ─── Mobile concern filters ────────────────────────────────────────────────────
-const MOBILE_CONCERNS = ["All", "Teeth whitening", "Fresh breath", "Plaque removal", "Tooth sensitivity"];
+const MOBILE_CONCERNS = ["All", "Yellow Teeth", "Bad Breath", "Plaque Build Up", "Sensitive Teeth"];
 
 const CONCERN_PRODUCT_IDS: Record<string, string[]> = {
-  "Teeth whitening":   ["whitening-serum", "whitening-combo", "whitening-strips-pro"],
-  "Fresh breath":      ["charcoal-toothpaste", "electric-toothbrush", "power-flosser"],
-  "Plaque removal":    ["electric-toothbrush", "charcoal-toothpaste", "power-flosser"],
-  "Tooth sensitivity": ["electric-toothbrush", "whitening-serum", "whitening-strips-pro"],
+  "Yellow Teeth":   ["whitening-serum", "whitening-combo", "whitening-strips-pro"],
+  "Bad Breath":     ["charcoal-toothpaste", "electric-toothbrush", "power-flosser"],
+  "Plaque Build Up": ["electric-toothbrush", "charcoal-toothpaste", "power-flosser"],
+  "Sensitive Teeth": ["electric-toothbrush", "whitening-serum", "whitening-strips-pro"],
 };
 
 // ─── Stars ─────────────────────────────────────────────────────────────────────
@@ -143,10 +143,10 @@ function Stars({ rating, count }: { rating: number; count: string }) {
 function ConcernButton() {
   const OPTIONS = [
     "Shop by concern",
-    "Teeth whitening",
-    "Fresh breath",
-    "Plaque removal",
-    "Tooth sensitivity",
+    "Yellow Teeth",
+    "Bad Breath",
+    "Plaque Build Up",
+    "Sensitive Teeth",
   ];
   const [sel,  setSel]  = useState(0);
   const [open, setOpen] = useState(false);
