@@ -718,7 +718,7 @@ export default function SmileWorthySavings() {
                   marginBottom:  12,
                 }}
               >
-                Shop bestsellers
+                Shop by Concern
               </p>
               <h2
                 className="font-display"
@@ -730,10 +730,10 @@ export default function SmileWorthySavings() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Worth every
+                Find what
                 <br />
                 <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>
-                  rupee.
+                  works for you.
                 </em>
               </h2>
               <p
@@ -746,7 +746,7 @@ export default function SmileWorthySavings() {
                   maxWidth:   "28ch",
                 }}
               >
-                Systems, brush head multipacks, and limited-edition colors — while they last.
+                Pick your concern and shop products formulated to fix it.
               </p>
             </div>
 
@@ -937,7 +937,7 @@ export default function SmileWorthySavings() {
                 marginBottom:  10,
               }}
             >
-              Shop bestsellers
+              Shop by Concern
             </p>
             <h2
               className="font-display"
@@ -950,8 +950,8 @@ export default function SmileWorthySavings() {
                 marginBottom:  10,
               }}
             >
-              Worth every{" "}
-              <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>rupee.</em>
+              Find what{" "}
+              <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>works for you.</em>
             </h2>
             <p
               style={{
@@ -961,19 +961,17 @@ export default function SmileWorthySavings() {
                 lineHeight: 1.6,
               }}
             >
-              Systems, brush head multipacks, and limited-edition colors.
+              Pick your concern and shop products formulated to fix it.
             </p>
           </div>
 
-          {/* Concern filter pills */}
+          {/* Concern filter pills — all 4 in one row */}
           <div
-            className="no-scrollbar"
             style={{
-              overflowX:    "auto",
               display:      "flex",
-              gap:          8,
-              paddingLeft:  "clamp(20px, 5vw, 40px)",
-              paddingRight: "clamp(20px, 5vw, 40px)",
+              gap:          6,
+              paddingLeft:  "clamp(16px, 4vw, 32px)",
+              paddingRight: "clamp(16px, 4vw, 32px)",
               paddingBottom: 4,
               marginBottom:  16,
             }}
@@ -985,20 +983,22 @@ export default function SmileWorthySavings() {
                   key={concern}
                   onClick={() => setMobileConcern(concern)}
                   style={{
-                    flexShrink:  0,
-                    padding:     "0 16px",
-                    height:      44,
+                    flex:        1,
+                    padding:     "0 6px",
+                    height:      36,
                     borderRadius: 100,
                     border:      `1.5px solid ${isActive ? "#3D1F8F" : "#C4BDE8"}`,
                     background:  isActive ? "#3D1F8F" : "white",
                     color:       isActive ? "#FFFFFF" : "#6B4FB3",
                     fontFamily:  "var(--font-inter)",
-                    fontSize:    13,
+                    fontSize:    11,
                     fontWeight:  isActive ? 600 : 500,
                     cursor:      "pointer",
                     whiteSpace:  "nowrap",
                     display:     "flex",
                     alignItems:  "center",
+                    justifyContent: "center",
+                    textAlign:   "center",
                     transition:  "background 0.18s, border-color 0.18s, color 0.18s",
                   }}
                 >

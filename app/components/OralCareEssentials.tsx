@@ -398,14 +398,13 @@ export default function OralCareEssentials() {
 
         {/* ── Filter tabs ── */}
         <div
-          className="no-scrollbar"
           style={{
-            display:                 "flex",
-            gap:                     8,
-            overflowX:               "auto",
-            WebkitOverflowScrolling: "touch",
-            paddingBottom:           4,
-            marginBottom:            "clamp(20px, 3vw, 30px)",
+            display:       "flex",
+            gap:           6,
+            paddingLeft:   "clamp(16px, 4vw, 32px)",
+            paddingRight:  "clamp(16px, 4vw, 32px)",
+            paddingBottom: 4,
+            marginBottom:  "clamp(20px, 3vw, 30px)",
           }}
         >
           {FILTERS.map(f => {
@@ -418,18 +417,20 @@ export default function OralCareEssentials() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.15 }}
                 style={{
-                  flexShrink:    0,
-                  padding:       "9px 20px",
+                  flex:          1,
+                  padding:       "8px 6px",
                   borderRadius:  24,
                   border:        active ? "1.5px solid transparent" : "1.5px solid #D4CBF8",
                   background:    active ? "#3D1F8F" : "transparent",
                   color:         active ? "#FFFFFF" : "#232323",
                   fontFamily:    "var(--font-inter)",
-                  fontSize:      13,
+                  fontSize:      12,
                   fontWeight:    active ? 600 : 400,
                   cursor:        "pointer",
                   letterSpacing: "0.01em",
-                  whiteSpace:    "nowrap",
+                  whiteSpace:    "normal",
+                  lineHeight:    1.3,
+                  textAlign:     "center",
                   transition:    "background 0.22s, color 0.22s, border-color 0.22s",
                 }}
               >
