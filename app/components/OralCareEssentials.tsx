@@ -398,9 +398,11 @@ export default function OralCareEssentials() {
 
         {/* ── Filter tabs ── */}
         <div
+          className="no-scrollbar"
           style={{
             display:       "flex",
-            gap:           6,
+            gap:           10,
+            overflowX:     "auto",
             paddingLeft:   "clamp(16px, 4vw, 32px)",
             paddingRight:  "clamp(16px, 4vw, 32px)",
             paddingBottom: 4,
@@ -417,19 +419,19 @@ export default function OralCareEssentials() {
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.15 }}
                 style={{
-                  flex:          1,
-                  padding:       "8px 6px",
+                  flexShrink:    0,
+                  width:         "clamp(110px, 28vw, 160px)",
+                  padding:       "10px 14px",
                   borderRadius:  24,
                   border:        active ? "1.5px solid transparent" : "1.5px solid #D4CBF8",
                   background:    active ? "#3D1F8F" : "transparent",
                   color:         active ? "#FFFFFF" : "#232323",
                   fontFamily:    "var(--font-inter)",
-                  fontSize:      12,
+                  fontSize:      13,
                   fontWeight:    active ? 600 : 400,
                   cursor:        "pointer",
                   letterSpacing: "0.01em",
-                  whiteSpace:    "normal",
-                  lineHeight:    1.3,
+                  whiteSpace:    "nowrap",
                   textAlign:     "center",
                   transition:    "background 0.22s, color 0.22s, border-color 0.22s",
                 }}
