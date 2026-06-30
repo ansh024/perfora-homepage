@@ -79,7 +79,7 @@ function CategoryCard({
       <div
         style={{
           width:           "100%",
-          height:          "clamp(100px, 26vw, 205px)",
+          height:          "clamp(90px, 22vw, 205px)",
           display:         "flex",
           alignItems:      "center",
           justifyContent:  "center",
@@ -223,7 +223,7 @@ export default function ShopByCategory() {
               aria-label="Product categories"
               style={{
                 display: "flex",
-                gap:     "clamp(6px, 2vw, 10px)",
+                gap:     "clamp(4px, 1.2vw, 8px)",
                 width:   "max-content",
               }}
             >
@@ -231,7 +231,7 @@ export default function ShopByCategory() {
                 <div
                   key={key}
                   style={{
-                    width:           "clamp(110px, 26vw, 155px)",
+                    width:           "clamp(90px, 22vw, 140px)",
                     scrollSnapAlign: "start",
                     flexShrink:      0,
                   }}
