@@ -3,8 +3,24 @@
 import { useState } from "react";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
-const QUICK_LINKS = ["Blog", "Contact Us", "Shipping & Delivery", "Refund Policy"];
-const SUPPORT_LINKS = ["Loyalty", "Order Tracker", "FAQs", "Privacy Policy"];
+const QUICK_LINKS_DATA = [
+  { label: "Blog", href: "#" },
+  { label: "Our Story", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Loyalty", href: "#" },
+  { label: "Order Tracker", href: "#" },
+  { label: "FAQs", href: "#" },
+];
+
+const POLICIES_DATA = [
+  { label: "Shipping & Delivery", href: "/shipping" },
+  { label: "Return & Exchange", href: "/returns" },
+  { label: "Refund Policy", href: "/refund-policy" },
+  { label: "Warranty Guidelines", href: "/warranty" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Order Info & Cancellation", href: "/order-info" },
+];
 
 // ─── Social icons ──────────────────────────────────────────────────────────────
 function SocialIcon({ label, children }: { label: string; children: React.ReactNode }) {
@@ -51,10 +67,10 @@ function ColHeading({ children }: { children: React.ReactNode }) {
 }
 
 // ─── Footer link ───────────────────────────────────────────────────────────────
-function FooterLink({ children }: { children: React.ReactNode }) {
+function FooterLink({ children, href = "#" }: { children: React.ReactNode; href?: string }) {
   return (
     <a
-      href="#"
+      href={href}
       style={{
         display:        "block",
         fontFamily:     "var(--font-inter)",
@@ -124,13 +140,13 @@ export default function SiteFooter() {
           {/* ── Col 2: Quick Links ── */}
           <div style={{ flex: "0 0 auto" }}>
             <ColHeading>Quick Links</ColHeading>
-            {QUICK_LINKS.map(l => <FooterLink key={l}>{l}</FooterLink>)}
+            {QUICK_LINKS_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
           </div>
 
-          {/* ── Col 3: Support ── */}
+          {/* ── Col 3: Policies ── */}
           <div style={{ flex: "0 0 auto" }}>
-            <ColHeading>Support</ColHeading>
-            {SUPPORT_LINKS.map(l => <FooterLink key={l}>{l}</FooterLink>)}
+            <ColHeading>Policies</ColHeading>
+            {POLICIES_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
           </div>
 
           {/* ── Col 4: Help + Newsletter ── */}

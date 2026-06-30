@@ -94,7 +94,7 @@ const KIDS_ITEMS = [
 interface LearnItem { label: string; sub: string; href: string; icon: React.ReactNode }
 const LEARN_ITEMS: LearnItem[] = [
   {
-    label: "Our Story", sub: "How a smile sparked a revolution", href: "#",
+    label: "Our Story", sub: "How a smile sparked a revolution", href: "/about",
     icon: (
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
         <path d="M5 20V7a2 2 0 012-2h7l5 5v10a2 2 0 01-2 2H7a2 2 0 01-2-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
