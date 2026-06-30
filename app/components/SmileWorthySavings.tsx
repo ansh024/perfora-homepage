@@ -115,7 +115,7 @@ const PRODUCTS: Product[] = [
 ];
 
 // ─── Mobile concern filters ────────────────────────────────────────────────────
-const MOBILE_CONCERNS = ["All", "Yellow Teeth", "Bad Breath", "Plaque Build Up", "Sensitive Teeth"];
+const MOBILE_CONCERNS = ["Yellow Teeth", "Bad Breath", "Plaque Build Up", "Sensitive Teeth"];
 
 const CONCERN_PRODUCT_IDS: Record<string, string[]> = {
   "Yellow Teeth":   ["whitening-serum", "whitening-combo", "whitening-strips-pro"],
@@ -597,7 +597,7 @@ export default function SmileWorthySavings() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [progress,  setProgress]  = useState(0);
   const [mobileIdx,     setMobileIdx]     = useState(0);
-  const [mobileConcern, setMobileConcern] = useState<string | null>(null);
+  const [mobileConcern, setMobileConcern] = useState<string | null>("Yellow Teeth");
 
   // Filtered products for mobile concern chips
   const mobileProducts = mobileConcern
@@ -979,11 +979,11 @@ export default function SmileWorthySavings() {
             }}
           >
             {MOBILE_CONCERNS.map((concern) => {
-              const isActive = concern === "All" ? mobileConcern === null : mobileConcern === concern;
+              const isActive = mobileConcern === concern;
               return (
                 <button
                   key={concern}
-                  onClick={() => setMobileConcern(concern === "All" ? null : concern)}
+                  onClick={() => setMobileConcern(concern)}
                   style={{
                     flexShrink:  0,
                     padding:     "0 16px",

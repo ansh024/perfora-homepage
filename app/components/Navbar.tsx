@@ -21,7 +21,7 @@ const SHOP_ITEMS = [
 interface ConcernItem { label: string; sub: string; href: string; icon: React.ReactNode }
 const CONCERN_ITEMS: ConcernItem[] = [
   {
-    label: "Sensitive Teeth", sub: "Gentle on enamel, tough on pain", href: "#",
+    label: "Sensitive Teeth", sub: "No sting, no discomfort", href: "#",
     icon: (
       // Tooth outline + lightning bolt — sensitive/electric pain
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -33,7 +33,7 @@ const CONCERN_ITEMS: ConcernItem[] = [
     ),
   },
   {
-    label: "Bad Breath", sub: "All-day confidence, zero compromise", href: "#",
+    label: "Bad Breath", sub: "Fresh from the first rinse", href: "#",
     icon: (
       // Side-profile face + exhale breath waves
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -51,7 +51,7 @@ const CONCERN_ITEMS: ConcernItem[] = [
     ),
   },
   {
-    label: "Yellow Teeth", sub: "Visible results in 7 days", href: "#",
+    label: "Yellow Teeth", sub: "Visibly whiter in 7 days", href: "#",
     icon: (
       // Tooth + 4-point sparkle star + shine dots
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -67,7 +67,7 @@ const CONCERN_ITEMS: ConcernItem[] = [
     ),
   },
   {
-    label: "Plaque Build Up", sub: "Deep clean formula, dentist approved", href: "#",
+    label: "Plaque Build Up", sub: "Clinically tested, dentist approved", href: "#",
     icon: (
       // Tooth with plaque/buildup texture at the gumline
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -292,15 +292,15 @@ function ConcernPanel() {
               margin:        "0 0 12px",
             }}
           >
-            Targeted Care
+            Shop by Concern
           </p>
           <h3
             className="font-display"
             style={{ fontSize: "clamp(1.25rem, 1.9vw, 1.6rem)", fontWeight: 700, color: "#2A0A5E", lineHeight: 1.18, margin: 0 }}
           >
-            Targeted care for
+            What's bothering
             <br />
-            <em style={{ fontStyle: "italic", color: "#5C3FA0" }}>every smile.</em>
+            <em style={{ fontStyle: "italic", color: "#5C3FA0" }}>your teeth?</em>
           </h3>
           <p
             style={{
@@ -311,7 +311,7 @@ function ConcernPanel() {
               lineHeight: 1.65,
             }}
           >
-            Every mouth is different. Our concern-specific formulas address your exact needs — from sensitivity to whitening.
+            Pick your concern — we&apos;ll match you with the right formula.
           </p>
         </div>
 
