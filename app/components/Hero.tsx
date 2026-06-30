@@ -67,7 +67,7 @@ export default function Hero() {
 
           {/* CTA */}
           <a
-            href="#products"
+            href="#shop-by-concern"
             style={{
               display:         "flex",
               alignItems:      "center",
@@ -178,7 +178,7 @@ export default function Hero() {
 
             {/* CTA */}
             <motion.a
-              href="#products"
+              href="#shop-by-concern"
               whileHover={{ scale: 1.02, opacity: 0.92 }}
               whileTap={{ scale: 0.975 }}
               className="inline-flex items-center gap-2 px-5 py-[11px] rounded-sm text-[13px] font-medium self-start"

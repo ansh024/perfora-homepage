@@ -681,6 +681,7 @@ export default function SmileWorthySavings() {
 
   return (
     <section
+      id="shop-by-concern"
       style={{
         background:    "#F6F1FF",
         paddingTop:    "clamp(48px, 4.5vw, 68px)",
