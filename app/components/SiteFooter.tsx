@@ -137,16 +137,17 @@ export default function SiteFooter() {
             </p>
           </div>
 
-          {/* ── Col 2: Quick Links ── */}
-          <div style={{ flex: "0 0 auto" }}>
-            <ColHeading>Quick Links</ColHeading>
-            {QUICK_LINKS_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
-          </div>
+          {/* ── Col 2 & 3: Quick Links + Policies side by side on mobile ── */}
+          <div style={{ display: "flex", gap: "clamp(24px, 5vw, 48px)", flex: "0 0 auto" }}>
+            <div style={{ flex: "0 0 auto" }}>
+              <ColHeading>Quick Links</ColHeading>
+              {QUICK_LINKS_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+            </div>
 
-          {/* ── Col 3: Policies ── */}
-          <div style={{ flex: "0 0 auto" }}>
-            <ColHeading>Policies</ColHeading>
-            {POLICIES_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+            <div style={{ flex: "0 0 auto" }}>
+              <ColHeading>Policies</ColHeading>
+              {POLICIES_DATA.map(l => <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>)}
+            </div>
           </div>
 
           {/* ── Col 4: Help + Newsletter ── */}
