@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../context/CartContext";
 
 // ─── Menu data ─────────────────────────────────────────────────────────────────
 
@@ -133,7 +134,7 @@ const LEARN_ITEMS: LearnItem[] = [
   },
 ];
 
-const CART_COUNT = 2;
+// CART_COUNT is now sourced from CartContext — see useCart() in the component body
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 const megaVariants = {
@@ -993,6 +994,7 @@ function AccountDropdown({ onClose }: { onClose: () => void }) {
 
 // ─── Main Navbar ───────────────────────────────────────────────────────────────
 export default function Navbar() {
+  const { count: CART_COUNT } = useCart();
   const [scrolled,    setScrolled]    = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [activeMenu,  setActiveMenu]  = useState<string | null>(null);

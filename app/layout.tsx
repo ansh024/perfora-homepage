@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Spectral, Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "./context/CartContext";
 
 const spectral = Spectral({
   subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spectral.variable} ${inter.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
