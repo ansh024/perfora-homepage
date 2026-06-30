@@ -4,12 +4,12 @@ import { useState } from "react";
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 const QUICK_LINKS_DATA = [
-  { label: "Blog", href: "#" },
+  { label: "Blog", href: "https://perforacare.com/pages/blogs" },
   { label: "Our Story", href: "/about" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Loyalty", href: "#" },
-  { label: "Order Tracker", href: "#" },
-  { label: "FAQs", href: "#" },
+  { label: "Loyalty", href: "https://perforacare.com/pages/loyalty" },
+  { label: "Track Your Order", href: "https://perforacare.clickpost.in/en" },
+  { label: "FAQs", href: "https://perforacare.com/pages/faq" },
 ];
 
 const POLICIES_DATA = [

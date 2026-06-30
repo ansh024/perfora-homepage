@@ -114,7 +114,7 @@ const LEARN_ITEMS: LearnItem[] = [
     ),
   },
   {
-    label: "Tooth Talk", sub: "Expert oral health insights", href: "#",
+    label: "Tooth Talk", sub: "Expert oral health insights", href: "https://perforacare.com/pages/blogs",
     icon: (
       <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
         <path d="M4 6a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-6l-4 4v-4H6a2 2 0 01-2-2V6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
