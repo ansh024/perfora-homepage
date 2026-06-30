@@ -730,10 +730,10 @@ export default function SmileWorthySavings() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Smile-worthy
+                Worth every
                 <br />
                 <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>
-                  savings.
+                  rupee.
                 </em>
               </h2>
               <p
@@ -878,6 +878,43 @@ export default function SmileWorthySavings() {
           </div>
         </div>
 
+        {/* ── Explore Collection CTA (desktop) ── */}
+        <div
+          className="hidden md:flex"
+          style={{
+            justifyContent: "center",
+            marginTop:      32,
+            paddingLeft:    "clamp(20px, 4vw, 48px)",
+            paddingRight:   "clamp(20px, 4vw, 48px)",
+          }}
+        >
+          <a
+            href="/collections"
+            style={{
+              display:         "inline-flex",
+              alignItems:      "center",
+              gap:             8,
+              padding:         "13px 32px",
+              borderRadius:    100,
+              backgroundColor: "#1A0A3D",
+              color:           "white",
+              fontFamily:      "var(--font-inter)",
+              fontSize:        14,
+              fontWeight:      600,
+              textDecoration:  "none",
+              letterSpacing:   "0.01em",
+              transition:      "background-color 0.2s",
+            }}
+            onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#3D1F8F")}
+            onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1A0A3D")}
+          >
+            Explore Collection
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
         {/* ══ MOBILE ═══════════════════════════════════════════════════════════ */}
         <div className="md:hidden">
 
@@ -913,8 +950,8 @@ export default function SmileWorthySavings() {
                 marginBottom:  10,
               }}
             >
-              Smile-worthy{" "}
-              <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>savings.</em>
+              Worth every{" "}
+              <em style={{ fontStyle: "italic", color: "#6B4FB3" }}>rupee.</em>
             </h2>
             <p
               style={{
@@ -1022,6 +1059,32 @@ export default function SmileWorthySavings() {
                 style={{ height: 6, borderRadius: 3 }}
               />
             ))}
+          </div>
+
+          {/* Explore Collection CTA (mobile) */}
+          <div style={{ display: "flex", justifyContent: "center", marginTop: 24, paddingBottom: 4 }}>
+            <a
+              href="/collections"
+              style={{
+                display:         "inline-flex",
+                alignItems:      "center",
+                gap:             8,
+                padding:         "13px 28px",
+                borderRadius:    100,
+                backgroundColor: "#1A0A3D",
+                color:           "white",
+                fontFamily:      "var(--font-inter)",
+                fontSize:        14,
+                fontWeight:      600,
+                textDecoration:  "none",
+                letterSpacing:   "0.01em",
+              }}
+            >
+              Explore Collection
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7h10M7.5 2.5L12 7l-4.5 4.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
 
