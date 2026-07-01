@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MarqueeStrip from "./components/MarqueeStrip";
+import PressMarqueeStrip from "./components/PressMarqueeStrip";
 import ShopByCategory from "./components/ShopByCategory";
 import TrustedBySmiles from "./components/TrustedBySmiles";
 import WhyPerfora from "./components/WhyPerfora";
@@ -34,7 +35,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <MarqueeStrip />
+        <PressMarqueeStrip />
         <ShopByCategory />
         <SmileWorthySavings />
         <DoctorRecommended />
@@ -42,6 +43,7 @@ export default function Home() {
         <BrushSpotlight />
         <VideoTestimonials />
         <TrustedBySmiles />
+        <MarqueeStrip />
         <WhyPerfora />
       </main>
       <SiteFooter />
