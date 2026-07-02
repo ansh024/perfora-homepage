@@ -1309,16 +1309,16 @@ export default function Navbar() {
           >
             <div style={{ padding: "16px 22px 40px", position: "relative" }}>
 
-              {/* Header row */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-                {/* Logo image */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/perfora-logo.png"
-                  alt="Perfora"
-                  style={{ height: 28, width: "auto", objectFit: "contain", opacity: 0.85 }}
-                />
-                <h2 style={{ fontFamily: "var(--font-inter)", fontSize: 22, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>Menu</h2>
+              {/* Header: logo row then Menu row */}
+              <div style={{ marginBottom: 20 }}>
+                {/* Top row: logo + X */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/perfora-logo.png"
+                    alt="Perfora"
+                    style={{ height: 28, width: "auto", objectFit: "contain", opacity: 0.85 }}
+                  />
                 <button
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
@@ -1340,12 +1340,15 @@ export default function Navbar() {
                     <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
                   </svg>
                 </button>
+                </div>
+                {/* Menu heading below logo */}
+                <h2 style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>Menu</h2>
               </div>
 
               {/* Your account Login */}
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "#1A0A3D", marginBottom: 24 }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 18, color: "#1A0A3D", marginBottom: 24 }}>
                 Your account{" "}
-                <a href="#" style={{ color: "#3D1F8F", fontWeight: 600, textDecoration: "underline" }}>Login</a>
+                <a href="#" style={{ color: "#3D1F8F", fontWeight: 700, textDecoration: "underline", fontSize: 18 }}>Login</a>
               </p>
 
               {/* SHOP ALL */}
