@@ -386,12 +386,12 @@ export default function SiteFooter() {
         aria-hidden
         style={{
           position:       "absolute",
-          bottom:         "-14%",
+          bottom:         "-8%",
           left:           "50%",
           transform:      "translateX(-50%)",
           whiteSpace:     "nowrap",
           fontFamily:     "var(--spectral)",
-          fontSize:       "clamp(100px, 18vw, 230px)",
+          fontSize:       "clamp(72px, 22vw, 230px)",
           fontWeight:     700,
           fontStyle:      "italic",
           color:          "rgba(180,165,218,0.22)",
