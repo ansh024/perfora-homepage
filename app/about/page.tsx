@@ -54,6 +54,26 @@ export default function AboutPage() {
         <div style={{ position:"absolute", top:"10%", right:"-5%", width:"min(480px,50vw)", height:"min(480px,50vw)", borderRadius:"50%", background:"radial-gradient(circle,rgba(107,79,179,0.28) 0%,transparent 70%)", pointerEvents:"none" }} />
         <div style={{ position:"absolute", bottom:"5%", left:"-8%", width:"min(340px,40vw)", height:"min(340px,40vw)", borderRadius:"50%", background:"radial-gradient(circle,rgba(61,31,143,0.22) 0%,transparent 70%)", pointerEvents:"none" }} />
 
+        {/* Mobile-only founders image (shown above text on small screens) */}
+        <div
+          className="about-mobile-founders"
+          style={{
+            display:      "none",
+            marginBottom: 24,
+            borderRadius: 16,
+            overflow:     "hidden",
+            position:     "relative",
+            zIndex:       1,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/founders-mobile.png"
+            alt="Tushar and Jatan, Perfora founders"
+            style={{ width:"100%", display:"block", objectFit:"cover" }}
+          />
+        </div>
+
         {/* Two-column layout: text left, image right */}
         <div
           style={{
@@ -307,6 +327,12 @@ export default function AboutPage() {
         @media (max-width: 767px) {
           .about-hero-grid {
             grid-template-columns: 1fr !important;
+          }
+          .about-hero-grid > div:last-child {
+            display: none !important;
+          }
+          .about-mobile-founders {
+            display: block !important;
           }
         }
       `}</style>
