@@ -272,11 +272,11 @@ export default function DoctorRecommended() {
           {/* Stats row */}
           <div
             style={{
-              display:    "flex",
-              gap:        "clamp(20px, 3.5vw, 40px)",
-              flexWrap:   "wrap",
-              paddingTop: 16,
-              borderTop:  "1px solid #F0EDFC",
+              display:             "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap:                 "clamp(8px, 2vw, 20px)",
+              paddingTop:          16,
+              borderTop:           "1px solid #F0EDFC",
             }}
           >
             {STATS.map(s => (
