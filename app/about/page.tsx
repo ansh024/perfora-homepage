@@ -193,45 +193,6 @@ export default function AboutPage() {
               />
             </div>
 
-            {/* Floating product badge */}
-            <div
-              style={{
-                position:       "absolute",
-                bottom:         -12,
-                left:           -20,
-                background:     "rgba(255,255,255,0.10)",
-                backdropFilter: "blur(12px)",
-                border:         "1px solid rgba(255,255,255,0.18)",
-                borderRadius:   16,
-                padding:        "12px 16px",
-                display:        "flex",
-                alignItems:     "center",
-                gap:            10,
-              }}
-            >
-              <div
-                style={{
-                  width:          40,
-                  height:         40,
-                  borderRadius:   "50%",
-                  background:     "#EDE8FF",
-                  overflow:       "hidden",
-                  flexShrink:     0,
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/product-images/electric-toothbrush.webp"
-                  alt=""
-                  aria-hidden
-                  style={{ width:"100%", height:"100%", objectFit:"cover" }}
-                />
-              </div>
-              <div>
-                <p style={{ fontFamily:"var(--font-inter)", fontSize:11, fontWeight:700, color:"#EDE6FF", margin:0 }}>India&apos;s #1 Electric Brush</p>
-                <p style={{ fontFamily:"var(--font-inter)", fontSize:10, color:"rgba(200,184,240,0.85)", margin:"2px 0 0" }}>10L+ smiles & counting</p>
-              </div>
-            </div>
           </div>
         </div>
 
