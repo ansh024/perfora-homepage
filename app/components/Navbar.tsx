@@ -1307,30 +1307,18 @@ export default function Navbar() {
               overflowX:  "hidden",
             }}
           >
-            {/* Faded logo watermark */}
-            <div
-              aria-hidden
-              style={{
-                position:      "absolute",
-                top:           12,
-                left:          20,
-                fontFamily:    "var(--spectral)",
-                fontWeight:    700,
-                fontSize:      22,
-                color:         "rgba(61,31,143,0.12)",
-                letterSpacing: "-0.02em",
-                pointerEvents: "none",
-                userSelect:    "none",
-              }}
-            >
-              perfora<sup style={{ fontSize: "0.45em", verticalAlign: "super" }}>®</sup>
-            </div>
-
-            <div style={{ padding: "18px 22px 40px", position: "relative" }}>
+            <div style={{ padding: "16px 22px 40px", position: "relative" }}>
 
               {/* Header row */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, paddingTop: 4 }}>
-                <h2 style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>Menu</h2>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+                {/* Logo image */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/perfora-logo.png"
+                  alt="Perfora"
+                  style={{ height: 28, width: "auto", objectFit: "contain", opacity: 0.85 }}
+                />
+                <h2 style={{ fontFamily: "var(--font-inter)", fontSize: 22, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>Menu</h2>
                 <button
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
@@ -1496,23 +1484,27 @@ export default function Navbar() {
                 </p>
               </div>
 
-              {/* Large watermark */}
+              {/* Large logo watermark */}
               <div
                 aria-hidden
                 style={{
                   textAlign:     "center",
-                  fontFamily:    "var(--spectral)",
-                  fontWeight:    700,
-                  fontStyle:     "italic",
-                  fontSize:      "clamp(52px,18vw,80px)",
-                  color:         "rgba(61,31,143,0.08)",
-                  letterSpacing: "-0.03em",
-                  lineHeight:    1,
                   userSelect:    "none",
                   pointerEvents: "none",
+                  paddingBottom: 8,
                 }}
               >
-                perfora<sup style={{ fontSize: "0.3em", verticalAlign: "super" }}>®</sup>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/perfora-logo.png"
+                  alt=""
+                  style={{
+                    height:    "clamp(48px,16vw,72px)",
+                    width:     "auto",
+                    objectFit: "contain",
+                    opacity:   0.10,
+                  }}
+                />
               </div>
             </div>
           </motion.div>
