@@ -180,7 +180,7 @@ export default function AboutPage() {
               style={{
                 borderRadius: 20,
                 overflow:     "hidden",
-                aspectRatio:  "16/9",
+                aspectRatio:  "3/4",
                 border:       "1.5px solid rgba(167,139,250,0.2)",
                 boxShadow:    "0 24px 64px rgba(0,0,0,0.4)",
               }}
