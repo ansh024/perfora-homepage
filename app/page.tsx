@@ -8,6 +8,7 @@ import TrustedBySmiles from "./components/TrustedBySmiles";
 import WhyPerfora from "./components/WhyPerfora";
 import SiteFooter from "./components/SiteFooter";
 import BrushSpotlight from "./components/BrushSpotlight";
+import OurStorySection from "./components/OurStorySection";
 
 const VideoTestimonials = dynamic(
   () => import("./components/VideoTestimonials"),
@@ -41,10 +42,16 @@ export default function Home() {
         <DoctorRecommended />
         <OralCareEssentials />
         <BrushSpotlight />
+        {/* Video Reviews */}
         <VideoTestimonials />
+        {/* Reviews */}
         <TrustedBySmiles />
-        <MarqueeStrip />
+        {/* What makes Perfora different */}
         <WhyPerfora />
+        {/* Our Story */}
+        <OurStorySection />
+        {/* Trusted by shoppers across India */}
+        <MarqueeStrip />
       </main>
       <SiteFooter />
     </>
