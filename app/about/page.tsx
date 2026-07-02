@@ -54,26 +54,6 @@ export default function AboutPage() {
         <div style={{ position:"absolute", top:"10%", right:"-5%", width:"min(480px,50vw)", height:"min(480px,50vw)", borderRadius:"50%", background:"radial-gradient(circle,rgba(107,79,179,0.28) 0%,transparent 70%)", pointerEvents:"none" }} />
         <div style={{ position:"absolute", bottom:"5%", left:"-8%", width:"min(340px,40vw)", height:"min(340px,40vw)", borderRadius:"50%", background:"radial-gradient(circle,rgba(61,31,143,0.22) 0%,transparent 70%)", pointerEvents:"none" }} />
 
-        {/* Mobile-only founders image (shown above text on small screens) */}
-        <div
-          className="about-mobile-founders"
-          style={{
-            display:      "none",
-            marginBottom: 24,
-            borderRadius: 16,
-            overflow:     "hidden",
-            position:     "relative",
-            zIndex:       1,
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/founders-mobile.png"
-            alt="Tushar and Jatan, Perfora founders"
-            style={{ width:"100%", display:"block", objectFit:"cover" }}
-          />
-        </div>
-
         {/* Two-column layout: text left, image right */}
         <div
           style={{
@@ -115,6 +95,24 @@ export default function AboutPage() {
                 worth caring about.
               </em>
             </h1>
+
+            {/* Mobile-only founders image — below heading */}
+            <div
+              className="about-mobile-founders"
+              style={{
+                display:      "none",
+                margin:       "16px 0",
+                borderRadius: 16,
+                overflow:     "hidden",
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/founders-mobile.png"
+                alt="Tushar and Jatan, Perfora founders"
+                style={{ width:"100%", display:"block", objectFit:"cover" }}
+              />
+            </div>
 
             {/* Divider */}
             <div className={vis ? "li" : ""} style={{ animationDelay:"200ms", height:1, width:"min(280px,60%)", background:"linear-gradient(to right,rgba(167,139,250,0.5),transparent)", marginBottom:"clamp(10px,1.5vw,16px)" }} />
