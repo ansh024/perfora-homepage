@@ -5,7 +5,6 @@ import MarqueeStrip from "./components/MarqueeStrip";
 import PressMarqueeStrip from "./components/PressMarqueeStrip";
 import ShopByCategory from "./components/ShopByCategory";
 import TrustedBySmiles from "./components/TrustedBySmiles";
-import WhyPerfora from "./components/WhyPerfora";
 import SiteFooter from "./components/SiteFooter";
 import BrushSpotlight from "./components/BrushSpotlight";
 import OurStorySection from "./components/OurStorySection";
@@ -46,8 +45,6 @@ export default function Home() {
         <VideoTestimonials />
         {/* Reviews */}
         <TrustedBySmiles />
-        {/* What makes Perfora different */}
-        <WhyPerfora />
         {/* Our Story */}
         <OurStorySection />
         {/* Trusted by shoppers across India */}
