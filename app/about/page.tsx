@@ -40,7 +40,7 @@ export default function AboutPage() {
       {/* ── SCREEN 1: MANIFESTO HERO (reduced 20%) ── */}
       <section
         style={{
-          minHeight:      "80svh",
+          minHeight:      "68svh",
           background:     "linear-gradient(160deg,#07020F 0%,#120636 50%,#1E0A52 100%)",
           display:        "flex",
           flexDirection:  "column",
