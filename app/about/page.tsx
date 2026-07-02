@@ -68,7 +68,7 @@ export default function AboutPage() {
           className="about-hero-grid"
         >
           {/* LEFT — text */}
-          <div>
+          <div className="about-text-col">
             {/* Eyebrow */}
             <div className={vis ? "fu" : ""} style={{ animationDelay:"0ms", display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
               <span className={vis ? "li" : ""} style={{ animationDelay:"80ms", display:"block", height:1.5, width:32, background:"#7C5CDB" }} />
@@ -101,7 +101,7 @@ export default function AboutPage() {
               className="about-mobile-founders"
               style={{
                 display:      "none",
-                margin:       "16px 0",
+                margin:       "5% 0",
                 borderRadius: 16,
                 overflow:     "hidden",
               }}
@@ -117,25 +117,9 @@ export default function AboutPage() {
             {/* Divider */}
             <div className={vis ? "li" : ""} style={{ animationDelay:"200ms", height:1, width:"min(280px,60%)", background:"linear-gradient(to right,rgba(167,139,250,0.5),transparent)", marginBottom:"clamp(10px,1.5vw,16px)" }} />
 
-            {/* Body */}
-            <p
-              className={vis ? "fu" : ""}
-              style={{
-                animationDelay: "260ms",
-                fontFamily:     "var(--font-inter)",
-                fontSize:       "clamp(13px,1.1vw,15px)",
-                color:          "#C8B8F0",
-                lineHeight:     1.65,
-                maxWidth:       520,
-                margin:         "0 0 clamp(14px,1.8vw,22px)",
-              }}
-            >
-              In 2021, Tushar and Jatan looked at the oral care aisle and saw a category that had been neglected for decades. Generic packaging. Boring formulas. No joy whatsoever. So they built Perfora — a brand that treats your daily routine as a ritual worth elevating.
-            </p>
-
-            {/* Founders' quote */}
+            {/* Founders' quote — comes before body on mobile via CSS order */}
             <div
-              className={vis ? "fu" : ""}
+              className={`${vis ? "fu" : ""} about-quote`}
               style={{
                 animationDelay:  "340ms",
                 display:         "flex",
@@ -155,6 +139,22 @@ export default function AboutPage() {
                 </span>
               </div>
             </div>
+
+            {/* Body */}
+            <p
+              className={`${vis ? "fu" : ""} about-body`}
+              style={{
+                animationDelay: "260ms",
+                fontFamily:     "var(--font-inter)",
+                fontSize:       "clamp(13px,1.1vw,15px)",
+                color:          "#C8B8F0",
+                lineHeight:     1.65,
+                maxWidth:       520,
+                margin:         "0 0 clamp(14px,1.8vw,22px)",
+              }}
+            >
+              In 2021, Tushar and Jatan looked at the oral care aisle and saw a category that had been neglected for decades. Generic packaging. Boring formulas. No joy whatsoever. So they built Perfora — a brand that treats your daily routine as a ritual worth elevating.
+            </p>
 
             {/* CTA */}
             <div className={vis ? "fu" : ""} style={{ animationDelay:"420ms" }}>
@@ -331,6 +331,19 @@ export default function AboutPage() {
           }
           .about-mobile-founders {
             display: block !important;
+          }
+          /* Stack text children as flex column so we can reorder */
+          .about-text-col {
+            display: flex;
+            flex-direction: column;
+          }
+          .about-quote {
+            order: 1;
+            margin-bottom: 5% !important;
+          }
+          .about-body {
+            order: 2;
+            margin-bottom: 5% !important;
           }
         }
       `}</style>
