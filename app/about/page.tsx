@@ -180,15 +180,15 @@ export default function AboutPage() {
               style={{
                 borderRadius: 20,
                 overflow:     "hidden",
-                aspectRatio:  "4/5",
+                aspectRatio:  "16/9",
                 border:       "1.5px solid rgba(167,139,250,0.2)",
                 boxShadow:    "0 24px 64px rgba(0,0,0,0.4)",
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/dentist-photo.png"
-                alt="Perfora founders and team"
+                src="/founders.png"
+                alt="Tushar and Jatan, Perfora founders"
                 style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
               />
             </div>
