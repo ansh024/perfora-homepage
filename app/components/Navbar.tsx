@@ -734,89 +734,149 @@ function LearnPanel() {
   );
 }
 
-// ─── Mobile accordion section ──────────────────────────────────────────────────
-function MobileSection({
-  label,
-  children,
-  onClose,
-}: {
-  label:    string;
-  children: React.ReactNode;
-  onClose:  () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div style={{ borderBottom: "1px solid #F0EDFC" }}>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        style={{
-          display:        "flex",
-          alignItems:     "center",
-          justifyContent: "space-between",
-          width:          "100%",
-          padding:        "13px 0",
-          background:     "none",
-          border:         "none",
-          cursor:         "pointer",
-          fontFamily:     "var(--font-inter)",
-          fontSize:       14,
-          fontWeight:     500,
-          color:          "#1A0A3D",
-          textAlign:      "left",
-        }}
-      >
-        {label}
-        <motion.svg
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          width="14" height="14" viewBox="0 0 14 14" fill="none"
-        >
-          <path d="M2.5 5L7 9.5 11.5 5" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-        </motion.svg>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            style={{ overflow: "hidden" }}
-          >
-            <div
-              onClick={onClose}
-              style={{ paddingBottom: 12, display: "flex", flexDirection: "column", gap: 2 }}
-            >
-              {children}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+// ─── Mobile menu data ──────────────────────────────────────────────────────────
+const MOBILE_SHOP = [
+  {
+    key: "bestsellers", label: "Bestsellers", href: "/collections",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/>
+      </svg>
+    ),
+    active: true,
+  },
+  {
+    key: "brush", label: "Electric Toothbrush", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <rect x="9" y="2" width="6" height="10" rx="3" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M12 12v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M9 20h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M10 6h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "toothpaste", label: "Toothpaste", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M8 3h8v10a4 4 0 01-4 4 4 4 0 01-4-4V3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M8 7h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M12 17v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "mouthwash", label: "Mouthwash", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M9 3h6l1 4H8L9 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M8 7h8v10a3 3 0 01-3 3h-2a3 3 0 01-3-3V7z" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M11 11c0 1 2 1 2 2s-2 1-2 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "flosser", label: "Dental Flosser", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+        <path d="M12 7V3M17 12h4M12 17v4M7 12H3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "whitening", label: "Teeth Whitening", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3l1.5 4.5H18l-3.7 2.7 1.4 4.3L12 12l-3.7 2.5 1.4-4.3L6 7.5h4.5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <circle cx="19" cy="5" r="1.2" fill="currentColor"/>
+        <circle cx="5" cy="18" r="1" fill="currentColor"/>
+        <circle cx="20" cy="17" r=".8" fill="currentColor"/>
+      </svg>
+    ),
+  },
+  {
+    key: "tongue", label: "Tongue Cleaner", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M5 12c0-3.87 3.13-7 7-7s7 3.13 7 7c0 2.5-1.5 4.5-3.5 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M8 16c.8 1 2 1.5 4 1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M7 12h10" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "kids", label: "Kids Range", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M5 20c0-3.31 3.13-6 7-6s7 2.69 7 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M15 6l1.5-2M9 6L7.5 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "value", label: "Value Packs", href: "#",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M3 10h18" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="M8 3v3M16 3v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M8 14l2 2 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+];
 
-function MobileLink({ label, href }: { label: string; href: string }) {
-  return (
-    <a
-      href={href}
-      style={{
-        display:        "block",
-        padding:        "8px 12px",
-        borderRadius:   10,
-        fontFamily:     "var(--font-inter)",
-        fontSize:       13.5,
-        color:          "#4A3A70",
-        textDecoration: "none",
-        transition:     "background 0.15s",
-      }}
-      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#F3EEFF"; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
-    >
-      {label}
-    </a>
-  );
-}
+const MOBILE_CONCERNS = [
+  {
+    key: "sensitivity", label: "Sensitivity", recommended: true,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3l-7 4v7c0 4.42 2.99 8.56 7 9.56 4.01-1 7-5.14 7-9.56V7l-7-4z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round"/>
+        <path d="M12 9v4M12 15h.01" stroke="#3D1F8F" strokeWidth="1.6" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "whitening", label: "Whitening", recommended: false,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="4" stroke="#3D1F8F" strokeWidth="1.6"/>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="#3D1F8F" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "gumcare", label: "Gum Care", recommended: false,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 4c-2.2 0-4.1.8-5.5 2.1C5 7.6 4 9.3 4 11.3c0 2.5 1.1 4.7 2.9 6.1l-.3 3.3h11l-.3-3.3C19 16 20 13.8 20 11.3c0-2-.9-3.7-2.4-5C16.2 4.9 14.2 4 12 4z" stroke="#3D1F8F" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M9 17.5s1-2 3-2 3 2 3 2" stroke="#3D1F8F" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "breath", label: "Fresh Breath", recommended: false,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M3 8h12M3 12h8M3 16h10" stroke="#3D1F8F" strokeWidth="1.6" strokeLinecap="round"/>
+        <path d="M18 6c1.5 0 3 1 3 3s-2 2.5-2 4 1.5 3 1.5 3" stroke="#3D1F8F" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    key: "plaque", label: "Plaque Removal", recommended: false,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3l-7 4v7c0 4.42 2.99 8.56 7 9.56 4.01-1 7-5.14 7-9.56V7l-7-4z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round"/>
+        <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#3D1F8F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+];
 
 // ─── Account dropdown ──────────────────────────────────────────────────────────
 function AccountDropdown({ onClose }: { onClose: () => void }) {
@@ -1229,56 +1289,231 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Mobile drawer ────────────────────────────────────────────────────── */}
+      {/* ── Mobile full-screen drawer ─────────────────────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "100%", opacity: 0 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden overflow-hidden bg-white border-t border-[#EDE9FB]"
+            className="md:hidden"
+            style={{
+              position:   "fixed",
+              inset:      0,
+              zIndex:     100,
+              background: "#EEEDF5",
+              overflowY:  "auto",
+              overflowX:  "hidden",
+            }}
           >
-            <div className="px-5 pt-3 pb-6">
-              {/* Mobile search */}
-              <div className="relative mb-3">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#A094C0]">
+            {/* Faded logo watermark */}
+            <div
+              aria-hidden
+              style={{
+                position:      "absolute",
+                top:           12,
+                left:          20,
+                fontFamily:    "var(--spectral)",
+                fontWeight:    700,
+                fontSize:      22,
+                color:         "rgba(61,31,143,0.12)",
+                letterSpacing: "-0.02em",
+                pointerEvents: "none",
+                userSelect:    "none",
+              }}
+            >
+              perfora<sup style={{ fontSize: "0.45em", verticalAlign: "super" }}>®</sup>
+            </div>
+
+            <div style={{ padding: "18px 22px 40px", position: "relative" }}>
+
+              {/* Header row */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, paddingTop: 4 }}>
+                <h2 style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>Menu</h2>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Close menu"
+                  style={{
+                    width:          40,
+                    height:         40,
+                    borderRadius:   "50%",
+                    border:         "1.5px solid #D4CBF0",
+                    background:     "white",
+                    display:        "flex",
+                    alignItems:     "center",
+                    justifyContent: "center",
+                    cursor:         "pointer",
+                    color:          "#1A0A3D",
+                    flexShrink:     0,
+                  }}
+                >
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <circle cx="5.8" cy="5.8" r="4.05" stroke="currentColor" strokeWidth="1.35"/>
-                    <path d="M9.5 9.5L12 12" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/>
+                    <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
                   </svg>
-                </span>
-                <input type="search" placeholder="Search products" className="w-full h-10 pl-8 pr-4 rounded-full border border-[#E2DCF5] bg-[#F7F5FF] text-[13px] text-[#1A0A3D] placeholder:text-[#A094C0] focus:outline-none focus:border-[#6B4FB3]" style={{ fontFamily: "var(--font-inter)" }}/>
+                </button>
               </div>
 
-              {/* Shop accordion */}
-              <MobileSection label="Shop" onClose={() => setMenuOpen(false)}>
-                {SHOP_ITEMS.map((i) => <MobileLink key={i.label} label={i.label} href={i.href}/>)}
-              </MobileSection>
+              {/* Your account Login */}
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "#1A0A3D", marginBottom: 24 }}>
+                Your account{" "}
+                <a href="#" style={{ color: "#3D1F8F", fontWeight: 600, textDecoration: "underline" }}>Login</a>
+              </p>
 
-              {/* Concern accordion */}
-              <MobileSection label="Concern" onClose={() => setMenuOpen(false)}>
-                {CONCERN_ITEMS.map((i) => <MobileLink key={i.label} label={i.label} href={i.href}/>)}
-              </MobileSection>
+              {/* SHOP ALL */}
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9B8CB8", marginBottom: 12 }}>
+                Shop All
+              </p>
 
-              {/* Kids accordion — mobile simplified to single link */}
-              <MobileSection label="Kids" onClose={() => setMenuOpen(false)}>
-                <MobileLink label="All Products" href="#" />
-              </MobileSection>
+              {/* 3×3 grid */}
+              <div
+                style={{
+                  display:             "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap:                 10,
+                  marginBottom:        28,
+                }}
+              >
+                {MOBILE_SHOP.map((item) => (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display:        "flex",
+                      flexDirection:  "column",
+                      alignItems:     "center",
+                      justifyContent: "center",
+                      gap:            8,
+                      padding:        "14px 8px",
+                      borderRadius:   16,
+                      background:     item.active ? "#EDE8FF" : "#FFFFFF",
+                      border:         item.active ? "1.5px solid #C4B5F0" : "1.5px solid transparent",
+                      textDecoration: "none",
+                      color:          "#1A0A3D",
+                    }}
+                  >
+                    <span style={{ color: item.active ? "#3D1F8F" : "#5A5070" }}>{item.icon}</span>
+                    <span style={{
+                      fontFamily: "var(--font-inter)",
+                      fontSize:   11,
+                      fontWeight: item.active ? 700 : 500,
+                      color:      item.active ? "#3D1F8F" : "#1A0A3D",
+                      textAlign:  "center",
+                      lineHeight: 1.3,
+                    }}>
+                      {item.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
 
-              {/* Learn accordion */}
-              <MobileSection label="Learn" onClose={() => setMenuOpen(false)}>
-                {LEARN_ITEMS.map((i) => <MobileLink key={i.label} label={i.label} href={i.href}/>)}
-              </MobileSection>
+              {/* ORAL CONCERNS */}
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9B8CB8", marginBottom: 12 }}>
+                Oral Concerns
+              </p>
 
-              {/* Account */}
-              <a href="#account" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5 text-[14px] text-[#1A0A3D] hover:text-[#3D1F8F] transition-colors pt-4 mt-1" style={{ fontFamily: "var(--font-inter)", textDecoration: "none" }}>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="6.5" r="3.25" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M3.25 17.5c0-3.176 3.022-5.75 6.75-5.75s6.75 2.574 6.75 5.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                My Account
-              </a>
+              <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 28 }}>
+                {MOBILE_CONCERNS.map((item) => (
+                  <a
+                    key={item.key}
+                    href="#"
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display:        "flex",
+                      alignItems:     "center",
+                      gap:            14,
+                      padding:        "14px 4px",
+                      borderBottom:   "1px solid rgba(61,31,143,0.08)",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <span style={{
+                      width:          36,
+                      height:         36,
+                      borderRadius:   "50%",
+                      background:     "#EDE8FF",
+                      display:        "flex",
+                      alignItems:     "center",
+                      justifyContent: "center",
+                      flexShrink:     0,
+                    }}>
+                      {item.icon}
+                    </span>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, fontWeight: 500, color: "#1A0A3D", flex: 1 }}>
+                      {item.label}
+                    </span>
+                    {item.recommended && (
+                      <span style={{
+                        fontFamily:    "var(--font-inter)",
+                        fontSize:      9,
+                        fontWeight:    700,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color:         "#3D1F8F",
+                        border:        "1.5px solid #3D1F8F",
+                        borderRadius:  20,
+                        padding:       "3px 8px",
+                        whiteSpace:    "nowrap",
+                      }}>
+                        Recommended
+                      </span>
+                    )}
+                  </a>
+                ))}
+              </div>
+
+              {/* Happy to Help footer */}
+              <div style={{
+                background:   "white",
+                borderRadius: 16,
+                padding:      "18px 16px",
+                marginBottom: 36,
+              }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#3D1F8F", marginBottom: 12, textAlign: "center" }}>
+                  Happy to Help!
+                </p>
+                <div style={{ display: "flex", gap: 16, marginBottom: 8 }}>
+                  <a href="tel:+919999289288" style={{ display: "flex", alignItems: "center", gap: 7, textDecoration: "none" }}>
+                    <span style={{ width: 22, height: 22, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                      </svg>
+                    </span>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D" }}>+91 9999289288</span>
+                  </a>
+                  <a href="mailto:hello@perfora.com" style={{ display: "flex", alignItems: "center", gap: 7, textDecoration: "none" }}>
+                    <span style={{ width: 22, height: 22, borderRadius: "50%", background: "#3D1F8F", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <svg width="11" height="8" viewBox="0 0 20 14" fill="white">
+                        <path d="M18 0H2C.9 0 0 .9 0 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V2l8 5 8-5v2z"/>
+                      </svg>
+                    </span>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#3D1F8F" }}>hello@perfora.com</span>
+                  </a>
+                </div>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#888", margin: 0 }}>
+                  We&rsquo;re here to help Monday–Saturday, 10 AM to 6 PM.
+                </p>
+              </div>
+
+              {/* Large watermark */}
+              <div
+                aria-hidden
+                style={{
+                  textAlign:     "center",
+                  fontFamily:    "var(--spectral)",
+                  fontWeight:    700,
+                  fontStyle:     "italic",
+                  fontSize:      "clamp(52px,18vw,80px)",
+                  color:         "rgba(61,31,143,0.08)",
+                  letterSpacing: "-0.03em",
+                  lineHeight:    1,
+                  userSelect:    "none",
+                  pointerEvents: "none",
+                }}
+              >
+                perfora<sup style={{ fontSize: "0.3em", verticalAlign: "super" }}>®</sup>
+              </div>
             </div>
           </motion.div>
         )}
