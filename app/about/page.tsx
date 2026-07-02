@@ -157,7 +157,7 @@ export default function AboutPage() {
             </p>
 
             {/* CTA */}
-            <div className={vis ? "fu" : ""} style={{ animationDelay:"420ms" }}>
+            <div className={`${vis ? "fu" : ""} about-cta`} style={{ animationDelay:"420ms" }}>
               <a
                 href="/collections"
                 style={{
@@ -214,16 +214,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <div style={{ position:"absolute", bottom:24, left:"50%", transform:"translateX(-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:8, opacity:0.35 }}>
-          <span style={{ fontFamily:"var(--font-inter)", fontSize:10, letterSpacing:"0.15em", textTransform:"uppercase", color:"#A78BFA" }}>scroll</span>
-          <svg width="14" height="20" viewBox="0 0 14 24" fill="none">
-            <rect x="1" y="1" width="12" height="22" rx="6" stroke="#A78BFA" strokeWidth="1.5" />
-            <circle cx="7" cy="7" r="2" fill="#A78BFA">
-              <animate attributeName="cy" values="7;14;7" dur="1.8s" repeatCount="indefinite" />
-            </circle>
-          </svg>
-        </div>
       </section>
 
       {/* ── SCREEN 2: BELIEFS ── */}
@@ -344,6 +334,9 @@ export default function AboutPage() {
           .about-body {
             order: 2;
             margin-bottom: 5% !important;
+          }
+          .about-cta {
+            order: 3;
           }
         }
       `}</style>
