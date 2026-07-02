@@ -37,15 +37,15 @@ export default function AboutPage() {
       `}</style>
       <Navbar />
 
-      {/* ── SCREEN 1: MANIFESTO HERO (reduced 20%) ── */}
+      {/* ── SCREEN 1: MANIFESTO HERO ── */}
       <section
         style={{
-          minHeight:      "68svh",
+          minHeight:      "100svh",
           background:     "linear-gradient(160deg,#07020F 0%,#120636 50%,#1E0A52 100%)",
           display:        "flex",
           flexDirection:  "column",
           justifyContent: "center",
-          padding:        "clamp(80px,8vw,104px) clamp(24px,7vw,96px) clamp(52px,6vw,76px)",
+          padding:        "clamp(68px,6vw,80px) clamp(24px,7vw,96px) clamp(32px,4vw,52px)",
           position:       "relative",
           overflow:       "hidden",
         }}
@@ -90,7 +90,7 @@ export default function AboutPage() {
           {/* LEFT — text */}
           <div>
             {/* Eyebrow */}
-            <div className={vis ? "fu" : ""} style={{ animationDelay:"0ms", display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
+            <div className={vis ? "fu" : ""} style={{ animationDelay:"0ms", display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
               <span className={vis ? "li" : ""} style={{ animationDelay:"80ms", display:"block", height:1.5, width:32, background:"#7C5CDB" }} />
               <span style={{ fontFamily:"var(--font-inter)", fontSize:11, fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", color:"#7C5CDB" }}>
                 Our Story
@@ -102,12 +102,12 @@ export default function AboutPage() {
               className={`font-display ${vis ? "fu" : ""}`}
               style={{
                 animationDelay:  "100ms",
-                fontSize:        "clamp(2.2rem,5.5vw,4.4rem)",
+                fontSize:        "clamp(1.9rem,4vw,3.4rem)",
                 fontWeight:      700,
                 lineHeight:      1.05,
                 letterSpacing:   "-0.035em",
                 color:           "#EDE6FF",
-                margin:          "0 0 clamp(16px,2vw,24px)",
+                margin:          "0 0 clamp(10px,1.2vw,16px)",
               }}
             >
               We made oral care<br />
@@ -117,7 +117,7 @@ export default function AboutPage() {
             </h1>
 
             {/* Divider */}
-            <div className={vis ? "li" : ""} style={{ animationDelay:"200ms", height:1, width:"min(280px,60%)", background:"linear-gradient(to right,rgba(167,139,250,0.5),transparent)", marginBottom:"clamp(18px,2.5vw,28px)" }} />
+            <div className={vis ? "li" : ""} style={{ animationDelay:"200ms", height:1, width:"min(280px,60%)", background:"linear-gradient(to right,rgba(167,139,250,0.5),transparent)", marginBottom:"clamp(10px,1.5vw,16px)" }} />
 
             {/* Body */}
             <p
@@ -125,11 +125,11 @@ export default function AboutPage() {
               style={{
                 animationDelay: "260ms",
                 fontFamily:     "var(--font-inter)",
-                fontSize:       "clamp(14px,1.4vw,17px)",
+                fontSize:       "clamp(13px,1.1vw,15px)",
                 color:          "#C8B8F0",
-                lineHeight:     1.8,
+                lineHeight:     1.65,
                 maxWidth:       520,
-                margin:         "0 0 clamp(24px,3vw,40px)",
+                margin:         "0 0 clamp(14px,1.8vw,22px)",
               }}
             >
               In 2021, Tushar and Jatan looked at the oral care aisle and saw a category that had been neglected for decades. Generic packaging. Boring formulas. No joy whatsoever. So they built Perfora — a brand that treats your daily routine as a ritual worth elevating.
@@ -144,7 +144,7 @@ export default function AboutPage() {
                 alignItems:      "flex-start",
                 gap:             16,
                 maxWidth:        480,
-                marginBottom:    "clamp(28px,3.5vw,48px)",
+                marginBottom:    "clamp(16px,2vw,24px)",
               }}
             >
               <span style={{ fontFamily:"var(--spectral)", fontSize:"clamp(2.5rem,5vw,4rem)", lineHeight:0.6, color:"#5B3FBF", marginTop:12, flexShrink:0 }}>"</span>
