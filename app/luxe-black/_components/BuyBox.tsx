@@ -153,9 +153,6 @@ export default function BuyBox() {
                   Save {discount}%
                 </span>
               </div>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#6B7280", display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ color: "#6B4FB3" }}>●</span> Free delivery · Dispatched within 24 hours
-              </p>
             </div>
 
             {/* Quantity */}
