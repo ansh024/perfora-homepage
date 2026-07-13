@@ -3,10 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const VARIANTS = [
-  { id: "single", label: "Toothbrush Only", price: 2499, mrp: 3499 },
-  { id: "combo", label: "Toothbrush + 2 Extra Brush Heads", price: 2999, mrp: 4199 },
-];
+const PRODUCT = { price: 2499, mrp: 3499 };
 
 const INCLUDED = [
   "1 x Luxe Black Electric Toothbrush",
@@ -39,13 +36,11 @@ function CheckIcon({ color = "#6B4FB3" }: { color?: string }) {
 }
 
 export default function BuyBox() {
-  const [variantId, setVariantId] = useState(VARIANTS[0].id);
   const [qty, setQty] = useState(1);
   const [showSticky, setShowSticky] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const selected = VARIANTS.find((v) => v.id === variantId)!;
-  const discount = Math.round((1 - selected.price / selected.mrp) * 100);
+  const discount = Math.round((1 - PRODUCT.price / PRODUCT.mrp) * 100);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -148,10 +143,10 @@ export default function BuyBox() {
             <div style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
                 <span style={{ fontFamily: "var(--font-inter)", fontSize: 32, fontWeight: 800, color: "#1A0A3D" }}>
-                  ₹{selected.price.toLocaleString("en-IN")}
+                  ₹{PRODUCT.price.toLocaleString("en-IN")}
                 </span>
                 <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "#9CA3AF", textDecoration: "line-through" }}>
-                  ₹{selected.mrp.toLocaleString("en-IN")}
+                  ₹{PRODUCT.mrp.toLocaleString("en-IN")}
                 </span>
                 <span
                   style={{
@@ -170,52 +165,6 @@ export default function BuyBox() {
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#6B7280", display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ color: "#6B4FB3" }}>●</span> Free delivery · Dispatched within 24 hours
               </p>
-            </div>
-
-            {/* Variant selector */}
-            <div style={{ marginBottom: 22 }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#9CA3AF",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.09em",
-                  marginBottom: 10,
-                }}
-              >
-                Choose Your Set
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {VARIANTS.map((v) => {
-                  const active = variantId === v.id;
-                  return (
-                    <button
-                      key={v.id}
-                      onClick={() => setVariantId(v.id)}
-                      style={{
-                        padding: "13px 18px",
-                        borderRadius: 14,
-                        border: `2px solid ${active ? "#6B4FB3" : "#E5E7EB"}`,
-                        background: active ? "#F5F3FF" : "#FAFAFA",
-                        cursor: "pointer",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        transition: "all 0.15s ease",
-                      }}
-                    >
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 600, color: active ? "#6B4FB3" : "#374151" }}>
-                        {v.label}
-                      </span>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, fontWeight: 700, color: active ? "#6B4FB3" : "#374151" }}>
-                        ₹{v.price.toLocaleString("en-IN")}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
             </div>
 
             {/* Quantity */}
@@ -422,7 +371,7 @@ export default function BuyBox() {
                 Luxe Black Electric Toothbrush
               </p>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, fontWeight: 700, color: "#6B4FB3", margin: 0 }}>
-                ₹{selected.price.toLocaleString("en-IN")}
+                ₹{PRODUCT.price.toLocaleString("en-IN")}
               </p>
             </div>
           </div>
