@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const PRODUCT = { price: 2499, mrp: 3499 };
+const PRODUCT = { price: 3499, mrp: 3999 };
 const PERSONALISATION_FEE = 99;
 const EMI_MONTHS = 3;
 
