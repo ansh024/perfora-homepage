@@ -5,6 +5,7 @@ import ReviewsCarousel from "./_components/ReviewsCarousel";
 import HeroBanner from "./_components/HeroBanner";
 import PromoStrip from "./_components/PromoStrip";
 import WhyChooseBanner from "./_components/WhyChooseBanner";
+import WarrantyBadge from "./_components/WarrantyBadge";
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -357,6 +358,7 @@ export default function LuxeBlackPage() {
                 sizes="(min-width: 767px) 48vw, 90vw"
                 style={{ objectFit: "cover" }}
               />
+              <WarrantyBadge />
             </div>
 
             <div>

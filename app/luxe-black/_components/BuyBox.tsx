@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import WarrantyBadge from "./WarrantyBadge";
 
 const PRODUCT = { price: 3499, mrp: 3999 };
 const PERSONALISATION_FEE = 99;
@@ -140,6 +141,7 @@ export default function BuyBox() {
                 sizes="(min-width: 1024px) 50vw, 90vw"
                 style={{ objectFit: "cover" }}
               />
+              <WarrantyBadge />
             </div>
           </div>
 
