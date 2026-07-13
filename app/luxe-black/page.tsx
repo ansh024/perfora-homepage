@@ -6,6 +6,7 @@ import HeroBanner from "./_components/HeroBanner";
 import PromoStrip from "./_components/PromoStrip";
 import WhyChooseBanner from "./_components/WhyChooseBanner";
 import WarrantyBadge from "./_components/WarrantyBadge";
+import FooterAddToCartButton from "./_components/FooterAddToCartButton";
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -52,89 +53,6 @@ const jsonLdProduct = {
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const WHY_FEATURES_LEFT = [
-  {
-    title: "Oscillating Cleaning Technology",
-    desc: "Removes plaque effectively with a rotating brush head designed for a deeper clean.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="7" stroke="#6B4FB3" strokeWidth="1.6" />
-        <path d="M12 5v3M12 16v3M5 12h3M16 12h3" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "3 Cleaning Modes",
-    desc: "Choose between cleaning modes suited to your everyday brushing needs.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="4" width="4" height="16" rx="1.5" stroke="#6B4FB3" strokeWidth="1.6" />
-        <rect x="10" y="8" width="4" height="12" rx="1.5" stroke="#6B4FB3" strokeWidth="1.6" />
-        <rect x="16" y="11" width="4" height="9" rx="1.5" stroke="#6B4FB3" strokeWidth="1.6" />
-      </svg>
-    ),
-  },
-  {
-    title: "Long-lasting Battery",
-    desc: "Designed to go longer between charges for uninterrupted use.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="7" width="16" height="10" rx="2" stroke="#6B4FB3" strokeWidth="1.6" />
-        <path d="M20 10v4" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M8 10l-1.5 2H9L7.5 14" stroke="#6B4FB3" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Premium Travel Case",
-    desc: "Protect and carry your toothbrush wherever you go.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="5" y="4" width="14" height="16" rx="5" stroke="#6B4FB3" strokeWidth="1.6" />
-      </svg>
-    ),
-  },
-];
-
-const WHY_FEATURES_RIGHT = [
-  {
-    title: "Rechargeable",
-    desc: "Convenient charging for everyday use.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M13 3L5 14h5l-1 7 8-11h-5l1-7z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Personalisation Available",
-    desc: "Make it uniquely yours with personalised engraving.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Ergonomic Design",
-    desc: "Comfortable grip with a premium matte finish.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3c-2 3-5 6-5 10a5 5 0 0010 0c0-4-3-7-5-10z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Designed for Everyday Gum Care",
-    desc: "Engineered to support effective yet gentle cleaning.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 21s-7-4.5-7-10a5 5 0 019-3 5 5 0 019 3c0 5.5-7 10-7 10l-2-2-2 2z" stroke="#6B4FB3" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-];
-
 const INCLUDED_CARDS = [
   {
     title: "Toothbrush Handle & Brush Head",
@@ -153,40 +71,6 @@ const INCLUDED_CARDS = [
     desc: "Full instructions and 2-year warranty details.",
   },
 ];
-
-function FeatureRow({ feature, align }: { feature: (typeof WHY_FEATURES_LEFT)[number]; align: "left" | "right" }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        gap: 14,
-        alignItems: "flex-start",
-        flexDirection: align === "right" ? "row-reverse" : "row",
-        textAlign: align === "right" ? "right" : "left",
-      }}
-    >
-      <div
-        style={{
-          width: 48,
-          height: 48,
-          borderRadius: 14,
-          background: "#F8F6FF",
-          border: "1px solid #EDE9FB",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-        }}
-      >
-        {feature.icon}
-      </div>
-      <div>
-        <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, fontWeight: 700, color: "#1A0A3D", marginBottom: 4 }}>{feature.title}</h3>
-        <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{feature.desc}</p>
-      </div>
-    </div>
-  );
-}
 
 export default function LuxeBlackPage() {
   return (
@@ -210,13 +94,6 @@ export default function LuxeBlackPage() {
         .lb-buy-top { grid-area: top; }
         .lb-buy-image { grid-area: image; }
         .lb-buy-bottom { grid-area: bottom; }
-        .lb-why-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.1fr 1fr;
-          gap: 32px;
-          align-items: center;
-        }
-        .lb-why-col { display: flex; flex-direction: column; gap: 36px; }
         .lb-included-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -227,12 +104,6 @@ export default function LuxeBlackPage() {
           grid-template-columns: 1fr 1fr;
           gap: 56px;
           align-items: center;
-        }
-
-        @media (max-width: 900px) {
-          .lb-why-grid { grid-template-columns: 1fr; gap: 40px; }
-          .lb-why-col { flex-direction: row; flex-wrap: wrap; gap: 24px; }
-          .lb-why-col > div { flex: 1 1 220px; text-align: left !important; flex-direction: row !important; }
         }
 
         @media (max-width: 767px) {
@@ -296,56 +167,6 @@ export default function LuxeBlackPage() {
         <BuyBox />
 
         <WhyChooseBanner />
-
-        {/* ── Why Choose Perfora ── */}
-        <section id="why" aria-label="Why Choose Perfora" style={{ background: "#FDFCFF", padding: "88px 24px 64px" }}>
-          <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-            <h2
-              style={{
-                fontFamily: "var(--spectral)",
-                fontSize: "clamp(1.7rem, 3.4vw, 2.4rem)",
-                fontWeight: 700,
-                color: "#1A0A3D",
-                textAlign: "center",
-                marginBottom: 60,
-              }}
-            >
-              Why Choose Perfora
-            </h2>
-
-            <div className="lb-why-grid">
-              <div className="lb-why-col">
-                {WHY_FEATURES_LEFT.map((f) => (
-                  <FeatureRow key={f.title} feature={f} align="left" />
-                ))}
-              </div>
-
-              <div
-                style={{
-                  position: "relative",
-                  aspectRatio: "4 / 5",
-                  borderRadius: 32,
-                  background: "linear-gradient(160deg, #F8F6FF 0%, #EDE9FB 100%)",
-                  overflow: "hidden",
-                }}
-              >
-                <Image
-                  src="/luxe-black/group-shot.png"
-                  alt="Perfora Luxe Black Electric Toothbrush collection"
-                  fill
-                  sizes="(min-width: 900px) 32vw, 90vw"
-                  style={{ objectFit: "contain", padding: 24 }}
-                />
-              </div>
-
-              <div className="lb-why-col">
-                {WHY_FEATURES_RIGHT.map((f) => (
-                  <FeatureRow key={f.title} feature={f} align="right" />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ── Everything Included ── */}
         <section aria-label="Everything Included" style={{ background: "#FFFFFF", padding: "88px 24px" }}>
@@ -460,25 +281,7 @@ export default function LuxeBlackPage() {
             >
               Ready to Upgrade Your Brushing Routine?
             </h2>
-            <a
-              href="#buy"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "#FFFFFF",
-                color: "#1A0A3D",
-                padding: "16px 38px",
-                borderRadius: 50,
-                fontFamily: "var(--font-inter)",
-                fontSize: 16,
-                fontWeight: 700,
-                textDecoration: "none",
-                boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
-              }}
-            >
-              Buy Now
-            </a>
+            <FooterAddToCartButton />
           </div>
         </section>
 

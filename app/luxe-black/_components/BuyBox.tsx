@@ -3,7 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import WarrantyBadge from "./WarrantyBadge";
+import { useCart } from "../../context/CartContext";
 
+const PRODUCT_ID = "luxe-black-etb";
+const PRODUCT_NAME = "Luxe Black Electric Toothbrush";
 const PRODUCT = { price: 3499, mrp: 3999 };
 const PERSONALISATION_FEE = 99;
 const EMI_MONTHS = 3;
@@ -48,12 +51,21 @@ export default function BuyBox() {
   const [pincode, setPincode] = useState("");
   const [pincodeResult, setPincodeResult] = useState<"valid" | "invalid" | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { addItem } = useCart();
 
   const discount = Math.round((1 - PRODUCT.price / PRODUCT.mrp) * 100);
   const emiPerMonth = Math.round(PRODUCT.price / EMI_MONTHS);
 
   const checkPincode = () => {
     setPincodeResult(/^\d{6}$/.test(pincode.trim()) ? "valid" : "invalid");
+  };
+
+  const handleAddToCart = () => {
+    const variant = personalise && name ? `Personalised (${name})` : "Standard";
+    const price = PRODUCT.price + (personalise ? PERSONALISATION_FEE : 0);
+    for (let i = 0; i < qty; i++) {
+      addItem({ id: PRODUCT_ID, name: PRODUCT_NAME, variant, price });
+    }
   };
 
   useEffect(() => {
@@ -314,6 +326,7 @@ export default function BuyBox() {
             {/* CTAs */}
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 22 }}>
               <button
+                onClick={handleAddToCart}
                 style={{
                   width: "100%",
                   padding: "17px",
@@ -498,23 +511,24 @@ export default function BuyBox() {
               </p>
             </div>
           </div>
-          <a
-            href="#buy"
+          <button
+            onClick={handleAddToCart}
             style={{
               flexShrink: 0,
               background: "#1A0A3D",
               color: "#fff",
               padding: "11px 22px",
               borderRadius: 50,
+              border: "none",
               fontFamily: "var(--font-inter)",
               fontSize: 13.5,
               fontWeight: 700,
-              textDecoration: "none",
+              cursor: "pointer",
               whiteSpace: "nowrap",
             }}
           >
             Add to Cart
-          </a>
+          </button>
         </div>
       </div>
     </>
