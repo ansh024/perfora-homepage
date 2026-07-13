@@ -4,6 +4,7 @@ import BuyBox from "./_components/BuyBox";
 import ReviewsCarousel from "./_components/ReviewsCarousel";
 import HeroBanner from "./_components/HeroBanner";
 import PromoStrip from "./_components/PromoStrip";
+import WhyChooseBanner from "./_components/WhyChooseBanner";
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -343,6 +344,8 @@ export default function LuxeBlackPage() {
         <PromoStrip />
         {/* ── Purchase / Mini-PDP ── */}
         <BuyBox />
+
+        <WhyChooseBanner />
 
         {/* ── Why Choose Perfora ── */}
         <section id="why" aria-label="Why Choose Perfora" style={{ background: "#FDFCFF", padding: "88px 24px 64px" }}>
