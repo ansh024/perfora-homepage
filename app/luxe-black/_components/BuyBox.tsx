@@ -19,6 +19,38 @@ const TRUST = [
   { label: "Easy Returns" },
 ];
 
+const SHIPPING_INFO = [
+  {
+    label: "Free Delivery",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M3 7h11v9H3z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M14 10h4l3 3v3h-7z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+        <circle cx="7" cy="18" r="1.6" stroke="#6B4FB3" strokeWidth="1.4" />
+        <circle cx="17.5" cy="18" r="1.6" stroke="#6B4FB3" strokeWidth="1.4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Ships Within 24 Hrs",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="#6B4FB3" strokeWidth="1.6" />
+        <path d="M12 7v5l3.5 2" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    label: "COD Available",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="6" width="18" height="12" rx="2" stroke="#6B4FB3" strokeWidth="1.6" />
+        <circle cx="12" cy="12" r="2.6" stroke="#6B4FB3" strokeWidth="1.6" />
+      </svg>
+    ),
+  },
+];
+
 const CHIPS = [
   "Premium Travel Case",
   "Free Charger Included",
@@ -235,6 +267,29 @@ export default function BuyBox() {
               >
                 Express Checkout
               </button>
+            </div>
+
+            {/* Shipping / COD info */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 8,
+                background: "#F8F6FF",
+                border: "1px solid #EDE9FB",
+                borderRadius: 16,
+                padding: "16px 14px",
+                marginBottom: 22,
+              }}
+            >
+              {SHIPPING_INFO.map((s) => (
+                <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, flex: 1, textAlign: "center" }}>
+                  {s.icon}
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, color: "#374151", lineHeight: 1.3 }}>
+                    {s.label}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Trust badges */}
