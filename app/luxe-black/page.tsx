@@ -147,7 +147,26 @@ const WHY_FEATURES_RIGHT = [
 
 const INCLUDED_CARDS = [
   {
-    title: "Premium Travel Case",
+    title: "Toothbrush Handle",
+    desc: "The Luxe Black handle with Clean, Whiten and Massage modes.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <rect x="9" y="3" width="6" height="18" rx="3" stroke="#3D1F8F" strokeWidth="1.6" />
+      </svg>
+    ),
+  },
+  {
+    title: "Brush Head",
+    desc: "Pre-fitted rotating brush head, ready to use out of the box.",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="6" stroke="#3D1F8F" strokeWidth="1.6" />
+        <path d="M12 6v12M6 12h12" stroke="#3D1F8F" strokeWidth="1.4" />
+      </svg>
+    ),
+  },
+  {
+    title: "Travel Case",
     desc: "Carry and protect your toothbrush wherever you go.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -156,8 +175,8 @@ const INCLUDED_CARDS = [
     ),
   },
   {
-    title: "Free Charging Cable",
-    desc: "Recharge with ease whenever required.",
+    title: "USB Charging Cable",
+    desc: "USB DC (circular pin) cable to recharge the handle.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
         <path d="M13 3L5 14h5l-1 7 8-11h-5l1-7z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
@@ -165,40 +184,12 @@ const INCLUDED_CARDS = [
     ),
   },
   {
-    title: "2-Year Warranty",
-    desc: "Backed by Perfora's product warranty for added peace of mind.",
+    title: "User Manual",
+    desc: "Full instructions and 2-year warranty details.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Easy Returns & Exchange",
-    desc: "Hassle-free support if you need assistance with your purchase.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3" stroke="#3D1F8F" strokeWidth="1.6" strokeLinecap="round" />
-        <path d="M18 3v4h-4M6 21v-4h4" stroke="#3D1F8F" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Secure Payments",
-    desc: "Shop confidently with secure checkout options.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="10" width="16" height="10" rx="2" stroke="#3D1F8F" strokeWidth="1.6" />
-        <path d="M8 10V7a4 4 0 018 0v3" stroke="#3D1F8F" strokeWidth="1.6" />
-      </svg>
-    ),
-  },
-  {
-    title: "Dedicated Customer Support",
-    desc: "Our support team is always here to help.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M4 12a8 8 0 1116 0v5a2 2 0 01-2 2h-2v-7h4M4 12v5a2 2 0 002 2h2v-7H4" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M6 4h9l3 3v13a1 1 0 01-1 1H6a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M8 10h8M8 14h5" stroke="#3D1F8F" strokeWidth="1.4" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -400,10 +391,10 @@ export default function LuxeBlackPage() {
         {/* ── Everything Included ── */}
         <section aria-label="Everything Included" style={{ background: "#FFFFFF", padding: "88px 24px" }}>
           <div className="lb-included-layout" style={{ maxWidth: 1160, margin: "0 auto" }}>
-            <div style={{ position: "relative", aspectRatio: "4 / 5", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)" }}>
+            <div style={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)" }}>
               <Image
-                src="/luxe-black/lifestyle-case-warm.png"
-                alt="Perfora Luxe Black Electric Toothbrush with premium travel case"
+                src="/luxe-black/everything-included.png"
+                alt="Perfora Luxe Black Electric Toothbrush with travel case, brush head and charging cable"
                 fill
                 sizes="(min-width: 767px) 48vw, 90vw"
                 style={{ objectFit: "cover" }}
@@ -421,12 +412,10 @@ export default function LuxeBlackPage() {
                   marginBottom: 14,
                 }}
               >
-                Everything You Need. Right Out of the Box.
+                Carefully Packed. Thoughtfully Designed.
               </h2>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#6B7280", lineHeight: 1.75, marginBottom: 36, maxWidth: 460 }}>
-                Designed for everyday convenience, every Luxe Black Electric
-                Toothbrush comes with everything you need to start brushing
-                from day one.
+                Packed with all the essentials for a smarter brushing experience.
               </p>
 
               <div className="lb-included-grid">
@@ -459,6 +448,18 @@ export default function LuxeBlackPage() {
                   </div>
                 ))}
               </div>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: 12.5,
+                  color: "#6B7280",
+                  lineHeight: 1.7,
+                  marginTop: 20,
+                }}
+              >
+                This toothbrush comes with a 2-year warranty — read the user manual to know more.
+              </p>
             </div>
           </div>
         </section>
