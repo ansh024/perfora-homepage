@@ -136,51 +136,20 @@ const WHY_FEATURES_RIGHT = [
 
 const INCLUDED_CARDS = [
   {
-    title: "Toothbrush Handle",
-    desc: "The Luxe Black handle with Clean, Whiten and Massage modes.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <rect x="9" y="3" width="6" height="18" rx="3" stroke="#3D1F8F" strokeWidth="1.6" />
-      </svg>
-    ),
-  },
-  {
-    title: "Brush Head",
-    desc: "Pre-fitted rotating brush head, ready to use out of the box.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="6" stroke="#3D1F8F" strokeWidth="1.6" />
-        <path d="M12 6v12M6 12h12" stroke="#3D1F8F" strokeWidth="1.4" />
-      </svg>
-    ),
+    title: "Toothbrush Handle & Brush Head",
+    desc: "The Luxe Black handle with a pre-fitted rotating brush head, ready to use out of the box.",
   },
   {
     title: "Travel Case",
     desc: "Carry and protect your toothbrush wherever you go.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <rect x="5" y="4" width="14" height="16" rx="5" stroke="#3D1F8F" strokeWidth="1.6" />
-      </svg>
-    ),
   },
   {
     title: "USB Charging Cable",
     desc: "USB DC (circular pin) cable to recharge the handle.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M13 3L5 14h5l-1 7 8-11h-5l1-7z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
-    ),
   },
   {
     title: "User Manual",
     desc: "Full instructions and 2-year warranty details.",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <path d="M6 4h9l3 3v13a1 1 0 01-1 1H6a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="#3D1F8F" strokeWidth="1.6" strokeLinejoin="round" />
-        <path d="M8 10h8M8 14h5" stroke="#3D1F8F" strokeWidth="1.4" strokeLinecap="round" />
-      </svg>
-    ),
   },
 ];
 
@@ -249,8 +218,8 @@ export default function LuxeBlackPage() {
         .lb-why-col { display: flex; flex-direction: column; gap: 36px; }
         .lb-included-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          grid-template-columns: 1fr;
+          gap: 12px;
         }
         .lb-included-layout {
           display: grid;
@@ -415,23 +384,9 @@ export default function LuxeBlackPage() {
                       background: "#F8F6FF",
                       border: "1px solid #EDE9FB",
                       borderRadius: 18,
-                      padding: "20px 18px",
+                      padding: "18px 20px",
                     }}
                   >
-                    <div
-                      style={{
-                        width: 42,
-                        height: 42,
-                        borderRadius: 12,
-                        background: "#FFFFFF",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: 12,
-                      }}
-                    >
-                      {c.icon}
-                    </div>
                     <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 700, color: "#1A0A3D", marginBottom: 4 }}>{c.title}</h3>
                     <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280", lineHeight: 1.55, margin: 0 }}>{c.desc}</p>
                   </div>
