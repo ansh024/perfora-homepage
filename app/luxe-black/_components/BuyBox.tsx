@@ -75,7 +75,6 @@ export default function BuyBox() {
               style={{
                 borderRadius: 28,
                 overflow: "hidden",
-                background: "linear-gradient(135deg, #F8F6FF 0%, #EDE9FB 100%)",
                 position: "relative",
                 aspectRatio: "1 / 1",
                 marginBottom: 20,
@@ -88,7 +87,7 @@ export default function BuyBox() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 90vw"
-                style={{ objectFit: "contain", padding: 48 }}
+                style={{ objectFit: "cover" }}
               />
             </div>
 
