@@ -66,31 +66,8 @@ export default function BuyBox() {
         }}
       >
         <div ref={sectionRef} className="lb-buy-grid" style={{ maxWidth: 1140, margin: "0 auto" }}>
-          {/* ── Image column ── */}
-          <div>
-            <div
-              style={{
-                borderRadius: 28,
-                overflow: "hidden",
-                position: "relative",
-                aspectRatio: "1 / 1",
-                marginBottom: 20,
-                boxShadow: "0 8px 48px rgba(61,31,143,0.10)",
-              }}
-            >
-              <Image
-                src="/luxe-black/product-main.png"
-                alt="Perfora Luxe Black Electric Toothbrush with retail packaging"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 90vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </div>
-
-          {/* ── Info column ── */}
-          <div>
+          {/* ── Top: badge, title, rating ── */}
+          <div className="lb-buy-top">
             <p
               style={{
                 fontFamily: "var(--font-inter)",
@@ -119,7 +96,7 @@ export default function BuyBox() {
             </h2>
 
             {/* Ratings summary */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ display: "flex", gap: 2 }}>
                 {[1, 2, 3, 4, 5].map((s) => (
                   <svg key={s} width="14" height="14" viewBox="0 0 12 12" fill="none">
@@ -131,7 +108,32 @@ export default function BuyBox() {
                 4.7 &nbsp;·&nbsp; 350+ ratings
               </span>
             </div>
+          </div>
 
+          {/* ── Image ── */}
+          <div className="lb-buy-image">
+            <div
+              style={{
+                borderRadius: 28,
+                overflow: "hidden",
+                position: "relative",
+                aspectRatio: "1 / 1",
+                boxShadow: "0 8px 48px rgba(61,31,143,0.10)",
+              }}
+            >
+              <Image
+                src="/luxe-black/product-main.png"
+                alt="Perfora Luxe Black Electric Toothbrush with retail packaging"
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 90vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </div>
+
+          {/* ── Bottom: price, quantity, CTAs, shipping ── */}
+          <div className="lb-buy-bottom">
             {/* Price + delivery */}
             <div style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>

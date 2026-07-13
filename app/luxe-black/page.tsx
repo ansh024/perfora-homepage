@@ -251,9 +251,13 @@ export default function LuxeBlackPage() {
         .lb-buy-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
+          grid-template-areas: "image top" "image bottom";
           gap: 64px;
           align-items: start;
         }
+        .lb-buy-top { grid-area: top; }
+        .lb-buy-image { grid-area: image; }
+        .lb-buy-bottom { grid-area: bottom; }
         .lb-why-grid {
           display: grid;
           grid-template-columns: 1fr 1.1fr 1fr;
@@ -280,7 +284,11 @@ export default function LuxeBlackPage() {
         }
 
         @media (max-width: 767px) {
-          .lb-buy-grid { grid-template-columns: 1fr; gap: 32px; }
+          .lb-buy-grid {
+            grid-template-columns: 1fr;
+            grid-template-areas: "top" "image" "bottom";
+            gap: 32px;
+          }
           .lb-included-layout { grid-template-columns: 1fr; gap: 32px; }
           .lb-included-grid { grid-template-columns: 1fr; }
         }
