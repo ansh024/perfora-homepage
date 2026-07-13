@@ -83,8 +83,8 @@ export default function BuyBox() {
               }}
             >
               <Image
-                src="/luxe-black/case-cutout.png"
-                alt="Perfora Luxe Black Electric Toothbrush with premium travel case"
+                src="/luxe-black/product-main.png"
+                alt="Perfora Luxe Black Electric Toothbrush with retail packaging"
                 fill
                 priority
                 sizes="(min-width: 1024px) 50vw, 90vw"
@@ -431,7 +431,7 @@ export default function BuyBox() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
             <div style={{ position: "relative", width: 40, height: 40, borderRadius: 10, background: "#F5F3FF", flexShrink: 0, overflow: "hidden" }}>
-              <Image src="/luxe-black/case-cutout.png" alt="" fill sizes="40px" style={{ objectFit: "contain", padding: 4 }} />
+              <Image src="/luxe-black/product-main.png" alt="" fill sizes="40px" style={{ objectFit: "contain", padding: 4 }} />
             </div>
             <div style={{ minWidth: 0 }}>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 700, color: "#1A0A3D", margin: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
