@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import WarrantyBadge from "./WarrantyBadge";
 import { useCart } from "../../context/CartContext";
 
 const PRODUCT_ID = "luxe-black-etb";
@@ -153,7 +152,6 @@ export default function BuyBox() {
                 sizes="(min-width: 1024px) 50vw, 90vw"
                 style={{ objectFit: "cover" }}
               />
-              <WarrantyBadge />
             </div>
           </div>
 
@@ -341,24 +339,7 @@ export default function BuyBox() {
                   letterSpacing: "0.01em",
                 }}
               >
-                Add to Cart
-              </button>
-              <button
-                style={{
-                  width: "100%",
-                  padding: "16px",
-                  background: "transparent",
-                  color: "#1A0A3D",
-                  borderRadius: 50,
-                  border: "2px solid #1A0A3D",
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 16,
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  letterSpacing: "0.01em",
-                }}
-              >
-                Express Checkout
+                Buy Now
               </button>
             </div>
 
@@ -469,7 +450,7 @@ export default function BuyBox() {
         </div>
       </section>
 
-      {/* ── Sticky Add to Cart bar ── */}
+      {/* ── Sticky Buy Now bar ── */}
       <div
         role="region"
         aria-label="Sticky purchase bar"
@@ -527,7 +508,7 @@ export default function BuyBox() {
               whiteSpace: "nowrap",
             }}
           >
-            Add to Cart
+            Buy Now
           </button>
         </div>
       </div>
