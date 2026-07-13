@@ -5,12 +5,6 @@ import Image from "next/image";
 
 const PRODUCT = { price: 2499, mrp: 3499 };
 
-const TRUST = [
-  { label: "2-Year Warranty" },
-  { label: "Secure Payments" },
-  { label: "Easy Returns" },
-];
-
 const SHIPPING_INFO = [
   {
     label: "Free Delivery",
@@ -42,14 +36,6 @@ const SHIPPING_INFO = [
     ),
   },
 ];
-
-function CheckIcon({ color = "#6B4FB3" }: { color?: string }) {
-  return (
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-      <path d="M1 4L3.5 6.5L9 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export default function BuyBox() {
   const [qty, setQty] = useState(1);
@@ -272,38 +258,6 @@ export default function BuyBox() {
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, color: "#374151", lineHeight: 1.3 }}>
                     {s.label}
                   </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust badges */}
-            <div
-              style={{
-                display: "flex",
-                gap: 18,
-                flexWrap: "wrap",
-                paddingBottom: 20,
-                marginBottom: 20,
-                borderBottom: "1px solid #F0ECFF",
-              }}
-            >
-              {TRUST.map((t) => (
-                <div key={t.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                  <span
-                    style={{
-                      width: 20,
-                      height: 20,
-                      borderRadius: "50%",
-                      background: "#EDE9FB",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <CheckIcon />
-                  </span>
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#374151", fontWeight: 500 }}>{t.label}</span>
                 </div>
               ))}
             </div>
