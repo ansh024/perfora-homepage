@@ -128,7 +128,7 @@ export default function BuyBox() {
                 ))}
               </div>
               <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#4B5563", fontWeight: 500 }}>
-                4.7 &nbsp;·&nbsp; 3,200+ ratings
+                4.7 &nbsp;·&nbsp; 350+ ratings
               </span>
             </div>
 
