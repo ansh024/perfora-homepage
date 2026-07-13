@@ -144,21 +144,6 @@ export default function BuyBox() {
               Luxe Black Electric Toothbrush
             </h2>
 
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontSize: 14.5,
-                color: "#6B7280",
-                lineHeight: 1.75,
-                marginBottom: 24,
-                maxWidth: 460,
-              }}
-            >
-              Experience deeper everyday cleaning with Perfora&apos;s premium
-              oscillating electric toothbrush, thoughtfully designed for
-              effective plaque removal, gum care and effortless brushing.
-            </p>
-
             {/* Price + delivery */}
             <div style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
