@@ -382,17 +382,6 @@ export default function LuxeBlackPage() {
               </div>
             </div>
           </div>
-
-          {/* Lifestyle banner */}
-          <div style={{ maxWidth: 1400, margin: "72px auto 0", position: "relative", aspectRatio: "21 / 8", borderRadius: 28, overflow: "hidden" }} className="lb-hide-mobile-banner">
-            <Image
-              src="/luxe-black/macro-splash.png"
-              alt="Perfora Luxe Black Electric Toothbrush brush head in motion"
-              fill
-              sizes="100vw"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
         </section>
 
         {/* ── Everything Included ── */}
