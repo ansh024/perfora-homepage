@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const PRODUCT = { price: 2499, mrp: 3499 };
+const PERSONALISATION_FEE = 99;
+const EMI_MONTHS = 3;
 
 const SHIPPING_INFO = [
   {
@@ -40,9 +42,18 @@ const SHIPPING_INFO = [
 export default function BuyBox() {
   const [qty, setQty] = useState(1);
   const [showSticky, setShowSticky] = useState(false);
+  const [personalise, setPersonalise] = useState(false);
+  const [name, setName] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [pincodeResult, setPincodeResult] = useState<"valid" | "invalid" | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const discount = Math.round((1 - PRODUCT.price / PRODUCT.mrp) * 100);
+  const emiPerMonth = Math.round(PRODUCT.price / EMI_MONTHS);
+
+  const checkPincode = () => {
+    setPincodeResult(/^\d{6}$/.test(pincode.trim()) ? "valid" : "invalid");
+  };
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -159,6 +170,101 @@ export default function BuyBox() {
               </div>
             </div>
 
+            {/* Personalisation */}
+            <div
+              style={{
+                border: "1px solid #EDE9FB",
+                borderRadius: 16,
+                marginBottom: 16,
+                overflow: "hidden",
+              }}
+            >
+              <button
+                onClick={() => setPersonalise((v) => !v)}
+                aria-expanded={personalise}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 12,
+                  padding: "14px 16px",
+                  background: personalise ? "#F8F6FF" : "#FFFFFF",
+                  border: "none",
+                  cursor: "pointer",
+                  textAlign: "left",
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20l1-4L16 5l3 3L8 19l-4 1z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                  </svg>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 600, color: "#1A0A3D" }}>
+                    Print Your Name for ₹{PERSONALISATION_FEE}
+                  </span>
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 12.5,
+                    fontWeight: 700,
+                    color: "#6B4FB3",
+                    flexShrink: 0,
+                  }}
+                >
+                  {personalise ? "Remove" : "Add"}
+                </span>
+              </button>
+
+              {personalise && (
+                <div style={{ padding: "0 16px 16px" }}>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value.slice(0, 12))}
+                    placeholder="Enter name or initials (max 12 characters)"
+                    style={{
+                      width: "100%",
+                      padding: "11px 14px",
+                      borderRadius: 10,
+                      border: "1px solid #E5E7EB",
+                      fontFamily: "var(--font-inter)",
+                      fontSize: 13.5,
+                      color: "#1A0A3D",
+                      marginBottom: 10,
+                    }}
+                  />
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280", lineHeight: 1.6, margin: 0 }}>
+                    Note: Personalised orders may take 2-3 additional days beyond the standard delivery date.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* EMI */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                marginBottom: 26,
+                fontFamily: "var(--font-inter)",
+                fontSize: 12.5,
+                color: "#4B5563",
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                <rect x="3" y="6" width="18" height="12" rx="2" stroke="#6B4FB3" strokeWidth="1.6" />
+                <path d="M3 10h18" stroke="#6B4FB3" strokeWidth="1.6" />
+              </svg>
+              <span>
+                No Cost EMI available at{" "}
+                <strong style={{ color: "#1A0A3D", fontWeight: 700 }}>
+                  ₹{emiPerMonth.toLocaleString("en-IN")}/month
+                </strong>{" "}
+                for {EMI_MONTHS} months
+              </span>
+            </div>
+
             {/* Quantity */}
             <div style={{ marginBottom: 26 }}>
               <p
@@ -239,6 +345,87 @@ export default function BuyBox() {
               >
                 Express Checkout
               </button>
+            </div>
+
+            {/* Pincode checker */}
+            <div
+              style={{
+                border: "1px solid #EDE9FB",
+                borderRadius: 16,
+                padding: "16px",
+                marginBottom: 22,
+              }}
+            >
+              <p
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontFamily: "var(--font-inter)",
+                  fontSize: 12.5,
+                  fontWeight: 700,
+                  color: "#1A0A3D",
+                  marginBottom: 10,
+                }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21s-6-5.5-6-10.5A6 6 0 0112 4a6 6 0 016 6.5C18 15.5 12 21 12 21z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                  <circle cx="12" cy="10.5" r="2" stroke="#6B4FB3" strokeWidth="1.6" />
+                </svg>
+                Check Services and Delivery for
+              </p>
+              <div style={{ display: "flex", gap: 8, marginBottom: pincodeResult ? 10 : 0 }}>
+                <input
+                  value={pincode}
+                  onChange={(e) => {
+                    setPincode(e.target.value.replace(/\D/g, "").slice(0, 6));
+                    setPincodeResult(null);
+                  }}
+                  placeholder="Enter pincode"
+                  inputMode="numeric"
+                  style={{
+                    flex: 1,
+                    padding: "11px 14px",
+                    borderRadius: 10,
+                    border: "1px solid #E5E7EB",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 13.5,
+                    color: "#1A0A3D",
+                  }}
+                />
+                <button
+                  onClick={checkPincode}
+                  style={{
+                    padding: "0 22px",
+                    borderRadius: 10,
+                    border: "none",
+                    background: "#1A0A3D",
+                    color: "#fff",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 13.5,
+                    fontWeight: 700,
+                    cursor: "pointer",
+                  }}
+                >
+                  Check
+                </button>
+              </div>
+
+              {pincodeResult === "valid" && (
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#15803D", fontWeight: 600, margin: 0 }}>
+                  ✓ Delivery available · Ships within 24 hrs
+                </p>
+              )}
+              {pincodeResult === "invalid" && (
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#B91C1C", fontWeight: 600, margin: 0 }}>
+                  Please enter a valid 6-digit pincode
+                </p>
+              )}
+
+              <div style={{ display: "flex", gap: 18, flexWrap: "wrap", marginTop: 14 }}>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280" }}>Pay on delivery available</span>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280" }}>Hassle free customer service</span>
+              </div>
             </div>
 
             {/* Shipping / COD info */}
