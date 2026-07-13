@@ -5,14 +5,6 @@ import Image from "next/image";
 
 const PRODUCT = { price: 2499, mrp: 3499 };
 
-const INCLUDED = [
-  "1 x Luxe Black Electric Toothbrush",
-  "1 x Premium Travel Case",
-  "1 x Charging Cable",
-  "1 x Brush Head",
-  "User Guide",
-];
-
 const TRUST = [
   { label: "2-Year Warranty" },
   { label: "Secure Payments" },
@@ -49,14 +41,6 @@ const SHIPPING_INFO = [
       </svg>
     ),
   },
-];
-
-const CHIPS = [
-  "Premium Travel Case",
-  "Free Charger Included",
-  "Rechargeable",
-  "Personalisation Available",
-  "Free Shipping",
 ];
 
 function CheckIcon({ color = "#6B4FB3" }: { color?: string }) {
@@ -321,55 +305,6 @@ export default function BuyBox() {
                   </span>
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#374151", fontWeight: 500 }}>{t.label}</span>
                 </div>
-              ))}
-            </div>
-
-            {/* What's included */}
-            <div style={{ marginBottom: 22 }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#9CA3AF",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.09em",
-                  marginBottom: 10,
-                }}
-              >
-                What&apos;s In The Box
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                {INCLUDED.map((item) => (
-                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <span style={{ color: "#6B4FB3", fontSize: 13 }}>•</span>
-                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#4B5563" }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Feature chips */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {CHIPS.map((c) => (
-                <span
-                  key={c}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 5,
-                    background: "#F8F6FF",
-                    border: "1px solid #EDE9FB",
-                    borderRadius: 999,
-                    padding: "6px 12px",
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 11.5,
-                    fontWeight: 600,
-                    color: "#4B5563",
-                  }}
-                >
-                  <span style={{ color: "#15803D" }}>✓</span> {c}
-                </span>
               ))}
             </div>
           </div>

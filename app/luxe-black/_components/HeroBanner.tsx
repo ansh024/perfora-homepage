@@ -49,7 +49,7 @@ export default function HeroBanner() {
         }}
       >
         {/* Desktop banner */}
-        <div className="lb-hero-desktop" style={{ position: "relative", width: "100%", aspectRatio: "1586 / 992" }}>
+        <div className="lb-hero-desktop" style={{ position: "relative", width: "100%", aspectRatio: "1796 / 876" }}>
           <Image
             src="/luxe-black/hero-banner-desktop.png"
             alt="Perfora Luxe Black Electric Toothbrush — Brushing, Upgraded. Powerful sonic cleaning with a premium design engineered for healthier teeth and gums."
