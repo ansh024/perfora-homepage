@@ -78,7 +78,7 @@ export default function ReviewsCarousel() {
               scrollSnapAlign: "start",
               background: "#FFFFFF",
               border: "1px solid #EDE9FB",
-              borderRadius: 20,
+              borderRadius: 16,
               padding: "28px 24px",
               display: "flex",
               flexDirection: "column",
@@ -87,7 +87,7 @@ export default function ReviewsCarousel() {
             }}
           >
             <Stars count={r.stars} />
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, color: "#4B5563", lineHeight: 1.7, margin: 0, flex: 1 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, color: "#1A0A3D", lineHeight: 1.7, margin: 0, flex: 1 }}>
               &ldquo;{r.text}&rdquo;
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -111,7 +111,7 @@ export default function ReviewsCarousel() {
               </div>
               <div>
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D", margin: 0 }}>{r.name}</p>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#9CA3AF", margin: 0 }}>{r.location} · Verified Buyer</p>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, color: "#1A0A3D", margin: 0 }}>{r.location} · Verified Buyer</p>
               </div>
             </div>
           </article>

@@ -195,7 +195,7 @@ export default function LuxeBlackPage() {
               >
                 Carefully Packed. Thoughtfully Designed.
               </h2>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#6B7280", lineHeight: 1.75, marginBottom: 36, maxWidth: 460 }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", lineHeight: 1.75, marginBottom: 36, maxWidth: 460 }}>
                 Packed with all the essentials for a smarter brushing experience.
               </p>
 
@@ -206,12 +206,12 @@ export default function LuxeBlackPage() {
                     style={{
                       background: "#F8F6FF",
                       border: "1px solid #EDE9FB",
-                      borderRadius: 18,
+                      borderRadius: 16,
                       padding: "18px 20px",
                     }}
                   >
                     <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 700, color: "#1A0A3D", marginBottom: 4 }}>{c.title}</h3>
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280", lineHeight: 1.55, margin: 0 }}>{c.desc}</p>
+                    <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D", lineHeight: 1.55, margin: 0 }}>{c.desc}</p>
                   </div>
                 ))}
               </div>
@@ -220,7 +220,7 @@ export default function LuxeBlackPage() {
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontSize: 12.5,
-                  color: "#6B7280",
+                  color: "#1A0A3D",
                   lineHeight: 1.7,
                   marginTop: 20,
                 }}
@@ -241,12 +241,12 @@ export default function LuxeBlackPage() {
                 fontWeight: 700,
                 color: "#1A0A3D",
                 textAlign: "center",
-                marginBottom: 12,
+                marginBottom: 14,
               }}
             >
               Loved by Thousands of Happy Brushers
             </h2>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "#6B7280", textAlign: "center", marginBottom: 48 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", textAlign: "center", marginBottom: 48 }}>
               Real experiences from real Perfora customers
             </p>
 
@@ -261,21 +261,21 @@ export default function LuxeBlackPage() {
                 ))}
               </div>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>4.7 out of 5</p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#9CA3AF", margin: 0 }}>Thousands of satisfied customers</p>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D", margin: 0 }}>Thousands of satisfied customers</p>
             </div>
           </div>
         </section>
 
         {/* ── Footer CTA ── */}
-        <section aria-label="Shop Luxe Black" style={{ background: "linear-gradient(135deg, #1A0A3D 0%, #3D1F8F 100%)", padding: "84px 24px", textAlign: "center" }}>
+        <section aria-label="Shop Luxe Black" style={{ background: "linear-gradient(135deg, #1A0A3D 0%, #3D1F8F 100%)", padding: "88px 24px", textAlign: "center" }}>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <h2
               style={{
                 fontFamily: "var(--spectral)",
-                fontSize: "clamp(1.8rem, 3.8vw, 2.6rem)",
+                fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
                 fontWeight: 700,
                 color: "#FFFFFF",
-                lineHeight: 1.2,
+                lineHeight: 1.25,
                 marginBottom: 32,
               }}
             >

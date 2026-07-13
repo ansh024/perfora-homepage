@@ -127,7 +127,7 @@ export default function BuyBox() {
                   </svg>
                 ))}
               </div>
-              <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#4B5563", fontWeight: 500 }}>
+              <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#1A0A3D", fontWeight: 500 }}>
                 4.7 &nbsp;·&nbsp; 350+ ratings
               </span>
             </div>
@@ -160,10 +160,10 @@ export default function BuyBox() {
             {/* Price + delivery */}
             <div style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 32, fontWeight: 800, color: "#1A0A3D" }}>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 700, color: "#1A0A3D" }}>
                   ₹{PRODUCT.price.toLocaleString("en-IN")}
                 </span>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 15, color: "#9CA3AF", textDecoration: "line-through" }}>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 500, color: "#1A0A3D", textDecoration: "line-through" }}>
                   ₹{PRODUCT.mrp.toLocaleString("en-IN")}
                 </span>
                 <span
@@ -245,7 +245,7 @@ export default function BuyBox() {
                       marginBottom: 10,
                     }}
                   />
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280", lineHeight: 1.6, margin: 0 }}>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D", lineHeight: 1.6, margin: 0 }}>
                     Note: Personalised orders may take 2-3 additional days beyond the standard delivery date.
                   </p>
                 </div>
@@ -261,7 +261,7 @@ export default function BuyBox() {
                 marginBottom: 26,
                 fontFamily: "var(--font-inter)",
                 fontSize: 12.5,
-                color: "#4B5563",
+                color: "#1A0A3D",
               }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
@@ -284,7 +284,7 @@ export default function BuyBox() {
                   fontFamily: "var(--font-inter)",
                   fontSize: 11,
                   fontWeight: 700,
-                  color: "#9CA3AF",
+                  color: "#1A0A3D",
                   textTransform: "uppercase",
                   letterSpacing: "0.09em",
                   marginBottom: 10,
@@ -419,8 +419,8 @@ export default function BuyBox() {
               )}
 
               <div style={{ display: "flex", gap: 18, flexWrap: "wrap", marginTop: 14 }}>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280" }}>Pay on delivery available</span>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#6B7280" }}>Hassle free customer service</span>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D" }}>Pay on delivery available</span>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D" }}>Hassle free customer service</span>
               </div>
             </div>
 
@@ -440,7 +440,7 @@ export default function BuyBox() {
               {SHIPPING_INFO.map((s) => (
                 <div key={s.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, flex: 1, textAlign: "center" }}>
                   {s.icon}
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, color: "#374151", lineHeight: 1.3 }}>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 11.5, fontWeight: 600, color: "#1A0A3D", lineHeight: 1.3 }}>
                     {s.label}
                   </span>
                 </div>
