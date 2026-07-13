@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import BuyBox from "./_components/BuyBox";
 import ReviewsCarousel from "./_components/ReviewsCarousel";
+import HeroBanner from "./_components/HeroBanner";
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -59,15 +60,6 @@ const jsonLdProduct = {
 };
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const HERO_PILLS = [
-  "Oscillating Cleaning Technology",
-  "3 Cleaning Modes",
-  "Long-lasting Rechargeable Battery",
-  "Premium Travel Case Included",
-];
-
-const HERO_TRUST = ["Free Shipping", "Secure Checkout", "2-Year Warranty"];
-
 const WHY_FEATURES_LEFT = [
   {
     title: "Oscillating Cleaning Technology",
@@ -210,24 +202,6 @@ const INCLUDED_CARDS = [
   },
 ];
 
-function CheckDot({ label }: { label: string }) {
-  return (
-    <span
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 6,
-        fontFamily: "var(--font-inter)",
-        fontSize: 12.5,
-        fontWeight: 500,
-        color: "#4B5563",
-      }}
-    >
-      <span style={{ color: "#15803D", fontSize: 13 }}>✓</span> {label}
-    </span>
-  );
-}
-
 function FeatureRow({ feature, align }: { feature: (typeof WHY_FEATURES_LEFT)[number]; align: "left" | "right" }) {
   return (
     <div
@@ -268,11 +242,11 @@ export default function LuxeBlackPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProduct) }} />
 
       <style>{`
-        .lb-hero-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          align-items: center;
-          gap: 40px;
+        .lb-hero-desktop { display: block; }
+        .lb-hero-mobile { display: none; }
+        @media (max-width: 767px) {
+          .lb-hero-desktop { display: none; }
+          .lb-hero-mobile { display: block; }
         }
         .lb-buy-grid {
           display: grid;
@@ -306,7 +280,6 @@ export default function LuxeBlackPage() {
         }
 
         @media (max-width: 767px) {
-          .lb-hero-grid { grid-template-columns: 1fr; gap: 32px; }
           .lb-buy-grid { grid-template-columns: 1fr; gap: 32px; }
           .lb-included-layout { grid-template-columns: 1fr; gap: 32px; }
           .lb-included-grid { grid-template-columns: 1fr; }
@@ -357,153 +330,7 @@ export default function LuxeBlackPage() {
         </nav>
 
         {/* ── Hero ── */}
-        <section
-          aria-label="Hero — Luxe Black Electric Toothbrush"
-          style={{
-            background: "linear-gradient(160deg, #FFFFFF 0%, #F8F6FF 55%, #F0ECFF 100%)",
-            padding: "72px 24px",
-          }}
-        >
-          <div className="lb-hero-grid" style={{ maxWidth: 1160, margin: "0 auto" }}>
-            {/* Text col */}
-            <div className="lb-animate">
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  background: "#FFFFFF",
-                  border: "1px solid #EDE9FB",
-                  borderRadius: 999,
-                  padding: "7px 16px",
-                  marginBottom: 22,
-                  boxShadow: "0 2px 10px rgba(61,31,143,0.06)",
-                }}
-              >
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#6B4FB3" }} />
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, color: "#3D1F8F", letterSpacing: "0.02em" }}>
-                  Perfora Electric Toothbrush
-                </span>
-              </div>
-
-              <h1
-                style={{
-                  fontFamily: "var(--spectral)",
-                  fontSize: "clamp(2.2rem, 4.4vw, 3.4rem)",
-                  fontWeight: 700,
-                  color: "#1A0A3D",
-                  lineHeight: 1.12,
-                  marginBottom: 20,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                The Electric Toothbrush, Refined.
-              </h1>
-
-              <p
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: "clamp(14px, 1.4vw, 16.5px)",
-                  color: "#6B7280",
-                  lineHeight: 1.75,
-                  marginBottom: 28,
-                  maxWidth: 460,
-                }}
-              >
-                Powerful oscillating cleaning, three intelligent brushing modes
-                and a premium design built for healthier everyday brushing.
-              </p>
-
-              {/* Feature pills */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 32 }}>
-                {HERO_PILLS.map((p) => (
-                  <span
-                    key={p}
-                    style={{
-                      background: "#FFFFFF",
-                      border: "1px solid #EDE9FB",
-                      borderRadius: 999,
-                      padding: "8px 14px",
-                      fontFamily: "var(--font-inter)",
-                      fontSize: 12,
-                      fontWeight: 600,
-                      color: "#3D1F8F",
-                    }}
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-
-              {/* CTAs */}
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
-                <a
-                  href="#buy"
-                  style={{
-                    background: "#1A0A3D",
-                    color: "#FFFFFF",
-                    padding: "15px 30px",
-                    borderRadius: 50,
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    textDecoration: "none",
-                    boxShadow: "0 8px 24px rgba(26,10,61,0.18)",
-                  }}
-                >
-                  Buy Now
-                </a>
-                <a
-                  href="#why"
-                  style={{
-                    background: "transparent",
-                    color: "#1A0A3D",
-                    padding: "14px 28px",
-                    borderRadius: 50,
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    border: "2px solid #E5DFFB",
-                  }}
-                >
-                  Learn More
-                </a>
-              </div>
-
-              {/* Trust badges */}
-              <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
-                {HERO_TRUST.map((t) => (
-                  <CheckDot key={t} label={t} />
-                ))}
-              </div>
-            </div>
-
-            {/* Image col */}
-            <div style={{ position: "relative" }}>
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  aspectRatio: "1 / 1",
-                  borderRadius: 32,
-                  overflow: "hidden",
-                  background: "radial-gradient(circle at 50% 40%, #F0ECFF 0%, #FFFFFF 70%)",
-                }}
-              >
-                <Image
-                  src="/luxe-black/hero-product.png"
-                  alt="Perfora Luxe Black Electric Toothbrush"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 45vw, 90vw"
-                  style={{ objectFit: "contain", padding: 40 }}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
+        <HeroBanner />
         {/* ── Purchase / Mini-PDP ── */}
         <BuyBox />
 
