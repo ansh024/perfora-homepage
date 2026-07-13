@@ -85,29 +85,6 @@ export default function BuyBox() {
                 style={{ objectFit: "cover" }}
               />
             </div>
-
-            {/* Ratings summary */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                padding: "16px 20px",
-                background: "#F8F6FF",
-                borderRadius: 16,
-              }}
-            >
-              <div style={{ display: "flex", gap: 2 }}>
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <svg key={s} width="15" height="15" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1l1.18 2.56 2.82.4-2.04 1.99.48 2.81L6 7.38 3.56 8.76l.48-2.81L2 3.96l2.82-.4L6 1z" fill="#F5A623" />
-                  </svg>
-                ))}
-              </div>
-              <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#4B5563", fontWeight: 500 }}>
-                4.7 &nbsp;·&nbsp; 3,200+ ratings
-              </span>
-            </div>
           </div>
 
           {/* ── Info column ── */}
@@ -133,11 +110,25 @@ export default function BuyBox() {
                 fontWeight: 700,
                 color: "#1A0A3D",
                 lineHeight: 1.2,
-                marginBottom: 14,
+                marginBottom: 10,
               }}
             >
               Luxe Black Electric Toothbrush
             </h2>
+
+            {/* Ratings summary */}
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18 }}>
+              <div style={{ display: "flex", gap: 2 }}>
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <svg key={s} width="14" height="14" viewBox="0 0 12 12" fill="none">
+                    <path d="M6 1l1.18 2.56 2.82.4-2.04 1.99.48 2.81L6 7.38 3.56 8.76l.48-2.81L2 3.96l2.82-.4L6 1z" fill="#F5A623" />
+                  </svg>
+                ))}
+              </div>
+              <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#4B5563", fontWeight: 500 }}>
+                4.7 &nbsp;·&nbsp; 3,200+ ratings
+              </span>
+            </div>
 
             {/* Price + delivery */}
             <div style={{ marginBottom: 22 }}>
