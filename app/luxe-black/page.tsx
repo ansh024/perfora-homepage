@@ -3,6 +3,7 @@ import Image from "next/image";
 import BuyBox from "./_components/BuyBox";
 import ReviewsCarousel from "./_components/ReviewsCarousel";
 import HeroBanner from "./_components/HeroBanner";
+import PromoStrip from "./_components/PromoStrip";
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -339,6 +340,7 @@ export default function LuxeBlackPage() {
 
         {/* ── Hero ── */}
         <HeroBanner />
+        <PromoStrip />
         {/* ── Purchase / Mini-PDP ── */}
         <BuyBox />
 
