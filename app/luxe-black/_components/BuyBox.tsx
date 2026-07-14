@@ -80,12 +80,23 @@ export default function BuyBox() {
 
   return (
     <>
+      <style>{`
+        .lb-buy-section { padding: 88px 24px; }
+        .lb-price-main { font-size: 26px; }
+        .lb-qty-inline { display: none; }
+        @media (max-width: 767px) {
+          .lb-buy-section { padding-top: 44px; padding-bottom: 35px; }
+          .lb-price-main { font-size: 21px; }
+          .lb-qty-inline { display: inline-flex; }
+          .lb-qty-full { display: none; }
+        }
+      `}</style>
       <section
         id="buy"
+        className="lb-buy-section"
         aria-label="Purchase Luxe Black Electric Toothbrush"
         style={{
           background: "#FFFFFF",
-          padding: "88px 24px",
         }}
       >
         <div ref={sectionRef} className="lb-buy-grid" style={{ maxWidth: 1140, margin: "0 auto" }}>
@@ -159,8 +170,8 @@ export default function BuyBox() {
           <div className="lb-buy-bottom">
             {/* Price + delivery */}
             <div style={{ marginBottom: 22 }}>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: 26, fontWeight: 700, color: "#1A0A3D" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
+                <span className="lb-price-main" style={{ fontFamily: "var(--font-inter)", fontWeight: 700, color: "#1A0A3D" }}>
                   ₹{PRODUCT.price.toLocaleString("en-IN")}
                 </span>
                 <span style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 500, color: "#1A0A3D", textDecoration: "line-through" }}>
@@ -179,6 +190,36 @@ export default function BuyBox() {
                 >
                   Save {discount}%
                 </span>
+
+                {/* Mobile-only: quantity control shown inline next to the price */}
+                <div
+                  className="lb-qty-inline"
+                  style={{
+                    alignItems: "center",
+                    border: "1px solid #E5E7EB",
+                    borderRadius: 999,
+                    overflow: "hidden",
+                    marginLeft: "auto",
+                  }}
+                >
+                  <button
+                    onClick={() => setQty((q) => Math.max(1, q - 1))}
+                    aria-label="Decrease quantity"
+                    style={{ width: 32, height: 32, background: "none", border: "none", cursor: "pointer", fontSize: 16, color: "#1A0A3D" }}
+                  >
+                    −
+                  </button>
+                  <span style={{ width: 28, textAlign: "center", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13, color: "#1A0A3D" }}>
+                    {qty}
+                  </span>
+                  <button
+                    onClick={() => setQty((q) => Math.min(9, q + 1))}
+                    aria-label="Increase quantity"
+                    style={{ width: 32, height: 32, background: "none", border: "none", cursor: "pointer", fontSize: 16, color: "#1A0A3D" }}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -278,7 +319,7 @@ export default function BuyBox() {
             </div>
 
             {/* Quantity */}
-            <div style={{ marginBottom: 26 }}>
+            <div className="lb-qty-full" style={{ marginBottom: 26 }}>
               <p
                 style={{
                   fontFamily: "var(--font-inter)",

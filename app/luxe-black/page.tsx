@@ -100,12 +100,18 @@ export default function LuxeBlackPage() {
           gap: 12px;
         }
 
+        .lb-included-section { padding: 88px 24px; }
+        .lb-reviews-section { padding: 88px 0; }
+
         @media (max-width: 767px) {
           .lb-buy-grid {
             grid-template-columns: 1fr;
             grid-template-areas: "top" "image" "bottom";
             gap: 32px;
           }
+          .lb-included-section { padding-top: 62px; padding-bottom: 44px; }
+          .lb-reviews-section { padding-top: 44px; }
+          .lb-rating-summary { display: none; }
         }
 
         @keyframes lb-fadeup {
@@ -161,7 +167,7 @@ export default function LuxeBlackPage() {
         <WhyChooseBanner />
 
         {/* ── Everything Included ── */}
-        <section aria-label="Everything Included" style={{ background: "#FFFFFF", padding: "88px 24px" }}>
+        <section aria-label="Everything Included" className="lb-included-section" style={{ background: "#FFFFFF" }}>
           <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
             <h2
               style={{
@@ -210,7 +216,7 @@ export default function LuxeBlackPage() {
         </section>
 
         {/* ── Reviews ── */}
-        <section aria-label="Customer Reviews" style={{ background: "#FDFCFF", padding: "88px 0" }}>
+        <section aria-label="Customer Reviews" className="lb-reviews-section" style={{ background: "#FDFCFF" }}>
           <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 24px" }}>
             <h2
               style={{
@@ -230,7 +236,7 @@ export default function LuxeBlackPage() {
 
             <ReviewsCarousel />
 
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, marginTop: 48 }}>
+            <div className="lb-rating-summary" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, marginTop: 48 }}>
               <div style={{ display: "flex", gap: 3 }}>
                 {[1, 2, 3, 4, 5].map((s) => (
                   <svg key={s} width="22" height="22" viewBox="0 0 12 12" fill="none">
