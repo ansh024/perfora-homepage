@@ -83,12 +83,21 @@ export default function BuyBox() {
       <style>{`
         .lb-buy-section { padding: 88px 24px; }
         .lb-price-main { font-size: 26px; }
-        .lb-qty-inline { display: none; }
+        .lb-qty-inline { display: inline-flex; }
+        .lb-buy-bottom { display: flex; flex-direction: column; }
+        .lb-rewards-block { display: none; }
         @media (max-width: 767px) {
           .lb-buy-section { padding-top: 44px; padding-bottom: 35px; }
           .lb-price-main { font-size: 21px; }
-          .lb-qty-inline { display: inline-flex; }
-          .lb-qty-full { display: none; }
+        }
+        @media (min-width: 768px) {
+          .lb-price-block { order: 1; }
+          .lb-rewards-block { order: 2; display: block; }
+          .lb-emi-block { order: 3; }
+          .lb-personalise-block { order: 4; }
+          .lb-cta-block { order: 5; }
+          .lb-pincode-block { order: 6; }
+          .lb-shipping-block { order: 7; }
         }
       `}</style>
       <section
@@ -169,7 +178,7 @@ export default function BuyBox() {
           {/* ── Bottom: price, quantity, CTAs, shipping ── */}
           <div className="lb-buy-bottom">
             {/* Price + delivery */}
-            <div style={{ marginBottom: 22 }}>
+            <div className="lb-price-block" style={{ marginBottom: 22 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
                 <span className="lb-price-main" style={{ fontFamily: "var(--font-inter)", fontWeight: 700, color: "#1A0A3D" }}>
                   ₹{PRODUCT.price.toLocaleString("en-IN")}
@@ -223,8 +232,31 @@ export default function BuyBox() {
               </div>
             </div>
 
+            {/* Rewards: Perfora Coins + free gift (desktop only) */}
+            <div className="lb-rewards-block" style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 22 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                  <circle cx="12" cy="12" r="9" stroke="#6B4FB3" strokeWidth="1.6" />
+                  <path d="M9 12l2 2 4-4" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span>
+                  You&apos;ll get <strong style={{ color: "#1A0A3D", fontWeight: 700 }}>349 Perfora Coins</strong> with this order
+                </span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                  <path d="M20 8H4v12a1 1 0 001 1h14a1 1 0 001-1V8z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                  <path d="M2 5h20v3H2zM12 5v16M12 5c-1.5-3-6-3-6 0s4.5 3 6 0zm0 0c1.5-3 6-3 6 0s-4.5 3-6 0z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+                <span>
+                  <strong style={{ color: "#1A0A3D", fontWeight: 700 }}>Free gift worth ₹290</strong> on this order
+                </span>
+              </div>
+            </div>
+
             {/* Personalisation */}
             <div
+              className="lb-personalise-block"
               style={{
                 border: "1px solid #EDE9FB",
                 borderRadius: 16,
@@ -295,6 +327,7 @@ export default function BuyBox() {
 
             {/* EMI */}
             <div
+              className="lb-emi-block"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -318,52 +351,8 @@ export default function BuyBox() {
               </span>
             </div>
 
-            {/* Quantity */}
-            <div className="lb-qty-full" style={{ marginBottom: 26 }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: "#1A0A3D",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.09em",
-                  marginBottom: 10,
-                }}
-              >
-                Quantity
-              </p>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  border: "1px solid #E5E7EB",
-                  borderRadius: 999,
-                  overflow: "hidden",
-                }}
-              >
-                <button
-                  onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  aria-label="Decrease quantity"
-                  style={{ width: 40, height: 40, background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#1A0A3D" }}
-                >
-                  −
-                </button>
-                <span style={{ width: 36, textAlign: "center", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 14, color: "#1A0A3D" }}>
-                  {qty}
-                </span>
-                <button
-                  onClick={() => setQty((q) => Math.min(9, q + 1))}
-                  aria-label="Increase quantity"
-                  style={{ width: 40, height: 40, background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "#1A0A3D" }}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
             {/* CTAs */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 22 }}>
+            <div className="lb-cta-block" style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 22 }}>
               <button
                 onClick={handleAddToCart}
                 style={{
@@ -386,6 +375,7 @@ export default function BuyBox() {
 
             {/* Pincode checker */}
             <div
+              className="lb-pincode-block"
               style={{
                 border: "1px solid #EDE9FB",
                 borderRadius: 16,
@@ -467,6 +457,7 @@ export default function BuyBox() {
 
             {/* Shipping / COD info */}
             <div
+              className="lb-shipping-block"
               style={{
                 display: "flex",
                 justifyContent: "space-between",

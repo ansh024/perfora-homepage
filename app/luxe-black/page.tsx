@@ -88,7 +88,8 @@ export default function LuxeBlackPage() {
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-areas: "image top" "image bottom";
-          gap: 64px;
+          column-gap: 64px;
+          row-gap: 26px;
           align-items: start;
         }
         .lb-buy-top { grid-area: top; }
