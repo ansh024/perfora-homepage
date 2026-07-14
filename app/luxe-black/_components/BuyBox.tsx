@@ -85,19 +85,19 @@ export default function BuyBox() {
         .lb-price-main { font-size: 26px; }
         .lb-qty-inline { display: inline-flex; }
         .lb-buy-bottom { display: flex; flex-direction: column; }
-        .lb-rewards-block { display: none; }
+        .lb-price-block { order: 1; }
+        .lb-rewards-block { display: none; order: 2; }
+        .lb-emi-block { order: 3; }
+        .lb-personalise-block { order: 4; }
+        .lb-cta-block { order: 5; }
+        .lb-pincode-block { order: 6; }
+        .lb-shipping-block { order: 7; }
         @media (max-width: 767px) {
           .lb-buy-section { padding-top: 44px; padding-bottom: 35px; }
           .lb-price-main { font-size: 21px; }
         }
         @media (min-width: 768px) {
-          .lb-price-block { order: 1; }
-          .lb-rewards-block { order: 2; display: block; }
-          .lb-emi-block { order: 3; }
-          .lb-personalise-block { order: 4; }
-          .lb-cta-block { order: 5; }
-          .lb-pincode-block { order: 6; }
-          .lb-shipping-block { order: 7; }
+          .lb-rewards-block { display: block; }
         }
       `}</style>
       <section
@@ -233,24 +233,77 @@ export default function BuyBox() {
             </div>
 
             {/* Rewards: Perfora Coins + free gift (desktop only) */}
-            <div className="lb-rewards-block" style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 22 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D" }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-                  <circle cx="12" cy="12" r="9" stroke="#6B4FB3" strokeWidth="1.6" />
-                  <path d="M9 12l2 2 4-4" stroke="#6B4FB3" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span>
-                  You&apos;ll get <strong style={{ color: "#1A0A3D", fontWeight: 700 }}>349 Perfora Coins</strong> with this order
+            <div className="lb-rewards-block" style={{ marginBottom: 22 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 14,
+                  background: "linear-gradient(135deg, #F8FBEF 0%, #F3F0FC 100%)",
+                  border: "1.5px dashed #6B4FB3",
+                  borderRadius: 16,
+                  padding: "14px 18px",
+                  marginBottom: 12,
+                }}
+              >
+                <span
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    background: "#FFFFFF",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 8H4v12a1 1 0 001 1h14a1 1 0 001-1V8z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                    <path d="M2 5h20v3H2zM12 5v16M12 5c-1.5-3-6-3-6 0s4.5 3 6 0zm0 0c1.5-3 6-3 6 0s-4.5 3-6 0z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, color: "#1A0A3D" }}>
+                  <strong style={{ fontWeight: 700 }}>Free gift worth ₹290</strong> on this order
                 </span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D" }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-                  <path d="M20 8H4v12a1 1 0 001 1h14a1 1 0 001-1V8z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
-                  <path d="M2 5h20v3H2zM12 5v16M12 5c-1.5-3-6-3-6 0s4.5 3 6 0zm0 0c1.5-3 6-3 6 0s-4.5 3-6 0z" stroke="#6B4FB3" strokeWidth="1.6" strokeLinejoin="round" />
-                </svg>
-                <span>
-                  <strong style={{ color: "#1A0A3D", fontWeight: 700 }}>Free gift worth ₹290</strong> on this order
-                </span>
+
+              <div style={{ display: "flex", gap: 12 }}>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    background: "#F8F6FF",
+                    border: "1px solid #EDE9FB",
+                    borderRadius: 14,
+                    padding: "14px 16px",
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                    <circle cx="12" cy="12" r="9" stroke="#6B4FB3" strokeWidth="1.6" />
+                    <path d="M9 8h4a2 2 0 010 4H9m0 0h4a2 2 0 010 4H9m0-8v8M9 8V6m0 10v2" stroke="#6B4FB3" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D" }}>Earn 349 Perfora Coins</span>
+                </div>
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    background: "#F8F6FF",
+                    border: "1px solid #EDE9FB",
+                    borderRadius: 14,
+                    padding: "14px 16px",
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+                    <path d="M4 12l5 5L20 6" stroke="#6B4FB3" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, fontWeight: 600, color: "#1A0A3D" }}>2-Year Warranty</span>
+                </div>
               </div>
             </div>
 

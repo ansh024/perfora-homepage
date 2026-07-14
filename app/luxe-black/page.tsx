@@ -112,7 +112,19 @@ export default function LuxeBlackPage() {
           }
           .lb-included-section { padding-top: 62px; padding-bottom: 44px; }
           .lb-reviews-section { padding-top: 44px; }
-          .lb-rating-summary { display: none; }
+        }
+
+        .lb-included-flow { max-width: 720px; margin: 0 auto; text-align: center; }
+        @media (min-width: 768px) {
+          .lb-included-flow {
+            max-width: 1160px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            text-align: left;
+          }
+          .lb-included-flow .lb-included-grid { margin-top: 0; }
         }
 
         @keyframes lb-fadeup {
@@ -169,35 +181,37 @@ export default function LuxeBlackPage() {
 
         {/* ── Everything Included ── */}
         <section aria-label="Everything Included" className="lb-included-section" style={{ background: "#FFFFFF" }}>
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-            <h2
-              style={{
-                fontFamily: "var(--spectral)",
-                fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
-                fontWeight: 700,
-                color: "#1A0A3D",
-                lineHeight: 1.25,
-                marginBottom: 14,
-              }}
-            >
-              Carefully Packed. Thoughtfully Designed.
-            </h2>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", lineHeight: 1.75, marginBottom: 36 }}>
-              Packed with all the essentials for a smarter brushing experience.
-            </p>
+          <div className="lb-included-flow">
+            <div>
+              <h2
+                style={{
+                  fontFamily: "var(--spectral)",
+                  fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
+                  fontWeight: 700,
+                  color: "#1A0A3D",
+                  lineHeight: 1.25,
+                  marginBottom: 14,
+                }}
+              >
+                Carefully Packed. Thoughtfully Designed.
+              </h2>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", lineHeight: 1.75, marginBottom: 36 }}>
+                Packed with all the essentials for a smarter brushing experience.
+              </p>
 
-            <div style={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)", marginBottom: 36 }}>
-              <Image
-                src="/luxe-black/everything-included.png"
-                alt="Perfora Luxe Black Electric Toothbrush with travel case, brush head and charging cable"
-                fill
-                sizes="(min-width: 767px) 640px, 90vw"
-                style={{ objectFit: "cover" }}
-              />
-              <WarrantyBadge />
+              <div style={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)" }}>
+                <Image
+                  src="/luxe-black/everything-included.png"
+                  alt="Perfora Luxe Black Electric Toothbrush with travel case, brush head and charging cable"
+                  fill
+                  sizes="(min-width: 767px) 560px, 90vw"
+                  style={{ objectFit: "cover" }}
+                />
+                <WarrantyBadge />
+              </div>
             </div>
 
-            <div className="lb-included-grid" style={{ textAlign: "left" }}>
+            <div className="lb-included-grid" style={{ textAlign: "left", marginTop: 36 }}>
               {INCLUDED_CARDS.map((c) => (
                 <div
                   key={c.title}
@@ -236,18 +250,6 @@ export default function LuxeBlackPage() {
             </p>
 
             <ReviewsCarousel />
-
-            <div className="lb-rating-summary" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, marginTop: 48 }}>
-              <div style={{ display: "flex", gap: 3 }}>
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <svg key={s} width="22" height="22" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1l1.18 2.56 2.82.4-2.04 1.99.48 2.81L6 7.38 3.56 8.76l.48-2.81L2 3.96l2.82-.4L6 1z" fill="#F5A623" />
-                  </svg>
-                ))}
-              </div>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, fontWeight: 700, color: "#1A0A3D", margin: 0 }}>4.7 out of 5</p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12.5, color: "#1A0A3D", margin: 0 }}>Thousands of satisfied customers</p>
-            </div>
           </div>
         </section>
 
