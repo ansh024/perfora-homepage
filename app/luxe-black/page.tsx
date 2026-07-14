@@ -99,12 +99,6 @@ export default function LuxeBlackPage() {
           grid-template-columns: 1fr;
           gap: 12px;
         }
-        .lb-included-layout {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
-          align-items: center;
-        }
 
         @media (max-width: 767px) {
           .lb-buy-grid {
@@ -112,8 +106,6 @@ export default function LuxeBlackPage() {
             grid-template-areas: "top" "image" "bottom";
             gap: 32px;
           }
-          .lb-included-layout { grid-template-columns: 1fr; gap: 32px; }
-          .lb-included-grid { grid-template-columns: 1fr; }
         }
 
         @keyframes lb-fadeup {
@@ -170,63 +162,49 @@ export default function LuxeBlackPage() {
 
         {/* ── Everything Included ── */}
         <section aria-label="Everything Included" style={{ background: "#FFFFFF", padding: "88px 24px" }}>
-          <div className="lb-included-layout" style={{ maxWidth: 1160, margin: "0 auto" }}>
-            <div style={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)" }}>
+          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+            <h2
+              style={{
+                fontFamily: "var(--spectral)",
+                fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
+                fontWeight: 700,
+                color: "#1A0A3D",
+                lineHeight: 1.25,
+                marginBottom: 14,
+              }}
+            >
+              Carefully Packed. Thoughtfully Designed.
+            </h2>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", lineHeight: 1.75, marginBottom: 36 }}>
+              Packed with all the essentials for a smarter brushing experience.
+            </p>
+
+            <div style={{ position: "relative", aspectRatio: "1 / 1", borderRadius: 32, overflow: "hidden", boxShadow: "0 20px 60px rgba(61,31,143,0.12)", marginBottom: 36 }}>
               <Image
                 src="/luxe-black/everything-included.png"
                 alt="Perfora Luxe Black Electric Toothbrush with travel case, brush head and charging cable"
                 fill
-                sizes="(min-width: 767px) 48vw, 90vw"
+                sizes="(min-width: 767px) 640px, 90vw"
                 style={{ objectFit: "cover" }}
               />
               <WarrantyBadge />
             </div>
 
-            <div>
-              <h2
-                style={{
-                  fontFamily: "var(--spectral)",
-                  fontSize: "clamp(1.7rem, 3.2vw, 2.3rem)",
-                  fontWeight: 700,
-                  color: "#1A0A3D",
-                  lineHeight: 1.25,
-                  marginBottom: 14,
-                }}
-              >
-                Carefully Packed. Thoughtfully Designed.
-              </h2>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14.5, color: "#1A0A3D", lineHeight: 1.75, marginBottom: 36, maxWidth: 460 }}>
-                Packed with all the essentials for a smarter brushing experience.
-              </p>
-
-              <div className="lb-included-grid">
-                {INCLUDED_CARDS.map((c) => (
-                  <div
-                    key={c.title}
-                    style={{
-                      background: "#F8F6FF",
-                      border: "1px solid #EDE9FB",
-                      borderRadius: 16,
-                      padding: "18px 20px",
-                    }}
-                  >
-                    <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 700, color: "#1A0A3D", marginBottom: 4 }}>{c.title}</h3>
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D", lineHeight: 1.55, margin: 0 }}>{c.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              <p
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 12.5,
-                  color: "#1A0A3D",
-                  lineHeight: 1.7,
-                  marginTop: 20,
-                }}
-              >
-                This toothbrush comes with a 2-year warranty — read the user manual to know more.
-              </p>
+            <div className="lb-included-grid" style={{ textAlign: "left" }}>
+              {INCLUDED_CARDS.map((c) => (
+                <div
+                  key={c.title}
+                  style={{
+                    background: "#F8F6FF",
+                    border: "1px solid #EDE9FB",
+                    borderRadius: 16,
+                    padding: "18px 20px",
+                  }}
+                >
+                  <h3 style={{ fontFamily: "var(--font-inter)", fontSize: 13.5, fontWeight: 700, color: "#1A0A3D", marginBottom: 4 }}>{c.title}</h3>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "#1A0A3D", lineHeight: 1.55, margin: 0 }}>{c.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
