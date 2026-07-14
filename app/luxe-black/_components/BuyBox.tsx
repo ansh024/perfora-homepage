@@ -86,7 +86,7 @@ export default function BuyBox() {
         .lb-qty-inline { display: inline-flex; }
         .lb-buy-bottom { display: flex; flex-direction: column; }
         .lb-price-block { order: 1; }
-        .lb-rewards-block { display: none; order: 2; }
+        .lb-rewards-block { display: block; order: 2; }
         .lb-emi-block { order: 3; }
         .lb-personalise-block { order: 4; }
         .lb-cta-block { order: 5; }
@@ -95,9 +95,6 @@ export default function BuyBox() {
         @media (max-width: 767px) {
           .lb-buy-section { padding-top: 44px; padding-bottom: 35px; }
           .lb-price-main { font-size: 21px; }
-        }
-        @media (min-width: 768px) {
-          .lb-rewards-block { display: block; }
         }
       `}</style>
       <section
